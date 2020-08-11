@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵConsole, Sanitizer } from '@angular/core';
+import { Component, OnInit, ɵConsole, Sanitizer, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaderResponse } from '@angular/common/http';
 import { Shows } from './shows';
 // import { FileService } from './files.service';
@@ -11,9 +11,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class DownloadsComponent implements OnInit {
+  @ViewChild('videoPlayer') videoplayer: ElementRef;
+
   shows: any;
   // path_vars: string[] = [""];
   file: string// = [""]
+  show_vid;
 
   url;
   //  = "http://192.168.0.16:8000/shows/file?path=Downloads/The.Leftovers.S01E03.720p.HDTV.x264-KILLERS/Sample/sample-the.leftovers.s01e03.720p.hdtv.x264-killers.mkv";
@@ -30,7 +33,7 @@ export class DownloadsComponent implements OnInit {
 
   ngOnInit() {
     this.params = this.route.queryParams.subscribe(params => {
-      this.path = params["path"] || "data"
+      this.path = params["path"] || "data/"
       this.sort = params["sort"] || "desc"
       this.column = params["column"] || "creation"
       this.getShows()
@@ -53,7 +56,9 @@ export class DownloadsComponent implements OnInit {
     this.path = path
     this.navCall()
   }
-
+  toggleVideo(event: any) {
+    this.videoplayer.nativeElement.play();
+  }
   private getShows() {
     // console.log(this.path)
     this.http.get<Shows>("http://192.168.0.16:8000/shows/folders?ui_path=" + this.path + "&column=" + this.column + "&sort=" + this.sort, {
@@ -61,14 +66,13 @@ export class DownloadsComponent implements OnInit {
       .subscribe(posts => {
         this.shows = posts;
         if (!this.shows.valid) {
-          this.path = "data"
+          this.path = "data/"
           this.navCall()
         }
       })
   }
 
-  onSearch(value)
-  {
+  onSearch(value) {
     console.log(value)
   }
 
@@ -96,13 +100,23 @@ export class DownloadsComponent implements OnInit {
 
   onView(file) {
     this.file = file
-    this.url = ""
+    if(this.show_vid)
+    {
+      this.show_vid = false
+    }
+    if(!this.show_vid)
+    {
+      this.show_vid = true
+    }
+
+    // this.toggleVid()
+    this.show_vid = true;
     file = encodeURIComponent(file);
     this.url = "http://192.168.0.16:8000/shows/file?ui_path=" + this.path + "/" + file
   }
 
   toggleVid() {
-    this.url = ""
+    this.show_vid = false;
   }
 
   navCall() {

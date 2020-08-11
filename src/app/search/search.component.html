@@ -1,55 +1,57 @@
-<input (input)="onSearchChange($event.target.value)">
+<!-- <input (input)="onSearchChange($event.target.value)"> -->
+<mat-form-field class="example-full-width" color="accent">
+    <mat-label>Enter</mat-label>
+    <input matInput placeholder="Ex. Pizza" [value]="search" (input)="onSearchChange($event.target.value)">
+</mat-form-field>
 
 <div class="files-container" *ngIf="files?.length > 0">
     <h3>Folders</h3>
-    <table>
-        <thead>
-            <tr class="table-header">
-                <th (click)="onSort('name')">
-                    Name
-                </th>
-                <th (click)="onSort('size')">
-                    Location
-                </th>
-                <th (click)="onSort('size')">
-                    Size
-                </th>
-                <th (click)="onSort('modify_time')">
-                    Modified On
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let file of files">
-                <td><span><img
-                            src="assets/document.png"></span>&nbsp;{{file?.name}}
-                </td>
-                <td>
-                    {{file?.parent}}
-                </td>
-                <td>
-                    {{file?.size_h}}
-                </td>
-                <td>
-                    {{file?.modify_time_h}}
-                </td>
-                <td>
+    <!-- <thead>
+        <tr class="table-header">
+            <th (click)="onSort('name')">
+                Name
+            </th>
+            <th>
+                Location
+            </th>
+            <th (click)="onSort('size')">
+                Size
+            </th>
+            <th (click)="onSort('modify_time')">
+                Modified On
+            </th>
+        </tr>
+    </thead> -->
+
+    <div *ngFor="let file of files">
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{file?.name}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{file?.parent}}
+                        {{file?.size_h}}
+                        {{file?.modify_time_h}}
+
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <h2>{{file?.name}}</h2>
+                <video width="500" controls>
+                    <source
+                        [ngClass]="{'src': 'http://192.168.0.16:8000/shows/file?ui_path=data/Archives/2. T.v. Shows/The Alienist/Season 02/The Alienist - S02E07 - Last Exit to Brooklyn.mkv'}">
+                    <!-- <source src="http://192.168.0.16:8000/shows/file?ui_path="{{file?.path}}> -->
+                </video>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+        <!-- <td>
                     <button mat-button (click)="onView(file)">View</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                </td> -->
+    </div>
 
     <!-- <div class="folders" *ngFor="let folder of shows?.folders" (click)="onClickShows(folder)">
         <app-folders [folder]="folder"></app-folders>
     </div> -->
-</div>
-
-<div *ngIf="url">
-    <h2>{{file}}</h2>
-    <video width="1280" height="720" controls>
-        <source [src]="url">
-        Your browser does not support the video tag.
-    </video>
-    <br>
 </div>

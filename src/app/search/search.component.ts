@@ -37,6 +37,16 @@ export class SearchComponent implements OnInit {
     this.getFiles()
     this.navCall()
   }
+  onSort(val) {
+    this.column = val
+    if (this.sort == "asc") {
+      this.sort = "desc"
+    }
+    else {
+      this.sort = "asc"
+    }
+    this.navCall()
+  }
   navCall() {
     this.router.navigate(['search'], { queryParams: { search: this.search, sort: this.sort, column: this.column } });
   }

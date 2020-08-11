@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -7,8 +9,17 @@ import { DownloadsComponent } from './downloads/downloads.component';
 import { FoldersComponent } from './downloads/folders/folders.component';
 import { FilesComponent } from './downloads/files/files.component';
 import { SearchComponent } from './search/search.component';
+import { HeaderComponent } from './header/header.component';
 
 import { MatButtonModule } from '@angular/material/button';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+
+import {MatExpansionModule} from '@angular/material/expansion';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -16,13 +27,21 @@ import { MatButtonModule } from '@angular/material/button';
     DownloadsComponent,
     FoldersComponent,
     FilesComponent,
-    SearchComponent
+    SearchComponent,
+    HeaderComponent
   ],
   imports: [
+    MatIconModule,
+    MatExpansionModule,
+    MatDividerModule,
+    MatInputModule,
+    MatTabsModule,
     MatButtonModule,
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,15 @@
+<!-- <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="1">
+        <a ngbNavLink routerLink="shows">Shows</a>
+    </li>
+    <li [ngbNavItem]="2">
+        <a ngbNavLink routerLink="search">Search</a>
+    </li>
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div> -->
+
+<nav mat-tab-nav-bar backgroundColor="primary">
+    <a mat-tab-link [routerLink]='["shows"]' routerLinkActive="active">Shows</a>
+    <a mat-tab-link [routerLink]='["search"]' routerLinkActive="active">Search</a>
+</nav>

@@ -1,0 +1,15 @@
+.mat-expansion-panel
+{
+    background: rgb(50, 50, 50);
+}
+
+.mat-expansion-panel-header-title, .mat-expansion-panel-header-description{
+    color: rgb(200, 200, 200);
+}
+
+@media screen and (max-width: 992px) {
+    .mat-expansion-panel
+    {
+        height: 100px;
+    }
+}
