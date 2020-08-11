@@ -1,0 +1,55 @@
+<input (input)="onSearchChange($event.target.value)">
+
+<div class="files-container" *ngIf="files?.length > 0">
+    <h3>Folders</h3>
+    <table>
+        <thead>
+            <tr class="table-header">
+                <th (click)="onSort('name')">
+                    Name
+                </th>
+                <th (click)="onSort('size')">
+                    Location
+                </th>
+                <th (click)="onSort('size')">
+                    Size
+                </th>
+                <th (click)="onSort('modify_time')">
+                    Modified On
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let file of files">
+                <td><span><img
+                            src="assets/document.png"></span>&nbsp;{{file?.name}}
+                </td>
+                <td>
+                    {{file?.parent}}
+                </td>
+                <td>
+                    {{file?.size_h}}
+                </td>
+                <td>
+                    {{file?.modify_time_h}}
+                </td>
+                <td>
+                    <button mat-button (click)="onView(file)">View</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- <div class="folders" *ngFor="let folder of shows?.folders" (click)="onClickShows(folder)">
+        <app-folders [folder]="folder"></app-folders>
+    </div> -->
+</div>
+
+<div *ngIf="url">
+    <h2>{{file}}</h2>
+    <video width="1280" height="720" controls>
+        <source [src]="url">
+        Your browser does not support the video tag.
+    </video>
+    <br>
+</div>

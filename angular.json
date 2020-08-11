@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "dirlistng"
+    }
+  },
+  "defaultProject": "dirlistng",
+  "cli": {
+    "analytics": false
+  }
 }
