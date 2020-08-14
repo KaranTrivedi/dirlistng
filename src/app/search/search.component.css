@@ -8,8 +8,14 @@
 }
 
 @media screen and (max-width: 992px) {
-    .mat-expansion-panel
+    .mat-expansion-panel-header-title
     {
-        height: 100px;
+        height: 0px;
     }
+}
+
+.input
+{
+    display: flex;
+    justify-content: space-between;
 }

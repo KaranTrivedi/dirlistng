@@ -16,10 +16,12 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
 
 import {MatExpansionModule} from '@angular/material/expansion';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HeaderComponent
   ],
   imports: [
+    MatPaginatorModule,
+    MatMenuModule,
     MatIconModule,
     MatExpansionModule,
     MatDividerModule,

@@ -19,28 +19,28 @@
         </div>
     </div>
     <br>
+    <button mat-button [matMenuTriggerFor]="menu">Sort: {{column}}, {{sort}}</button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onSort('name')">Name</button>
+        <button mat-menu-item (click)="onSort('modify_time')">Date</button>
+        <button mat-menu-item (click)="onSort('size')">Size</button>
+    </mat-menu>
     <br>
     <!-- <input (keyup)="onSearch(value)"> -->
-    <div class="shows-container">
-        <div class="files-container" *ngIf="shows?.files.length > 0">
-            <h3>Files</h3>
-            <table>
-                <thead>
-                    <tr class="table-header">
-                        <th (click)="onSort('name')">
-                            Name
-                        </th>
-                        <th (click)="onSort('creation')">
-                            Created on
-                        </th>
-                        <th (click)="onSort('size')">
-                            Size
-                        </th>
-                        <th>
-                            Buttons
-                        </th>
-                    </tr>
-                </thead>
+    <div class="files-container" *ngIf="shows?.files.length > 0">
+        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h2>Files</h2>
+                </mat-panel-title>
+                <!-- <mat-panel-description>
+                <p>desrc</p>
+              </mat-panel-description> -->
+            </mat-expansion-panel-header>
+            <!-- FILES LOOP GOES HERE. -->
+            <div class="files" *ngFor="let file of shows?.files">
+
+            </div>
                 <tbody>
                     <tr *ngFor="let file of shows?.files">
                         <!-- <app-files [file]="file"></app-files> -->
@@ -53,11 +53,20 @@
                         </td>
                     </tr>
                 </tbody>
-            </table>
-        </div>
-        <br>
-        <div class="folder-container" *ngIf="shows?.folders.length > 0">
-            <h3>Folders</h3>
+        </mat-expansion-panel>
+    </div>
+    <br>
+    <div class="folder-container" *ngIf="shows?.folders.length > 0">
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <h2>Folder</h2>
+            </mat-panel-title>
+            <!-- <mat-panel-description>
+                <p>desrc</p>
+              </mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <!-- FOLDERS LOOP GOES HERE. -->
             <table>
                 <thead>
                     <tr class="table-header">
@@ -80,11 +89,10 @@
                     </tr>
                 </tbody>
             </table>
+        </mat-expansion-panel>
+    </div>
 
-            <!-- <div class="folders" *ngFor="let folder of shows?.folders" (click)="onClickShows(folder)">
-                <app-folders [folder]="folder"></app-folders>
-            </div> -->
-        </div>
+    <div class="shows-container">
     </div>
 </div>
 

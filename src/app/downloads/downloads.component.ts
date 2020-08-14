@@ -1,5 +1,5 @@
-import { Component, OnInit, ɵConsole, Sanitizer, ElementRef, ViewChild } from '@angular/core';
-import { HttpClient, HttpHeaderResponse } from '@angular/common/http';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Shows } from './shows';
 // import { FileService } from './files.service';
 import { Router, ActivatedRoute } from '@angular/router';

@@ -14,6 +14,3 @@ export class HeaderComponent implements OnInit {
   active = 1;
 
 }
-
-// export class NgbdNavBasic {
-// }
