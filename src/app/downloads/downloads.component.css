@@ -1,5 +1,10 @@
 /* .page-container {} */
 
+.mat-expansion-panel
+{
+    background: rgb(35, 35, 35);
+}
+
 mat-icon
 {
     height: 1rem;
@@ -7,32 +12,47 @@ mat-icon
 
 .path
 {
-    
+    word-wrap: break-word;
+    /* overflow-wrap: break-word; */
+    display: flex;
+    /* justify-content: space-evenly; */
 }
-video
+@media screen and (max-width: 992px)
 {
+    .path
+    {
+        word-wrap: break-word;
+        display: flex;
+        flex-wrap: wrap;
+        /* width: auto; */
+    }
+}
+
+video {
     height: 720;
 }
 
 @media screen and (max-width: 992px) {
-    video
-    {
+    video {
         /* height: 480; */
         width: auto;
     }
 }
 
-.path-component
-{
+.path-component {
     display: flex;
 }
+
+
 .loc
 {
-    background-color: rgb(50, 50, 50);
+    /* overflow-wrap: break-word; */
+    padding: 5px;
+    background-color: rgb(45, 45, 45);
     border: black 1px solid;
 }
-
-.loc:hover, th:hover, .folder-container tr:hover {
+.loc:hover, th:hover, .folder-container tr:hover
+{
     cursor: pointer;
 }
 
@@ -43,22 +63,8 @@ video
     }
 } */
 
-.path {
-    display: flex;
-    /* justify-content: space-evenly; */
-}
-
-.show-container {
-    /* display: flex; */
-    /* background-color: rgb(40, 40, 40); */
-}
-
-/* button
-{
-    height: 1rem;
-} */
-
 .file-container {
+    background-color: rgb(40, 40, 40);
     max-height: 50%;
     overflow-y: auto;
 }
@@ -67,33 +73,39 @@ video
     /* max-height:100%; */
     overflow-y: auto;
     /* height: auto; */
-    background-color: rgb(30,30,30);
+    background-color: rgb(30, 30, 30);
 }
 
-.files {
-    background-color: rgb(40, 40, 40);
+.files
+{
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
 }
 
-.folders {
+.folders
+{
     background-color: rgb(30, 30, 30);
     display: flex;
     justify-content: space-between;
 }
 
-.folders:hover {
+.folders:hover
+{
     cursor: pointer;
 }
 
-table {
+table
+{
     width: 100%;
 }
 
-th {
+th
+{
     border: 1px solid gray;
 }
 
-.folder-container td:hover {
+.folder-container td:hover
+{
     background-color: rgb(60, 60, 60);
 }

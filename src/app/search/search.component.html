@@ -5,16 +5,21 @@
         <input matInput placeholder="Ex. Pizza" [value]="search" (input)="onSearchChange($event.target.value)">
     </mat-form-field>
 
-    <button mat-button [matMenuTriggerFor]="menu">Sort: {{column}}, {{sort}}</button>
+    <button mat-button [matMenuTriggerFor]="menu" (mouseenter)="menuTrigger.openMenu()" #menuTrigger="matMenuTrigger">
+        Sort: {{column}},
+        {{sort}}</button>
+
     <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="onSort('name')">Name</button>
-        <button mat-menu-item (click)="onSort('modify_time')">Date</button>
-        <button mat-menu-item (click)="onSort('size')">Size</button>
+        <span (mouseleave)="menuTrigger.closeMenu()">
+            <button mat-menu-item (click)="onSort('name')">Name</button>
+            <button mat-menu-item (click)="onSort('modify_time')">Date</button>
+            <button mat-menu-item (click)="onSort('size')">Size</button>
+        </span>
     </mat-menu>
 </div>
 
 <div *ngIf="files?.exception">
-    <p [ngClass]="{'color' : 'red'}">{{files?.exception}}</p>
+    <p class="exception">{{files?.exception}}</p>
 </div>
 
 <mat-paginator [pageIndex]="pageIndex" [length]="files?.length" [pageSize]="pageSize"
@@ -24,33 +29,27 @@
 <div class="files-container" *ngIf="files?.length > 0">
     <h3>Files</h3>
 
-    <div *ngFor="let file of files.data">
-        <mat-accordion>
-            <mat-expansion-panel hideToggle>
+    <mat-accordion>
+        <div *ngFor="let file of files.data">
+            <mat-expansion-panel (click)="onView(file)" (opened)="panelOpenState = true" (closed)="panelOpenState = false" hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         {{file?.name}}
                     </mat-panel-title>
                     <mat-panel-description>
-                        {{file?.parent}}
-                        {{file?.size_h}}
-                        {{file?.modify_time_h}}
-
+                        {{file?.size_h}} - {{file?.modify_time_h}}
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-                <h2>{{file?.name}}</h2>
-                http://192.168.0.16:8000/shows/file?ui_path={{file?.path}}
-                <br>
-                <video width="500" controls>
-                    <source [ngClass]="{'src': 'http://192.168.0.16:8000/shows/file?ui_path='+file?.path}">
-                    <!-- <source src="http://192.168.0.16:8000/shows/file?ui_path="{{file?.path}}> -->
-                </video>
-            </mat-expansion-panel>
-        </mat-accordion>
-
-        <!-- <td>
+                {{file?.parent}}
+                <mat-divider></mat-divider>
+                <!-- <td>
                     <button mat-button (click)="onView(file)">View</button>
                 </td> -->
-    </div>
+                <app-search-video [src]="('http://192.168.0.16:8000/shows/file?ui_path='+file?.path)"
+                    [show]="panelOpenState">
+                </app-search-video>
+            </mat-expansion-panel>
+        </div>
+        </mat-accordion>
     <br>
 </div>

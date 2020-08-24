@@ -1,11 +1,5 @@
 <div class="page-container">
     <div class="path">
-        <!-- <div class="path-component" (click)="onHome()">
-            <h2 class="loc">
-                Home
-            </h2>
-            <h2>&nbsp;/&nbsp;</h2>
-        </div> -->
         <div class="path-component" *ngFor="let path_var of shows?.path_vars; let i = index" [attr.data-index]="i"
             (click)="onNav(i)">
             <h2 class="loc">
@@ -15,7 +9,6 @@
             <h2>
                 &nbsp;<mat-icon>chevron_right</mat-icon>&nbsp;
             </h2>
-            <!-- {{i}} -->
         </div>
     </div>
     <br>
@@ -27,6 +20,31 @@
     </mat-menu>
     <br>
     <!-- <input (keyup)="onSearch(value)"> -->
+    <div class="folder-container" *ngIf="shows?.folders.length > 0">
+        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h2>Folder</h2>
+                </mat-panel-title>
+                <!-- <mat-panel-description>
+                <p>desrc</p>
+              </mat-panel-description> -->
+            </mat-expansion-panel-header>
+            <!-- FOLDERS LOOP GOES HERE. -->
+
+                <table>
+                    <tr *ngFor="let folder of shows?.folders">
+                        <td (click)="onClickShows(folder?.name)"><span><img
+                                    src="assets/folder.png"></span>&nbsp;{{folder?.name}}
+                        </td>
+                        <td>
+                            {{folder?.modify_time_h}}
+                        </td>
+                    </tr>
+                </table>
+        </mat-expansion-panel>
+    </div>
+    <br>
     <div class="files-container" *ngIf="shows?.files.length > 0">
         <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>
@@ -34,64 +52,27 @@
                     <h2>Files</h2>
                 </mat-panel-title>
                 <!-- <mat-panel-description>
-                <p>desrc</p>
-              </mat-panel-description> -->
+                    <p>desrc</p>
+                </mat-panel-description> -->
             </mat-expansion-panel-header>
             <!-- FILES LOOP GOES HERE. -->
             <div class="files" *ngFor="let file of shows?.files">
 
+                <div><img src="assets/document.png">&nbsp;{{file?.name}}</div>
+                <div>
+                    <button mat-button (click)="onClickFiles(file?.name)">Download</button>
+                    <button mat-button (click)="onView(file?.name)">View</button>
+                    {{file?.modify_time_h}} - {{file?.size_h}}
+                </div>
             </div>
-                <tbody>
-                    <tr *ngFor="let file of shows?.files">
-                        <!-- <app-files [file]="file"></app-files> -->
-                        <td><span><img src="assets/document.png"></span>&nbsp;{{file?.name}}</td>
-                        <td>{{file?.c_time_h}}</td>
-                        <td>{{file?.size_h}}</td>
-                        <td>
-                            <button mat-button (click)="onClickFiles(file?.name)">Download</button>
-                            <button mat-button (click)="onView(file?.name)">View</button>
-                        </td>
-                    </tr>
-                </tbody>
+            <tbody>
+                <tr *ngFor="let file of shows?.files">
+                    <!-- <app-files [file]="file"></app-files> -->
+                </tr>
+            </tbody>
         </mat-expansion-panel>
     </div>
-    <br>
-    <div class="folder-container" *ngIf="shows?.folders.length > 0">
-    <mat-expansion-panel [expanded]="true">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                <h2>Folder</h2>
-            </mat-panel-title>
-            <!-- <mat-panel-description>
-                <p>desrc</p>
-              </mat-panel-description> -->
-        </mat-expansion-panel-header>
-        <!-- FOLDERS LOOP GOES HERE. -->
-            <table>
-                <thead>
-                    <tr class="table-header">
-                        <th (click)="onSort('name')">
-                            Name
-                        </th>
-                        <th (click)="onSort('creation')">
-                            Create On
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let folder of shows?.folders">
-                        <td (click)="onClickShows(folder?.name)"><span><img
-                                    src="assets/folder.png"></span>&nbsp;{{folder?.name}}
-                        </td>
-                        <td>
-                            {{folder?.c_time_h}}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </mat-expansion-panel>
-    </div>
-
+    
     <div class="shows-container">
     </div>
 </div>

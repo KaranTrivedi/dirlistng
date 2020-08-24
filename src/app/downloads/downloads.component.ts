@@ -35,7 +35,7 @@ export class DownloadsComponent implements OnInit {
     this.params = this.route.queryParams.subscribe(params => {
       this.path = params["path"] || "data/"
       this.sort = params["sort"] || "desc"
-      this.column = params["column"] || "creation"
+      this.column = params["column"] || "modify_time"
       this.getShows()
     })
   }

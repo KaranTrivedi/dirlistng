@@ -1,6 +1,6 @@
-.mat-expansion-panel
+.mat-expansion-panel, .mat-paginator
 {
-    background: rgb(50, 50, 50);
+    background: rgb(35, 35, 35);
 }
 
 .mat-expansion-panel-header-title, .mat-expansion-panel-header-description{
@@ -8,9 +8,12 @@
 }
 
 @media screen and (max-width: 992px) {
-    .mat-expansion-panel-header-title
+    .mat-expansion-panel-header-title, .mat-expansion-panel-header-description 
     {
-        height: 0px;
+        /* max-width: 35%; */
+        font-size: small;
+        /* word-wrap: break-word; */
+        overflow-wrap: break-word;
     }
 }
 
@@ -18,4 +21,9 @@
 {
     display: flex;
     justify-content: space-between;
+}
+
+.exception
+{
+    color: red;
 }

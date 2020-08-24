@@ -1,7 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PipeTransform, Pipe } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { PageEvent } from '@angular/material/paginator';
+import { DomSanitizer } from '@angular/platform-browser';
+
+@Pipe({ name: 'safe' })
+export class SafePipe implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) {}
+  transform(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+}
 
 @Component({
   selector: 'app-search',
@@ -11,6 +20,8 @@ import { PageEvent } from '@angular/material/paginator';
 export class SearchComponent implements OnInit {
 
   // 
+  panelOpenState = false;
+
   files;
   url;
 
@@ -47,19 +58,22 @@ export class SearchComponent implements OnInit {
   }
   paginate(event?:PageEvent)
   {
-    console.log(event)
+    this.panelOpenState = false;
     this.pageSize = event.pageSize
     this.pageIndex = event.pageIndex
     this.navCall()
     this.getFiles()
   }
-  onSearchChange(searchValue: string): void {
+  onSearchChange(searchValue: string): void
+  {
     this.pageIndex = 0
     this.search = searchValue
     this.navCall()
     this.getFiles()
   }
-  onSort(val) {
+  onSort(val) 
+  {
+    this.pageIndex = 0
     this.column = val
     if (this.sort == "asc") {
       this.sort = "desc"
@@ -69,17 +83,22 @@ export class SearchComponent implements OnInit {
     }
     this.navCall()
   }
-  navCall() {
+  navCall()
+  {
+    this.panelOpenState = false;
     this.router.navigate(['search'], { queryParams: { sort: this.sort, column: this.column, search: this.search } });
   }
-  onView(file) {
+  onView(file)
+  {
+    console.log(file)
     // file
     // this.url = ""
-    var path = encodeURIComponent(file["path"]);
-    this.url = "http://192.168.0.16:8000/shows/file?ui_path=" + path
+    // var path = encodeURIComponent(file["path"]);
+    // this.url = "http://192.168.0.16:8000/shows/file?ui_path=" + path
   }
   
-  private getFiles() {
+  private getFiles()
+  {
     this.from = this.pageIndex * this.pageSize
     // console.log(this.path)
     this.http.get("http://192.168.0.16:8000/shows/search?search=" + this.search + "&column=" + this.column + "&sort=" + this.sort + "&from_doc=" + this.from + "&size=" + this.pageSize,
