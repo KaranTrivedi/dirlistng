@@ -1,0 +1,70 @@
+.page-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row-reverse;
+}
+
+.displayer-container
+{
+    justify-content: space-evenly;
+    width: 85%;
+    margin: auto;
+}
+
+.pager-container, .image-container, .text-container
+{
+    display: flex;
+    justify-content: space-around;
+    /* align-content: center; */
+    word-wrap: break-word;
+}
+
+.displayer
+{
+    padding: 1rem;
+    height: 50vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img-opt:hover {
+    cursor: pointer;
+    background-color: rgb(60, 60, 60)
+}
+
+.highlight
+{
+    background-color: rgb(60, 60, 60)
+}
+
+.bar
+{
+    width: 15%;
+    overflow: scroll;
+    height: 94vh;
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+
+@media only screen and (max-width: 600px)
+{
+    .page-container
+    {
+        display: block;
+    }
+    .displayer
+    {
+        padding: 0;
+        margin: auto;
+        max-width: 100%;
+        height: auto;
+    }
+    .bar
+    {
+        width: 100%;
+        overflow: scroll;
+        height: 94vh;
+        white-space: nowrap;
+        overflow-x: hidden;
+    }
+}

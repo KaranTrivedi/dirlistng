@@ -27,7 +27,7 @@ export class SearchComponent implements OnInit {
 
   //QueryParams
   params;
-  search;
+  query;
   sort;
   column;
 
@@ -46,7 +46,9 @@ export class SearchComponent implements OnInit {
     this.params = this.route.queryParams.subscribe(params => {
       this.sort = params["sort"] || "desc"
       this.column = params["column"] || "modify_time"
-      this.search = params["search"] || "*"
+      this.query = params["query"] || "*"
+      this.pageIndex = params["page"] || "0"
+      this.pageSize = params["size"] || "10"
       this.getFiles()
     })
   }
@@ -62,16 +64,18 @@ export class SearchComponent implements OnInit {
     this.pageSize = event.pageSize
     this.pageIndex = event.pageIndex
     this.navCall()
-    this.getFiles()
+    // this.getFiles()
   }
+
   onSearchChange(searchValue: string): void
   {
     this.pageIndex = 0
-    this.search = searchValue
+    this.query = searchValue
     this.navCall()
-    this.getFiles()
+    // this.getFiles()
   }
-  onSort(val) 
+
+  onSort(val)
   {
     this.pageIndex = 0
     this.column = val
@@ -83,25 +87,26 @@ export class SearchComponent implements OnInit {
     }
     this.navCall()
   }
+
   navCall()
   {
-    this.panelOpenState = false;
-    this.router.navigate(['search'], { queryParams: { sort: this.sort, column: this.column, search: this.search } });
+    // this.panelOpenState = false;
+    this.router.navigate(['search'], { queryParams: { sort: this.sort, column: this.column, query: this.query, page: this.pageIndex, size: this.pageSize } });
   }
   onView(file)
   {
     console.log(file)
     // file
-    // this.url = ""
-    // var path = encodeURIComponent(file["path"]);
-    // this.url = "http://192.168.0.16:8000/shows/file?ui_path=" + path
+    this.url = ""
+    var path = encodeURIComponent(file["path"]);
+    this.url = "http://192.168.0.16:8000/shows/file?ui_path=" + path
   }
   
   private getFiles()
   {
     this.from = this.pageIndex * this.pageSize
     // console.log(this.path)
-    this.http.get("http://192.168.0.16:8000/shows/search?search=" + this.search + "&column=" + this.column + "&sort=" + this.sort + "&from_doc=" + this.from + "&size=" + this.pageSize,
+    this.http.get("http://192.168.0.16:8000/search/?query=" + this.query + "&column=" + this.column + "&sort=" + this.sort + "&from_doc=" + this.from + "&size=" + this.pageSize,
     {
     })
       .subscribe(posts => {

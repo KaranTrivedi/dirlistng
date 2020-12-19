@@ -22,8 +22,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { VideoComponent } from './search/video/video.component';
 import { SearchVideoComponent } from './search/search-video/search-video.component';
+import { ImagesComponent } from './images/images.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +33,8 @@ import { SearchVideoComponent } from './search/search-video/search-video.compone
     FilesComponent,
     SearchComponent,
     HeaderComponent,
-    VideoComponent,
-    SearchVideoComponent
+    SearchVideoComponent,
+    ImagesComponent
   ],
   imports: [
     MatPaginatorModule,

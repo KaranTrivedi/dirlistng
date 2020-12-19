@@ -22,3 +22,23 @@ body
     word-wrap: break-word;
     color: red;
 } */
+
+/* width */
+::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #21393f;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #7b1fa2;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(85, 87, 86);
+  }

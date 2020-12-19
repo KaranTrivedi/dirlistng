@@ -19,23 +19,17 @@
         <button mat-menu-item (click)="onSort('size')">Size</button>
     </mat-menu>
     <br>
-    <!-- <input (keyup)="onSearch(value)"> -->
     <div class="folder-container" *ngIf="shows?.folders.length > 0">
         <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     <h2>Folder</h2>
                 </mat-panel-title>
-                <!-- <mat-panel-description>
-                <p>desrc</p>
-              </mat-panel-description> -->
             </mat-expansion-panel-header>
-            <!-- FOLDERS LOOP GOES HERE. -->
-
                 <table>
                     <tr *ngFor="let folder of shows?.folders">
-                        <td (click)="onClickShows(folder?.name)"><span><img
-                                    src="assets/folder.png"></span>&nbsp;{{folder?.name}}
+                        <td (click)="onClickShows(folder?.name)"><span><img src="assets/folder.png"></span>&nbsp;{{folder?.name}}
+                            
                         </td>
                         <td>
                             {{folder?.modify_time_h}}
@@ -51,23 +45,22 @@
                 <mat-panel-title>
                     <h2>Files</h2>
                 </mat-panel-title>
-                <!-- <mat-panel-description>
+                <mat-panel-description>
                     <p>desrc</p>
-                </mat-panel-description> -->
+                </mat-panel-description>
             </mat-expansion-panel-header>
-            <!-- FILES LOOP GOES HERE. -->
             <div class="files" *ngFor="let file of shows?.files">
 
                 <div><img src="assets/document.png">&nbsp;{{file?.name}}</div>
                 <div>
-                    <button mat-button (click)="onClickFiles(file?.name)">Download</button>
+                    <button mat-button (click)="onClickDownload(file?.name)">Download</button>
                     <button mat-button (click)="onView(file?.name)">View</button>
                     {{file?.modify_time_h}} - {{file?.size_h}}
                 </div>
             </div>
             <tbody>
                 <tr *ngFor="let file of shows?.files">
-                    <!-- <app-files [file]="file"></app-files> -->
+                    <app-files [file]="file"></app-files>
                 </tr>
             </tbody>
         </mat-expansion-panel>

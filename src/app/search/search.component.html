@@ -1,11 +1,12 @@
-<!-- <input (input)="onSearchChange($event.target.value)"> -->
 <div class="input">
     <mat-form-field class="example-full-width" color="accent">
         <mat-label>Enter</mat-label>
-        <input matInput placeholder="Ex. Pizza" [value]="search" (input)="onSearchChange($event.target.value)">
+        <input matInput placeholder="Ex. aven*" [value]="query" (input)="onSearchChange($event.target.value)">
     </mat-form-field>
 
-    <button mat-button [matMenuTriggerFor]="menu" (mouseenter)="menuTrigger.openMenu()" #menuTrigger="matMenuTrigger">
+    <!-- (mouseenter)="menuTrigger.openMenu()" -->
+    <button mat-button [matMenuTriggerFor]="menu"
+        #menuTrigger="matMenuTrigger">
         Sort: {{column}},
         {{sort}}</button>
 
@@ -30,8 +31,8 @@
     <h3>Files</h3>
 
     <mat-accordion>
-        <div *ngFor="let file of files.data">
-            <mat-expansion-panel (click)="onView(file)" (opened)="panelOpenState = true" (closed)="panelOpenState = false" hideToggle>
+        <div *ngFor="let file of files.data;">
+            <mat-expansion-panel (click)="onView(file)">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         {{file?.name}}
@@ -42,12 +43,12 @@
                 </mat-expansion-panel-header>
                 {{file?.parent}}
                 <mat-divider></mat-divider>
-                <!-- <td>
+                <td>
                     <button mat-button (click)="onView(file)">View</button>
-                </td> -->
-                <app-search-video [src]="('http://192.168.0.16:8000/shows/file?ui_path='+file?.path)"
-                    [show]="panelOpenState">
-                </app-search-video>
+                </td>
+                <!-- <a href="file:\\DESKTOP-Q8UEATO\4. Videos\1. Movies\The.Tickle.King.2017.720p.AMZN.WEB-DL.DDP2.0.H.264-NTG.mkv">Samba</a> -->
+                <!-- <app-search-video 
+                [src]="file:\\DESKTOP-Q8UEATO\4. Videos\1. Movies\The.Tickle.King.2017.720p.AMZN.WEB-DL.DDP2.0.H.264-NTG.mkv"> -->
             </mat-expansion-panel>
         </div>
         </mat-accordion>
