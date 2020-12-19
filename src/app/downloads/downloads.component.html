@@ -28,8 +28,8 @@
             </mat-expansion-panel-header>
                 <table>
                     <tr *ngFor="let folder of shows?.folders">
-                        <td (click)="onClickShows(folder?.name)"><span><img src="assets/folder.png"></span>&nbsp;{{folder?.name}}
-                            
+                        <td (click)="onClickShows(folder?.name)"><span><img
+                                    src="assets/folder.png"></span>&nbsp;{{folder?.name}}
                         </td>
                         <td>
                             {{folder?.modify_time_h}}
@@ -45,10 +45,8 @@
                 <mat-panel-title>
                     <h2>Files</h2>
                 </mat-panel-title>
-                <mat-panel-description>
-                    <p>desrc</p>
-                </mat-panel-description>
             </mat-expansion-panel-header>
+
             <div class="files" *ngFor="let file of shows?.files">
 
                 <div><img src="assets/document.png">&nbsp;{{file?.name}}</div>
@@ -59,9 +57,9 @@
                 </div>
             </div>
             <tbody>
-                <tr *ngFor="let file of shows?.files">
+                <!-- <tr *ngFor="let file of shows?.files">
                     <app-files [file]="file"></app-files>
-                </tr>
+                </tr> -->
             </tbody>
         </mat-expansion-panel>
     </div>

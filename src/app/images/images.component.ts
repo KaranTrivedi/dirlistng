@@ -41,8 +41,9 @@ export class ImagesComponent implements OnInit
     this.file = file
     this.currentFile = file.name
     this.index = index
+    this.url = "http://192.168.0.16:8000/shows/file?ui_path=data/archives/1.%20Movies/dimid/img/" + file.name
   }
-  
+
   private getShows() {
     // console.log(this.path)
     this.http.get<Shows>("http://192.168.0.16:8000/shows/folders?ui_path=data/archives/1.%20Movies/dimid/img&column=" + this.column + "&sort=" + this.sort,
@@ -52,6 +53,7 @@ export class ImagesComponent implements OnInit
       this.shows = posts;
       this.file = this.shows.files[1]
       this.currentFile = this.shows.files[1].name
-    })
+      this.url = "http://192.168.0.16:8000/shows/file?ui_path=data/archives/1.%20Movies/dimid/img/" + this.file.name
+  })
   }
 }

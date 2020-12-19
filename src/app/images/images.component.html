@@ -3,15 +3,15 @@
 
         <div class="pager-container">
             <div *ngIf="index>0" (click)="onClickImage(shows.files[index-1], index-1)">
-                <img src="assets/prev.png" alt="">
+                <img src="assets/prev.png" alt="" class="arrow">
             </div>
             <div class="next" (click)="onClickImage(shows.files[index+1], index+1)">
-                <img src="assets/next.png" alt="">
+                <img src="assets/next.png" alt="" class="arrow">
             </div>
         </div>
 
         <div class="image-container">
-            <img *ngIf="file" src="http://192.168.0.16:8000/shows/file?ui_path=data/archives/1.%20Movies/dimid/img/{{file?.name}}" class="displayer">
+            <img *ngIf="file" [src]="url" class="displayer">
         </div>
         <div class="text-container">
             {{file.name}}-{{file.size_h}}-{{file.ext}}
@@ -21,8 +21,8 @@
     <div class="bar">
         <div *ngFor="let file of shows?.files;  let i = index" [ngClass]="{'highlight': file.name === currentFile}">
             <div alt="{{file?.name}}" class="img-opt" (click)="onClickImage(file, i)">
-                <img src="assets/{{file.ext}}.png">&nbsp;{{file?.name}}</div>
-
+                <img src="assets/{{file.ext}}.png">&nbsp;{{file?.name}}
+            </div>
         </div>
     </div>
 </div>
