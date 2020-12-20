@@ -1,27 +1,27 @@
-import { Component, OnInit, PipeTransform, Pipe } from '@angular/core';
+import { Component, OnInit, PipeTransform, Pipe, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { PageEvent } from '@angular/material/paginator';
-import { DomSanitizer } from '@angular/platform-browser';
+import { MatSort } from '@angular/material/sort';
 
-@Pipe({ name: 'safe' })
-export class SafePipe implements PipeTransform {
-  constructor(private sanitizer: DomSanitizer) {}
-  transform(url) {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  }
-}
+// import { DomSanitizer } from '@angular/platform-browser';
+
+// @Pipe({ name: 'safe' })
+// export class SafePipe implements PipeTransform {
+//   constructor(private sanitizer: DomSanitizer) {}
+//   transform(url) {
+//     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+//   }
+// }
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
-
-  // 
+export class SearchComponent implements OnInit
+{
   panelOpenState = false;
-  fileToUpload: File = null;
 
   files;
   url;
@@ -29,23 +29,24 @@ export class SearchComponent implements OnInit {
   //QueryParams
   params;
   query;
-  sort;
+
+  direction;
   column;
 
   length;
   pageIndex = 0;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
-  // pageEvent: PageEvent;
   from = 0
 
   constructor(private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit()
+  {
     this.params = this.route.queryParams.subscribe(params => {
-      this.sort = params["sort"] || "desc"
+      this.direction = params["direction"] || "desc"
       this.column = params["column"] || "modify_time"
       this.query = params["query"] || "*"
       this.pageIndex = params["page"] || "0"
@@ -76,40 +77,36 @@ export class SearchComponent implements OnInit {
     // this.getFiles()
   }
 
-  onSort(val)
+  sortData(event)
   {
     this.pageIndex = 0
-    this.column = val
-    if (this.sort == "asc") {
-      this.sort = "desc"
-    }
-    else {
-      this.sort = "asc"
-    }
+    this.column = event.active
+    this.direction = event.direction
     this.navCall()
   }
 
-  handleFileInput(files: FileList)
-  {
-    this.fileToUpload = files.item(0);
-  }
-
-  // uploadFileToActivity() {
-  //   this.fileUploadService.postFile(this.fileToUpload).subscribe(data => {
-  //     // do something, if upload success
-  //     }, error => {
-  //       console.log(error);
-  //     });
+  // onSort(val)
+  // {
+  //   this.pageIndex = 0
+  //   this.column = val
+  //   if (this.sort == "asc")
+  //   {
+  //     this.sort = "desc"
+  //   }
+  //   else {
+  //     this.sort = "asc"
+  //   }
+  //   this.navCall()
   // }
+
   navCall()
   {
     // this.panelOpenState = false;
-    this.router.navigate(['search'], { queryParams: { sort: this.sort, column: this.column, query: this.query, page: this.pageIndex, size: this.pageSize } });
+    this.router.navigate(['search'], { queryParams: { direction: this.direction, column: this.column, query: this.query, page: this.pageIndex, size: this.pageSize } });
   }
+
   onView(file)
   {
-    console.log(file)
-    // file
     this.url = ""
     var path = encodeURIComponent(file["path"]);
     this.url = "http://192.168.0.16:8000/path/" + path
@@ -118,7 +115,7 @@ export class SearchComponent implements OnInit {
   private getFiles() {
     this.from = this.pageIndex * this.pageSize
 
-    this.http.get("http://192.168.0.16:8000/search/?query=" + this.query + "&column=" + this.column + "&sort=" + this.sort + "&from_doc=" + this.from + "&size=" + this.pageSize,
+    this.http.get("http://192.168.0.16:8000/search/?query=" + this.query + "&column=" + this.column + "&direction=" + this.direction + "&from_doc=" + this.from + "&size=" + this.pageSize,
       {
       })
       .subscribe(posts => {

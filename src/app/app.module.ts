@@ -24,6 +24,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { SearchVideoComponent } from './search/search-video/search-video.component';
 import { ImagesComponent } from './images/images.component';
+import {MatSortModule} from '@angular/material/sort';
+// import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { ImagesComponent } from './images/images.component';
     ImagesComponent
   ],
   imports: [
+    MatSortModule,
+    // MatToolbarModule,
     MatPaginatorModule,
     MatMenuModule,
     MatIconModule,

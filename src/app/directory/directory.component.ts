@@ -19,6 +19,8 @@ export class DirectoryComponent implements OnInit
   file: string// = [""]
   show_vid;
 
+  fileToUpload: File = null;
+
   url;
   // QueryParams
   params;
@@ -38,6 +40,18 @@ export class DirectoryComponent implements OnInit
       this.getShows()
     })
   }
+  handleFileInput(files: FileList)
+  {
+    this.fileToUpload = files.item(0);
+  }
+
+  // uploadFileToActivity() {
+  //   this.fileUploadService.postFile(this.fileToUpload).subscribe(data => {
+  //     // do something, if upload success
+  //     }, error => {
+  //       console.log(error);
+  //     });
+  // }
 
   onClickShows(folder) {
     folder = encodeURIComponent(folder);

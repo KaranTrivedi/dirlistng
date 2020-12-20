@@ -1,63 +1,52 @@
-<!-- <div class="form-group">
-    <label for="file">Choose File</label>
-    <input type="file" id="file" (change)="handleFileInput($event.target.files)">
-</div> -->
+<mat-form-field class="search-bar" color="accent">
+    <mat-label>Enter</mat-label>
+    <input matInput placeholder="Ex. aven*" [value]="query" (input)="onSearchChange($event.target.value)">
+</mat-form-field>
 
-<div class="input">
-    <mat-form-field class="example-full-width" color="accent">
-        <mat-label>Enter</mat-label>
-        <input matInput placeholder="Ex. aven*" [value]="query" (input)="onSearchChange($event.target.value)">
-    </mat-form-field>
+<div matSort 
+    matSortDisableClear
+    (matSortChange)="sortData($event)" 
+    [matSortActive]="column"
+    [matSortDirection]="direction"
+    class="input">
 
-    <!-- (mouseenter)="menuTrigger.openMenu()" -->
-    <button mat-button [matMenuTriggerFor]="menu"
-        #menuTrigger="matMenuTrigger">
-        Sort: {{column}},
-        {{sort}}</button>
-
-    <mat-menu #menu="matMenu">
-        <span (mouseleave)="menuTrigger.closeMenu()">
-            <button mat-menu-item (click)="onSort('name')">Name</button>
-            <button mat-menu-item (click)="onSort('modify_time')">Date</button>
-            <button mat-menu-item (click)="onSort('size')">Size</button>
-        </span>
-    </mat-menu>
+    <th mat-sort-header="name">Name</th>
+    <th mat-sort-header="modify_time">Time</th>
+    <th mat-sort-header="size">Size</th>
 </div>
 
 <div *ngIf="files?.exception">
     <p class="exception">{{files?.exception}}</p>
 </div>
 
-<mat-paginator [pageIndex]="pageIndex" [length]="files?.length" [pageSize]="pageSize"
-    [pageSizeOptions]="pageSizeOptions" (page)="paginate($event)">
-</mat-paginator>
-
 <div class="files-container" *ngIf="files?.length > 0">
-    <h3>Files</h3>
-
     <mat-accordion>
         <div *ngFor="let file of files.data;">
             <mat-expansion-panel (click)="onView(file)">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        {{file?.name}}
+                        <div>
+                            {{file?.name}}
+                        </div>
+                        <div>
+                            <b>{{file?.size_h}}</b> - {{file?.modify_time_h}}
+                        </div>
                     </mat-panel-title>
-                    <mat-panel-description>
-                        {{file?.size_h}} - {{file?.modify_time_h}}
-                    </mat-panel-description>
+                    <!-- <mat-panel-description>
+                        
+                    </mat-panel-description> -->
                 </mat-expansion-panel-header>
+                {{file?.parent}}
                 <a href="{{file?.url}}">
                     <button mat-button>Download</button>
                 </a>
-                <mat-divider></mat-divider>
-                <td>
-                    <button mat-button (click)="onView(file)">View</button>
-                </td>
-                <!-- <a href="file:\\DESKTOP-Q8UEATO\4. Videos\1. Movies\The.Tickle.King.2017.720p.AMZN.WEB-DL.DDP2.0.H.264-NTG.mkv">Samba</a> -->
-                <!-- <app-search-video 
-                [src]="file:\\DESKTOP-Q8UEATO\4. Videos\1. Movies\The.Tickle.King.2017.720p.AMZN.WEB-DL.DDP2.0.H.264-NTG.mkv"> -->
+                <button mat-button (click)="onView(file)">View</button>
             </mat-expansion-panel>
         </div>
-        </mat-accordion>
+    </mat-accordion>
     <br>
 </div>
+
+<mat-paginator [pageIndex]="pageIndex" [length]="files?.length" [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions" (page)="paginate($event)" showFirstLastButtons="true">
+</mat-paginator>
