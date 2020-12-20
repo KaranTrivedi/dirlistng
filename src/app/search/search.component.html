@@ -1,54 +1,59 @@
-<mat-form-field class="search-bar" color="accent">
-    <mat-label>Enter</mat-label>
-    <input matInput placeholder="Ex. aven*" [value]="query" (input)="onSearchChange($event.target.value)">
-</mat-form-field>
+<h4>Files</h4>
+<div class="page-container">
+    <mat-form-field class="search-bar" color="accent">
+        <mat-label>Enter</mat-label>
+        <input matInput placeholder="Ex. aven*" [value]="query" (input)="onSearchChange($event.target.value)">
+    </mat-form-field>
 
-<div matSort 
-    matSortDisableClear
-    (matSortChange)="sortData($event)" 
-    [matSortActive]="column"
-    [matSortDirection]="direction"
-    class="input">
+    <div matSort 
+        matSortDisableClear
+        (matSortChange)="sortData($event)" 
+        [matSortActive]="column"
+        [matSortDirection]="direction"
+        class="input">
+    
+        <th mat-sort-header="name">Name</th>
+        <th mat-sort-header="modify_time">Time</th>
+        <th mat-sort-header="size">Size</th>
+    </div>
 
-    <th mat-sort-header="name">Name</th>
-    <th mat-sort-header="modify_time">Time</th>
-    <th mat-sort-header="size">Size</th>
+    <div *ngIf="files?.exception">
+        <p class="exception">{{files?.exception}}</p>
+    </div>
+
+    <div class="files-container" *ngIf="files?.length > 0">
+        <mat-accordion>
+            <div *ngFor="let file of files.data;">
+                <mat-expansion-panel (click)="onView(file)">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <div>
+                                {{file?.name}}
+                            </div>
+                            <div>
+                                <b>{{file?.size_h}}</b> - {{file?.modify_time_h}}
+                            </div>
+                        </mat-panel-title>
+                        <!-- <mat-panel-description>
+                            
+                        </mat-panel-description> -->
+                    </mat-expansion-panel-header>
+                    <div>
+                        Path: {{file?.parent}}
+                    </div>
+                    <button mat-button (click)="onNav(file)">View Folder</button>
+                    <button mat-button>Download</button>
+                    <!-- {{file?.url}} -->
+                    <button mat-button (click)="onView(file)">View</button>
+                </mat-expansion-panel>
+            </div>
+        </mat-accordion>
+        <br>
+    </div>    
 </div>
 
-<div *ngIf="files?.exception">
-    <p class="exception">{{files?.exception}}</p>
+<div class="footer">
+    <mat-paginator [pageIndex]="pageIndex" [length]="files?.length" [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions" (page)="paginate($event)">
+    </mat-paginator>
 </div>
-
-<div class="files-container" *ngIf="files?.length > 0">
-    <mat-accordion>
-        <div *ngFor="let file of files.data;">
-            <mat-expansion-panel (click)="onView(file)">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <div>
-                            {{file?.name}}
-                        </div>
-                        <div>
-                            <b>{{file?.size_h}}</b> - {{file?.modify_time_h}}
-                        </div>
-                    </mat-panel-title>
-                    <!-- <mat-panel-description>
-                        
-                    </mat-panel-description> -->
-                </mat-expansion-panel-header>
-                <div>
-                    Path: {{file?.parent}}
-                </div>
-                <button mat-button (click)="onNav(file)">View Folder</button>
-                <button mat-button>Download</button>
-                <!-- {{file?.url}} -->
-                <button mat-button (click)="onView(file)">View</button>
-            </mat-expansion-panel>
-        </div>
-    </mat-accordion>
-    <br>
-</div>
-
-<mat-paginator [pageIndex]="pageIndex" [length]="files?.length" [pageSize]="pageSize"
-    [pageSizeOptions]="pageSizeOptions" (page)="paginate($event)" showFirstLastButtons="true">
-</mat-paginator>

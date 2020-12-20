@@ -1,8 +1,14 @@
-/* .input
+.page-container
 {
-    display: flex;
-    float: right;
-} */
+    position: relative;
+}
+
+.footer
+{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
 
 @media screen and (max-width: 600px)
 {
@@ -28,16 +34,13 @@ mat-panel-title
     display: inline;
 }
 
-.mat-expansion-panel, .mat-paginator {
+.mat-expansion-panel, .mat-paginator
+{
     background: rgb(35, 35, 35);
 }
 
-/* .mat-expansion-panel-body
+.mat-expansion-panel-header-title, .mat-expansion-panel-header-description
 {
-    word-wrap: normal;
-} */
-
-.mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
     color: rgb(200, 200, 200);
 }
 

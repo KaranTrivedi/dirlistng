@@ -66,7 +66,6 @@ export class SearchComponent implements OnInit
     this.pageSize = event.pageSize
     this.pageIndex = event.pageIndex
     this.navCall()
-    // this.getFiles()
   }
 
   onSearchChange(searchValue: string): void
@@ -74,7 +73,6 @@ export class SearchComponent implements OnInit
     this.pageIndex = 0
     this.query = searchValue
     this.navCall()
-    // this.getFiles()
   }
 
   sortData(event)

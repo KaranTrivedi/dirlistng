@@ -33,7 +33,8 @@ export class DirectoryComponent implements OnInit
     private router: Router) { }
 
   ngOnInit() {
-    this.params = this.route.queryParams.subscribe(params => {
+    this.params = this.route.queryParams.subscribe(params => 
+    {
       this.path = params["path"] || ""
       this.sort = params["sort"] || "desc"
       this.column = params["column"] || "modify_time"
@@ -108,14 +109,10 @@ export class DirectoryComponent implements OnInit
     console.log(value)
   }
 
-  onSort(val) {
-    this.column = val
-    if (this.sort == "asc") {
-      this.sort = "desc"
-    }
-    else {
-      this.sort = "asc"
-    }
+  sortData(event)
+  {
+    this.column = event.active
+    this.sort = event.direction
     this.navCall()
   }
 

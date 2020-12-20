@@ -20,13 +20,13 @@
 
     </div>
     <br>
-    <button mat-button [matMenuTriggerFor]="menu">Sort: {{column}}, {{sort}}</button>
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="onSort('name')">Name</button>
-        <button mat-menu-item (click)="onSort('modify_time')">Date</button>
-        <button mat-menu-item (click)="onSort('size')">Size</button>
-    </mat-menu>
-    <br>
+    <div matSort matSortDisableClear (matSortChange)="sortData($event)" [matSortActive]="column"
+        [matSortDirection]="sort" class="input">
+    
+        <th mat-sort-header="name">Name</th>
+        <th mat-sort-header="modify_time">Time</th>
+        <th mat-sort-header="size">Size</th>
+    </div>
     <div class="folder-container" *ngIf="shows?.folders.length > 0">
         <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>

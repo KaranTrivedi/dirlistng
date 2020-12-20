@@ -1,4 +1,17 @@
-/* .page-container {} */
+.page-container
+{
+    border: 0;
+    margin: 0;
+}
+
+@media screen and (max-width: 600px)
+{
+    .input
+    {
+        display: flex;
+        justify-content: space-around;
+    }
+}
 
 .mat-expansion-panel
 {
@@ -91,10 +104,10 @@ table
     width: 100%;
 }
 
-th
+/* th
 {
     border: 1px solid gray;
-}
+} */
 
 .folder-container td:hover
 {
