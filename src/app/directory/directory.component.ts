@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Shows } from './shows';
 // import { FileService } from './files.service';
@@ -12,7 +12,7 @@ import { ApiService } from 'src/services/api.service'
 })
 
 export class DirectoryComponent implements OnInit {
-  @ViewChild('videoPlayer') videoplayer: ElementRef;
+  @ViewChild("box") box;
 
   shows: any;
   // path_vars: string[] = [""];
@@ -45,6 +45,16 @@ export class DirectoryComponent implements OnInit {
       this.column = params["column"] || "modify_time"
       this.getShows()
     })
+  }
+
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent)
+  {
+    console.log(event.key)
+    if(event.key == "/")
+    {      
+      this.box.nativeElement.focus();
+    }
   }
 
   handleFileInput(files: FileList)

@@ -2,7 +2,7 @@
     <div class="bar">
         <mat-form-field class="search-bar" color="accent">
             <mat-label>Simple Filter</mat-label>
-            <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)">
+            <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)" #box (keyup.arrowup)="test()">
         </mat-form-field>
         <div *ngFor="let file of images?.files;  let i = index" [ngClass]="{'highlight': file.name === currentFile}">
             <div alt="{{file?.name}}" class="bar-val" (click)="onClickImage(file, i)">
@@ -48,7 +48,7 @@
         </div>
 
         <div class="image-container">
-            <img *ngIf="file" [src]="url" class="displayer">
+            <img *ngIf="file" [src]="imageSource" class="displayer">
         </div>
         <div class="text-container">
             {{file.name}}-{{file.size_h}}-{{file.ext}}

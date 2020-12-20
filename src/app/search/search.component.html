@@ -2,14 +2,14 @@
 <div class="page-container">
     <mat-form-field class="search-bar" color="accent">
         <mat-label>Enter</mat-label>
-        <input matInput placeholder="Ex. aven*" [value]="query" (input)="onSearchChange($event.target.value)">
+        <input matInput placeholder="Ex. aven*" [value]="query" (input)="onSearchChange($event.target.value)" #box>
     </mat-form-field>
 
     <div matSort 
         matSortDisableClear
         (matSortChange)="sortData($event)" 
         [matSortActive]="column"
-        [matSortDirection]="direction"
+        [matSortDirection]="sort"
         class="input">
     
         <th mat-sort-header="name">Name</th>

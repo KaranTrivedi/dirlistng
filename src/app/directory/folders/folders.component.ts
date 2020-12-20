@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-folders',
@@ -7,12 +7,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FoldersComponent implements OnInit {
 
-  @Input() folder: string;
-
   constructor() { }
 
-  ngOnInit() 
-  {
+  ngOnInit(): void {
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-files',
@@ -7,11 +7,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FilesComponent implements OnInit {
 
-  @Input() file: string;
-
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

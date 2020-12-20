@@ -5,7 +5,7 @@
 
 <mat-form-field class="search-bar" color="accent">
     <mat-label>Simple Filter</mat-label>
-    <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)">
+    <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)" #box>
 </mat-form-field>
 
 <div class="page-container">
@@ -68,11 +68,6 @@
                     {{file?.modify_time_h}} - {{file?.size_h}}
                 </div>
             </div>
-            <tbody>
-                <!-- <tr *ngFor="let file of shows?.files">
-                    <app-files [file]="file"></app-files>
-                </tr> -->
-            </tbody>
         </mat-expansion-panel>
     </div>
     

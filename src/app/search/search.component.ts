@@ -1,4 +1,4 @@
-import { Component, OnInit, PipeTransform, Pipe, ViewChild } from '@angular/core';
+import { Component, OnInit, PipeTransform, Pipe, ViewChild, HostListener } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { PageEvent } from '@angular/material/paginator';
@@ -22,6 +22,7 @@ import { ApiService } from 'src/services/api.service';
 })
 export class SearchComponent implements OnInit
 {
+  @ViewChild("box") box;
   panelOpenState = false;
 
   files;
@@ -64,6 +65,15 @@ export class SearchComponent implements OnInit
     }
   }
 
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent)
+  {
+    console.log(event.key)
+    if(event.key == "/")
+    {      
+      this.box.nativeElement.focus();
+    }
+  }
   paginate(event?:PageEvent)
   {
     this.panelOpenState = false;

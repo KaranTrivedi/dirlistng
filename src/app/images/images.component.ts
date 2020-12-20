@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { HostListener } from '@angular/core';
+import { HostListener, ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/services/api.service';
@@ -12,6 +12,7 @@ import { Shows } from '../directory/shows';
 })
 export class ImagesComponent implements OnInit
 {
+  @ViewChild("box") box;
 
   images: any;
   file: any;
@@ -19,7 +20,9 @@ export class ImagesComponent implements OnInit
   url;
   api_url;
 
-  query="";
+  imageSource: string;
+
+  query=".";
   PATH = "archives/1.%20Movies/dimid/img/"
 
   // QueryParams
@@ -45,18 +48,33 @@ export class ImagesComponent implements OnInit
     })
   }
 
+  test()
+  {
+    this.box.nativeElement.focus();
+  }
+
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent)
   {
-    console.log(event.key)
-    if (event.key == "/")
+    console.log(event)
+    if(event.key == "/")
+    {      
+      this.box.nativeElement.focus();
+    }
+
+    if (event.key == "=")
     {
       this.index += 1
     }
-    if (event.key == ".")
+    if (event.key == "-")
     {
       this.index -= 1
     }
+  }
+
+  onPage(direction)
+  {
+
   }
 
   onClickImage(file, index)
@@ -64,7 +82,7 @@ export class ImagesComponent implements OnInit
     this.file = file
     this.currentFile = file.name
     this.index = index
-    this.url = `${this.api_url}path/${this.PATH}${this.file.name}`
+    this.imageSource = `${this.api_url}path/${this.PATH}${this.file.name}`
   }
   onDownload(file)
   {
