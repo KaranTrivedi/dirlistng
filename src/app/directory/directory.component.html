@@ -31,7 +31,7 @@
             </mat-expansion-panel-header>
                 <table>
                     <tr *ngFor="let folder of shows?.folders">
-                        <td (click)="onClickShows(folder?.name)"><span><img
+                        <td (click)="onClickShows(folder?.name)"><span><img class="dirlist-icon"
                                     src="assets/folder.png"></span>&nbsp;{{folder?.name}}
                         </td>
                         <td>
@@ -52,7 +52,7 @@
 
             <div class="files" *ngFor="let file of shows?.files">
 
-                <div><img src="assets/document.png">&nbsp;{{file?.name}}</div>
+                <div><img class="dirlist-icon" src="assets/document.png">&nbsp;{{file?.name}}</div>
                 <div>
                     <button mat-button (click)="onDownload(file?.name)">Download</button>
                     <button mat-button (click)="onView(file?.name)">View</button>

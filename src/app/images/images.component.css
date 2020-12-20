@@ -1,43 +1,70 @@
-.page-container {
+.page-container
+{
     display: flex;
     justify-content: space-evenly;
     flex-direction: row-reverse;
 }
+@media only screen and (max-width: 992px)
+{
+    .page-container
+    {
+        display: block;
+    }
+}
 
 .displayer-container
 {
-    justify-content: space-evenly;
+    padding: 0;
     width: 85%;
     margin: auto;
 }
-
-.pager-container, .image-container, .text-container
+@media only screen and (max-width: 992px)
+{
+    .displayer-container
+    {
+        padding: 0;
+        width: 100%;
+        margin: auto;
+    }
+}
+.image-container, .text-container
 {
     display: flex;
     justify-content: space-around;
     margin: auto;
     word-wrap: break-word;
 }
-.pager-container
+
+.navigator-parent
 {
     max-width: 25%;
+    margin: auto;
+}
+@media only screen and (max-width: 992px)
+{
+    .navigator-parent
+    {
+        max-width: 100%;
+        margin: auto;
+    }
+}
+.navigator-container
+{
+    white-space: nowrap;
+    display: flex;
     padding-top: 1rem;
-    /* justify-content: space-evenly; */
-}
-.arrow
-{
-    cursor: pointer;
+    justify-content: space-evenly;
 }
 
-.displayer
+.direction
 {
-    /* padding: 1rem; */
-    min-height: 50vh;
-    margin-left: auto;
-    margin-right: auto;
+    display: inline-grid;
+    grid-column-gap: 1rem;
+    grid-template-columns: auto auto;
 }
 
-.img-opt:hover {
+.bar-val:hover
+{
     cursor: pointer;
     background-color: rgb(60, 60, 60)
 }
@@ -45,6 +72,23 @@
 .highlight
 {
     background-color: rgb(60, 60, 60)
+}
+
+.displayer
+{
+    max-height: 85vh;
+    margin: auto;
+}
+
+@media only screen and (max-width: 992px)
+{
+    .displayer
+    {
+        padding: 0;
+        margin: auto;
+        max-width: 100%;
+        /* height: auto; */
+    }
 }
 
 .bar
@@ -58,17 +102,6 @@
 
 @media only screen and (max-width: 992px)
 {
-    .page-container
-    {
-        display: block;
-    }
-    .displayer
-    {
-        padding: 0;
-        margin: auto;
-        max-width: 100%;
-        height: auto;
-    }
     .bar
     {
         border-top: black 10px;
