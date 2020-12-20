@@ -42,7 +42,7 @@
                         Path: {{file?.parent}}
                     </div>
                     <button mat-button (click)="onNav(file)">View Folder</button>
-                    <button mat-button>Download</button>
+                    <button mat-button (click)="onDownload(file)">Download</button>
                     <!-- {{file?.url}} -->
                     <button mat-button (click)="onView(file)">View</button>
                 </mat-expansion-panel>

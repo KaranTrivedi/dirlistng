@@ -36,7 +36,8 @@ export class DirectoryComponent implements OnInit {
     private router: Router,
     private apiService: ApiService) { }
 
-  ngOnInit() {
+  ngOnInit()
+  {
     this.api_url = this.apiService.getApiUrl();
     this.params = this.route.queryParams.subscribe(params => {
       this.path = params["path"] || ""

@@ -1,14 +1,21 @@
+.search-bar
+{
+    width: 100%;
+}
+
 .page-container
 {
     display: flex;
-    justify-content: space-evenly;
-    flex-direction: row-reverse;
+    /* justify-content: space-evenly; */
+    /* flex-direction: row-reverse; */
 }
+
 @media only screen and (max-width: 992px)
 {
     .page-container
     {
-        display: block;
+        display: flex;
+        flex-direction: column-reverse;
     }
 }
 

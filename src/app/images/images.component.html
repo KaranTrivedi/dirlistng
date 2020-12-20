@@ -1,6 +1,17 @@
 <div class="page-container">
-    <div class="displayer-container" *ngIf="images">
+    <div class="bar">
+        <mat-form-field class="search-bar" color="accent">
+            <mat-label>Simple Filter</mat-label>
+            <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)">
+        </mat-form-field>
+        <div *ngFor="let file of images?.files;  let i = index" [ngClass]="{'highlight': file.name === currentFile}">
+            <div alt="{{file?.name}}" class="bar-val" (click)="onClickImage(file, i)">
+                <img class="dirlist-icon" src="assets/{{file.ext}}.png">&nbsp;{{file?.name}}
+            </div>
+        </div>
+    </div>
 
+    <div class="displayer-container" *ngIf="file">
         <div class="navigator-parent">
             <div class="navigator-container">
                 <div class="direction">
@@ -9,11 +20,15 @@
                         <img src="assets/prev.png" alt="" class="dirlist-icon"> -->
                         <button mat-button><mat-icon>first_page</mat-icon></button>
                     </div>
-        
+
                     <div *ngIf="index>0" (click)="onClickImage(images.files[index-1], index-1)">
                         <!-- <img src="assets/prev.png" alt="" class="dirlist-icon"> -->
                         <button mat-button><mat-icon>navigate_before</mat-icon></button>
                     </div>
+                </div>
+
+                <div class="direction">
+                    <button mat-button (click)="onDownload(images.files[index])">Download</button>
                 </div>
 
                 <div class="direction">
@@ -37,14 +52,6 @@
         </div>
         <div class="text-container">
             {{file.name}}-{{file.size_h}}-{{file.ext}}
-        </div>
-    </div>
-
-    <div class="bar">
-        <div *ngFor="let file of images?.files;  let i = index" [ngClass]="{'highlight': file.name === currentFile}">
-            <div alt="{{file?.name}}" class="bar-val" (click)="onClickImage(file, i)">
-                <img class="dirlist-icon" src="assets/{{file.ext}}.png">&nbsp;{{file?.name}}
-            </div>
         </div>
     </div>
 </div>

@@ -18,7 +18,6 @@
         <div *ngFor="let path_var of shows?.path_vars; let i = index" [attr.data-index]="i"
             (click)="onNav(i)">
             <div class="loc">
-                <!-- <img src="assets/next.png"> -->
                 {{path_var}}&nbsp;<mat-icon>chevron_right</mat-icon>&nbsp;
             </div>
         </div>
