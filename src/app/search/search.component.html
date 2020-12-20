@@ -36,10 +36,12 @@
                         
                     </mat-panel-description> -->
                 </mat-expansion-panel-header>
-                {{file?.parent}}
-                <a href="{{file?.url}}">
-                    <button mat-button>Download</button>
-                </a>
+                <div>
+                    Path: {{file?.parent}}
+                </div>
+                <button mat-button (click)="onNav(file)">View Folder</button>
+                <button mat-button>Download</button>
+                <!-- {{file?.url}} -->
                 <button mat-button (click)="onView(file)">View</button>
             </mat-expansion-panel>
         </div>

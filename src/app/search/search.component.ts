@@ -85,24 +85,15 @@ export class SearchComponent implements OnInit
     this.navCall()
   }
 
-  // onSort(val)
-  // {
-  //   this.pageIndex = 0
-  //   this.column = val
-  //   if (this.sort == "asc")
-  //   {
-  //     this.sort = "desc"
-  //   }
-  //   else {
-  //     this.sort = "asc"
-  //   }
-  //   this.navCall()
-  // }
-
   navCall()
   {
     // this.panelOpenState = false;
     this.router.navigate(['search'], { queryParams: { direction: this.direction, column: this.column, query: this.query, page: this.pageIndex, size: this.pageSize } });
+  }
+
+  onNav(file)
+  {
+    this.router.navigate(['directory'], { queryParams: { path: file.parent} });
   }
 
   onView(file)
