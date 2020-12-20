@@ -1,3 +1,7 @@
+.search-bar
+{
+    width: 100%;
+}
 .page-container
 {
     border: 0;
@@ -59,7 +63,6 @@ video
     }
 }
 
-
 /* @media screen and (max-width: 992px) {
     .loc {
         display: flex;
@@ -67,13 +70,15 @@ video
     }
 } */
 
-.file-container {
+.file-container
+{
     background-color: rgb(40, 40, 40);
     max-height: 50%;
     overflow-y: auto;
 }
 
-.folder-container {
+.folder-container
+{
     /* max-height:100%; */
     overflow-y: auto;
     /* height: auto; */
@@ -108,6 +113,11 @@ table
 {
     border: 1px solid gray;
 } */
+
+td
+{
+    white-space: nowrap;
+}
 
 .folder-container td:hover
 {
