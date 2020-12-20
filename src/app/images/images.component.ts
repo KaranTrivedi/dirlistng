@@ -30,17 +30,17 @@ export class ImagesComponent implements OnInit
   path: string;
   sort: string;
   column: string;
-  index: number;
+  index: number = 0;
 
   constructor(private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
     private apiService: ApiService) { }
 
-    ngOnInit()
-    {
-      this.api_url = this.apiService.getApiUrl();
-      this.params = this.route.queryParams.subscribe(params => {
+  ngOnInit()
+  {
+    this.api_url = this.apiService.getApiUrl();
+    this.params = this.route.queryParams.subscribe(params => {
       this.sort = params["sort"] || "desc"
       this.index = params["index"] || 0
       this.column = params["column"] || "modify_time"
@@ -48,15 +48,9 @@ export class ImagesComponent implements OnInit
     })
   }
 
-  test()
-  {
-    this.box.nativeElement.focus();
-  }
-
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent)
   {
-    console.log(event)
     if(event.key == "/")
     {      
       this.box.nativeElement.focus();
@@ -64,29 +58,73 @@ export class ImagesComponent implements OnInit
 
     if (event.key == "=")
     {
-      this.index += 1
+      if(this.index < this.images.files.length-1)
+      {
+        this.index += 1
+      }
     }
     if (event.key == "-")
     {
-      this.index -= 1
+      if (this.index > 0)
+      {
+        this.index -= 1
+      }
     }
+    if (event.key == "]")
+    {
+      this.index = this.images.files.length-1
+    }
+    if (event.key == "[")
+    {
+      this.index = 0
+    }
+    this.setSource(this.index)
   }
 
   onPage(direction)
   {
+    if (direction == "next")
+    {
+      if(this.index < this.images.files.length-1)
+      {
+        this.index += 1
+      }
+    }
+    if (direction == "prev")
+    {
+      if (this.index > 0)
+      {
+        this.index -= 1
+      }
+    }
+    if (direction == "last")
+    {
+      this.index = this.images.files.length-1
+    }
+    if (direction == "first")
+    {
+      this.index = 0
+    }
+    this.setSource(this.index)
+  }
 
+  setSource(index)
+  {
+    this.imageSource = `${this.api_url}path/${this.PATH}${this.images.files[index].name}`
+    this.file = this.images.files[index]
   }
 
   onClickImage(file, index)
   {
-    this.file = file
     this.currentFile = file.name
     this.index = index
-    this.imageSource = `${this.api_url}path/${this.PATH}${this.file.name}`
+    this.setSource(this.index)
   }
+
   onDownload(file)
   {
     console.log(file)
+    this.apiService.Download(this.images.files[this.index].name, this.PATH)
   }
 
   onSearchChange(value)
@@ -105,9 +143,7 @@ export class ImagesComponent implements OnInit
     })
     .subscribe(posts => {
       this.images = posts;
-      // this.file = this.images.files[this.index]
-      // this.currentFile = this.images.files[this.index].name
-      // this.url = "http://192.168.0.16:8000/path/archives/1.%20Movies/dimid/img/" + this.file.name
+      this.setSource(0)
   })
   }
 }

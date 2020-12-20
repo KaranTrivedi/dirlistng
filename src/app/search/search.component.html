@@ -1,4 +1,3 @@
-<h4>Files</h4>
 <div class="page-container">
     <mat-form-field class="search-bar" color="accent">
         <mat-label>Enter</mat-label>
@@ -11,10 +10,11 @@
         [matSortActive]="column"
         [matSortDirection]="sort"
         class="input">
-    
+
         <th mat-sort-header="name">Name</th>
         <th mat-sort-header="modify_time">Time</th>
         <th mat-sort-header="size">Size</th>
+
     </div>
 
     <div *ngIf="files?.exception">
@@ -27,24 +27,25 @@
                 <mat-expansion-panel (click)="onView(file)">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            <div>
+                            <div class="name">
                                 {{file?.name}}
                             </div>
-                            <div>
-                                <b>{{file?.size_h}}</b> - {{file?.modify_time_h}}
+                            <div class="subname">
+                                <b>{{file?.size_h}}</b> - {{file?.modify_time_h | date:"medium"}}
                             </div>
                         </mat-panel-title>
                         <!-- <mat-panel-description>
                             
                         </mat-panel-description> -->
                     </mat-expansion-panel-header>
-                    <div>
-                        Path: {{file?.parent}}
+                    <div class="detail">
+                        <b>Name:</b> {{file?.name}}
+                        <br>
+                        <b>Path:</b> {{file?.parent}}
                     </div>
                     <button mat-button (click)="onNav(file)">View Folder</button>
                     <button mat-button (click)="onDownload(file)">Download</button>
-                    <!-- {{file?.url}} -->
-                    <button mat-button (click)="onView(file)">View</button>
+                    <button mat-button (click)="onView(file)" [disabled]="file?.suffix!=='mkv'&&file?.suffix!=='mp4'&&file?.suffix!=='avi'">View</button>
                 </mat-expansion-panel>
             </div>
         </mat-accordion>

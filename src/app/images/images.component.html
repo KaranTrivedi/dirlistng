@@ -1,8 +1,8 @@
 <div class="page-container">
-    <div class="bar">
+    <div class="bar" *ngIf="images">
         <mat-form-field class="search-bar" color="accent">
             <mat-label>Simple Filter</mat-label>
-            <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)" #box (keyup.arrowup)="test()">
+            <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)" #box>
         </mat-form-field>
         <div *ngFor="let file of images?.files;  let i = index" [ngClass]="{'highlight': file.name === currentFile}">
             <div alt="{{file?.name}}" class="bar-val" (click)="onClickImage(file, i)">
@@ -15,15 +15,12 @@
         <div class="navigator-parent">
             <div class="navigator-container">
                 <div class="direction">
-                    <div *ngIf="index>0" (click)="onClickImage(images.files[0], 0)">
-                        <!-- <img src="assets/prev.png" alt="" class="dirlist-icon">
-                        <img src="assets/prev.png" alt="" class="dirlist-icon"> -->
-                        <button mat-button><mat-icon>first_page</mat-icon></button>
+                    <div (click)="onPage('first')">
+                        <button mat-button [disabled]="index===0"><mat-icon>first_page</mat-icon></button>
                     </div>
 
-                    <div *ngIf="index>0" (click)="onClickImage(images.files[index-1], index-1)">
-                        <!-- <img src="assets/prev.png" alt="" class="dirlist-icon"> -->
-                        <button mat-button><mat-icon>navigate_before</mat-icon></button>
+                    <div (click)="onPage('prev')">
+                        <button mat-button [disabled]="index===0"><mat-icon>navigate_before</mat-icon></button>
                     </div>
                 </div>
 
@@ -32,23 +29,19 @@
                 </div>
 
                 <div class="direction">
-                    <div *ngIf="index<this.images.files.length-1" (click)="onClickImage(images.files[index+1], index+1)">
-                        <!-- <img src="assets/next.png" alt="" class="dirlist-icon"> -->
-                        <button mat-button><mat-icon>navigate_next</mat-icon></button>
+                    <div (click)="onPage('next')">
+                        <button mat-button [disabled]="index===images.files.length-1"><mat-icon>navigate_next</mat-icon></button>
                     </div>
 
-                    <div *ngIf="index<this.images.files.length-1"
-                        (click)="onClickImage(images.files[images.files.length-1], this.images.files.length-1)">
-                        <button mat-button><mat-icon>last_page</mat-icon></button>
-                        <!-- <img src="assets/next.png" alt="" class="dirlist-icon">
-                        <img src="assets/next.png" alt="" class="dirlist-icon"> -->
+                    <div (click)="onPage('last')">
+                        <button mat-button [disabled]="index===images.files.length-1"><mat-icon>last_page</mat-icon></button>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="image-container">
-            <img *ngIf="file" [src]="imageSource" class="displayer">
+            <img [src]="imageSource" class="displayer">
         </div>
         <div class="text-container">
             {{file.name}}-{{file.size_h}}-{{file.ext}}

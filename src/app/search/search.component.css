@@ -29,6 +29,20 @@
     color: red;
 }
 
+.name
+{
+    font-size: 1rem;
+    color: white;
+}
+.subname
+{
+    font-size: 0.7rem;
+}
+.detail
+{
+    color: gray;
+}
+
 mat-panel-title
 {
     display: inline;
