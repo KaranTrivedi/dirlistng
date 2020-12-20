@@ -25,6 +25,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { SearchVideoComponent } from './search/search-video/search-video.component';
 import { ImagesComponent } from './images/images.component';
 import {MatSortModule} from '@angular/material/sort';
+import { TestSamplesComponent } from './test-samples/test-samples.component';
 // import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
@@ -36,7 +37,8 @@ import {MatSortModule} from '@angular/material/sort';
     SearchComponent,
     HeaderComponent,
     SearchVideoComponent,
-    ImagesComponent
+    ImagesComponent,
+    TestSamplesComponent
   ],
   imports: [
     MatSortModule,

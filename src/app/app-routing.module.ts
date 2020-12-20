@@ -3,12 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { DirectoryComponent } from './directory/directory.component';
 import { ImagesComponent } from './images/images.component';
 import { SearchComponent } from './search/search.component';
-
+import { TestSamplesComponent } from './test-samples/test-samples.component';
 
 const routes: Routes = [
   { path: 'directory', component: DirectoryComponent },
   { path: 'search', component: SearchComponent },
   { path: 'images', component: ImagesComponent },
+  { path: 'test', component:  TestSamplesComponent},
   {path: '**', redirectTo: 'directory'}
 
 ];
