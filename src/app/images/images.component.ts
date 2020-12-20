@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
+import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Shows } from '../downloads/shows';
+import { Shows } from '../directory/shows';
 
 @Component({
   selector: 'app-images',
@@ -11,7 +12,7 @@ import { Shows } from '../downloads/shows';
 export class ImagesComponent implements OnInit
 {
 
-  shows: any;
+  images: any;
   file: any;
   currentFile: string;
   url;
@@ -21,7 +22,7 @@ export class ImagesComponent implements OnInit
   path;
   sort;
   column;
-  index = 1;
+  index = 0;
 
   constructor(private http: HttpClient,
     private route: ActivatedRoute,
@@ -41,19 +42,21 @@ export class ImagesComponent implements OnInit
     this.file = file
     this.currentFile = file.name
     this.index = index
-    this.url = "http://192.168.0.16:8000/shows/file?ui_path=data/archives/1.%20Movies/dimid/img/" + file.name
+    this.url = "http://192.168.0.16:8000/path/archives/1.%20Movies/dimid/img/" + this.file.name
+
   }
 
-  private getShows() {
+  private getShows()
+  {
     // console.log(this.path)
-    this.http.get<Shows>("http://192.168.0.16:8000/shows/folders?ui_path=data/archives/1.%20Movies/dimid/img&column=" + this.column + "&sort=" + this.sort,
+    this.http.get<Shows>("http://192.168.0.16:8000/path/archives/1.%20Movies/dimid/img/?&column=" + this.column + "&sort=" + this.sort,
     {
     })
     .subscribe(posts => {
-      this.shows = posts;
-      this.file = this.shows.files[1]
-      this.currentFile = this.shows.files[1].name
-      this.url = "http://192.168.0.16:8000/shows/file?ui_path=data/archives/1.%20Movies/dimid/img/" + this.file.name
+      this.images = posts;
+      this.file = this.images.files[this.index]
+      this.currentFile = this.images.files[this.index].name
+      this.url = "http://192.168.0.16:8000/path/archives/1.%20Movies/dimid/img/" + this.file.name
   })
   }
 }

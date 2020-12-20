@@ -12,49 +12,40 @@ mat-icon
 
 .path
 {
-    word-wrap: break-word;
-    /* overflow-wrap: break-word; */
     display: flex;
-    /* justify-content: space-evenly; */
+    overflow: scroll;
 }
-@media screen and (max-width: 992px)
+/* For larger screens, hide scrollbar. */
+@media screen and (min-width: 600px)
 {
-    .path
+    .path::-webkit-scrollbar
     {
-        word-wrap: break-word;
-        display: flex;
-        flex-wrap: wrap;
-        /* width: auto; */
+      display: none;
     }
 }
+.loc
+{
+    display: flex;
+    white-space: nowrap;
+}
+.loc:hover, th:hover, .folder-container tr:hover
+{
+    cursor: pointer;
+}
 
-video {
+video
+{
     height: 720;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 992px)
+{
     video {
         /* height: 480; */
         width: auto;
     }
 }
 
-.path-component {
-    display: flex;
-}
-
-
-.loc
-{
-    /* overflow-wrap: break-word; */
-    padding: 5px;
-    background-color: rgb(45, 45, 45);
-    border: black 1px solid;
-}
-.loc:hover, th:hover, .folder-container tr:hover
-{
-    cursor: pointer;
-}
 
 /* @media screen and (max-width: 992px) {
     .loc {

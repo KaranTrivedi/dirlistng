@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DownloadsComponent } from './downloads/downloads.component';
+import { DirectoryComponent } from './directory/directory.component';
 import { ImagesComponent } from './images/images.component';
 import { SearchComponent } from './search/search.component';
 
 
 const routes: Routes = [
-  { path: 'shows', component: DownloadsComponent },
+  { path: 'directory', component: DirectoryComponent },
   { path: 'search', component: SearchComponent },
   { path: 'images', component: ImagesComponent },
-  {path: '**', redirectTo: 'shows'}
+  {path: '**', redirectTo: 'directory'}
 
 ];
 

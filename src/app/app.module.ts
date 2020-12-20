@@ -5,9 +5,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DownloadsComponent } from './downloads/downloads.component';
-import { FoldersComponent } from './downloads/folders/folders.component';
-import { FilesComponent } from './downloads/files/files.component';
+import { DirectoryComponent } from './directory/directory.component';
+import { FoldersComponent } from './directory/folders/folders.component';
+import { FilesComponent } from './directory/files/files.component';
 import { SearchComponent } from './search/search.component';
 import { HeaderComponent } from './header/header.component';
 
@@ -28,7 +28,7 @@ import { ImagesComponent } from './images/images.component';
 @NgModule({
   declarations: [
     AppComponent,
-    DownloadsComponent,
+    DirectoryComponent,
     FoldersComponent,
     FilesComponent,
     SearchComponent,

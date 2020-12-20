@@ -6,11 +6,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-downloads',
-  templateUrl: './downloads.component.html',
-  styleUrls: ['./downloads.component.css']
+  templateUrl: './directory.component.html',
+  styleUrls: ['./directory.component.css']
 })
 
-export class DownloadsComponent implements OnInit
+export class DirectoryComponent implements OnInit
 {
   @ViewChild('videoPlayer') videoplayer: ElementRef;
 
@@ -32,7 +32,7 @@ export class DownloadsComponent implements OnInit
 
   ngOnInit() {
     this.params = this.route.queryParams.subscribe(params => {
-      this.path = params["path"] || "data/"
+      this.path = params["path"] || ""
       this.sort = params["sort"] || "desc"
       this.column = params["column"] || "modify_time"
       this.getShows()
@@ -46,21 +46,29 @@ export class DownloadsComponent implements OnInit
     // this.getShows()
   }
 
-  onClickDownload(file) {
+  onDownload(file) {
     this.file = file;
     file = encodeURIComponent(file);
     // file = file.replace("+","%2B");
     // file = file.replace(";","%3B");
-    this.http.get("http://192.168.0.16:8000/shows/file?ui_path=" + this.path + "/" + file, {
+    this.http.get("http://192.168.0.16:8000/path/" + this.path + file, {
       responseType: 'blob',
     }
     ).subscribe(response => this.downLoadFile(response, "application/octet-stream"));
   }
 
-  onNav(i) {
-    var path = ""
-    for (var x = 0; x <= i; x++) {
-      path = path + encodeURIComponent(this.shows.path_vars[x]) + "/"
+  onNav(i)
+  {
+    if(i == -1)
+    {
+      path = ""
+    }
+    else
+    {
+      var path = ""
+      for (var x = 0; x <= i; x++) {
+        path = path + encodeURIComponent(this.shows.path_vars[x]) + "/"
+      }
     }
 
     this.path = path
@@ -71,12 +79,12 @@ export class DownloadsComponent implements OnInit
   }
   private getShows() {
     // console.log(this.path)
-    this.http.get<Shows>("http://192.168.0.16:8000/shows/folders?ui_path=" + this.path + "&column=" + this.column + "&sort=" + this.sort, {
+    this.http.get<Shows>("http://192.168.0.16:8000/path/"+ this.path + "?&column=" + this.column + "&sort=" + this.sort, {
     })
       .subscribe(posts => {
         this.shows = posts;
         if (!this.shows.valid) {
-          this.path = "data/"
+          this.path = ""
           this.navCall()
         }
       })
@@ -97,7 +105,8 @@ export class DownloadsComponent implements OnInit
     this.navCall()
   }
 
-  onView(file) {
+  onView(file) 
+  {
     this.file = file
     if (this.show_vid) {
       this.show_vid = false
@@ -106,26 +115,20 @@ export class DownloadsComponent implements OnInit
       this.show_vid = true
     }
 
-    // this.toggleVid()
-    this.show_vid = true;
     file = encodeURIComponent(file);
-    this.url = "http://192.168.0.16:8000/shows/file?ui_path=" + this.path + "/" + file
+    this.url = "http://192.168.0.16:8000/path/"+ this.path + file
   }
 
-  toggleVid() 
+  toggleVid()
   {
     this.show_vid = false;
   }
 
   navCall()
   {
-    this.router.navigate(['shows'], { queryParams: { path: this.path, sort: this.sort, column: this.column } });
+    this.router.navigate(['directory'], { queryParams: { path: this.path, sort: this.sort, column: this.column } });
   }
 
-  // onHome() {
-  //   this.path = "data"
-  //   this.navCall()
-  // }
   downLoadFile(data: any, type: string)
   {
     let blob = new Blob([data], { type: type });

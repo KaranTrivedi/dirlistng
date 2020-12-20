@@ -1,11 +1,22 @@
 <div class="page-container">
-    <div class="displayer-container">
+    <div class="displayer-container" *ngIf="images">
 
         <div class="pager-container">
-            <div *ngIf="index>0" (click)="onClickImage(shows.files[index-1], index-1)">
+            <div *ngIf="index>0" (click)="onClickImage(images.files[0], 0)">
+                <img src="assets/prev.png" alt="" class="arrow">
                 <img src="assets/prev.png" alt="" class="arrow">
             </div>
-            <div class="next" (click)="onClickImage(shows.files[index+1], index+1)">
+
+            <div *ngIf="index>0" (click)="onClickImage(images.files[index-1], index-1)">
+                <img src="assets/prev.png" alt="" class="arrow">
+            </div>
+            <div *ngIf="index<this.images.files.length-1" (click)="onClickImage(images.files[index+1], index+1)">
+                <img src="assets/next.png" alt="" class="arrow">
+            </div>
+
+            <div *ngIf="index<this.images.files.length-1"
+                (click)="onClickImage(images.files[images.files.length-1], this.images.files.length-1)">
+                <img src="assets/next.png" alt="" class="arrow">
                 <img src="assets/next.png" alt="" class="arrow">
             </div>
         </div>
@@ -19,7 +30,7 @@
     </div>
 
     <div class="bar">
-        <div *ngFor="let file of shows?.files;  let i = index" [ngClass]="{'highlight': file.name === currentFile}">
+        <div *ngFor="let file of images?.files;  let i = index" [ngClass]="{'highlight': file.name === currentFile}">
             <div alt="{{file?.name}}" class="img-opt" (click)="onClickImage(file, i)">
                 <img src="assets/{{file.ext}}.png">&nbsp;{{file?.name}}
             </div>

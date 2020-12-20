@@ -1,15 +1,18 @@
 <div class="page-container">
     <div class="path">
-        <div class="path-component" *ngFor="let path_var of shows?.path_vars; let i = index" [attr.data-index]="i"
-            (click)="onNav(i)">
-            <h2 class="loc">
-                <!-- <img src="assets/next.png"> -->
-                {{path_var}}
-            </h2>
-            <h2>
-                &nbsp;<mat-icon>chevron_right</mat-icon>&nbsp;
-            </h2>
+        <div class="loc" (click)="onNav(-1)">
+            Home
+            &nbsp;<mat-icon>chevron_right</mat-icon>&nbsp;
         </div>
+
+        <div *ngFor="let path_var of shows?.path_vars; let i = index" [attr.data-index]="i"
+            (click)="onNav(i)">
+            <div class="loc">
+                <!-- <img src="assets/next.png"> -->
+                {{path_var}}&nbsp;<mat-icon>chevron_right</mat-icon>&nbsp;
+            </div>
+        </div>
+
     </div>
     <br>
     <button mat-button [matMenuTriggerFor]="menu">Sort: {{column}}, {{sort}}</button>
@@ -23,7 +26,7 @@
         <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    <h2>Folder</h2>
+                    <h4>Folder</h4>
                 </mat-panel-title>
             </mat-expansion-panel-header>
                 <table>
@@ -40,7 +43,7 @@
     </div>
     <br>
     <div class="files-container" *ngIf="shows?.files.length > 0">
-        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     <h2>Files</h2>
@@ -51,7 +54,7 @@
 
                 <div><img src="assets/document.png">&nbsp;{{file?.name}}</div>
                 <div>
-                    <button mat-button (click)="onClickDownload(file?.name)">Download</button>
+                    <button mat-button (click)="onDownload(file?.name)">Download</button>
                     <button mat-button (click)="onView(file?.name)">View</button>
                     {{file?.modify_time_h}} - {{file?.size_h}}
                 </div>
@@ -72,7 +75,7 @@
     <button mat-button (click)="toggleVid()">Close video</button>
     <h2>{{file}}</h2>
     <div class="video">
-        <video controls (click)="toggleVideo()" #videoPlayer>
+        <video controls #videoPlayer>
             <source [src]="url">
             Browser not supported
         </video>

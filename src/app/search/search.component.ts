@@ -21,6 +21,7 @@ export class SearchComponent implements OnInit {
 
   // 
   panelOpenState = false;
+  fileToUpload: File = null;
 
   files;
   url;
@@ -88,6 +89,18 @@ export class SearchComponent implements OnInit {
     this.navCall()
   }
 
+  handleFileInput(files: FileList)
+  {
+    this.fileToUpload = files.item(0);
+  }
+
+  // uploadFileToActivity() {
+  //   this.fileUploadService.postFile(this.fileToUpload).subscribe(data => {
+  //     // do something, if upload success
+  //     }, error => {
+  //       console.log(error);
+  //     });
+  // }
   navCall()
   {
     // this.panelOpenState = false;
@@ -99,16 +112,15 @@ export class SearchComponent implements OnInit {
     // file
     this.url = ""
     var path = encodeURIComponent(file["path"]);
-    this.url = "http://192.168.0.16:8000/shows/file?ui_path=" + path
+    this.url = "http://192.168.0.16:8000/path/" + path
   }
   
-  private getFiles()
-  {
+  private getFiles() {
     this.from = this.pageIndex * this.pageSize
-    // console.log(this.path)
+
     this.http.get("http://192.168.0.16:8000/search/?query=" + this.query + "&column=" + this.column + "&sort=" + this.sort + "&from_doc=" + this.from + "&size=" + this.pageSize,
-    {
-    })
+      {
+      })
       .subscribe(posts => {
         this.files = posts;
       })

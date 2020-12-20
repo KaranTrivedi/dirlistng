@@ -1,3 +1,8 @@
+<!-- <div class="form-group">
+    <label for="file">Choose File</label>
+    <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+</div> -->
+
 <div class="input">
     <mat-form-field class="example-full-width" color="accent">
         <mat-label>Enter</mat-label>
@@ -41,7 +46,9 @@
                         {{file?.size_h}} - {{file?.modify_time_h}}
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-                {{file?.parent}}
+                <a href="{{file?.url}}">
+                    <button mat-button>Download</button>
+                </a>
                 <mat-divider></mat-divider>
                 <td>
                     <button mat-button (click)="onView(file)">View</button>
