@@ -5,24 +5,28 @@
             <div class="navigator-container">
                 <div class="direction">
                     <div *ngIf="index>0" (click)="onClickImage(images.files[0], 0)">
-                        <img src="assets/prev.png" alt="" class="dirlist-icon">
-                        <img src="assets/prev.png" alt="" class="dirlist-icon">
+                        <!-- <img src="assets/prev.png" alt="" class="dirlist-icon">
+                        <img src="assets/prev.png" alt="" class="dirlist-icon"> -->
+                        <button mat-button><mat-icon>first_page</mat-icon></button>
                     </div>
         
                     <div *ngIf="index>0" (click)="onClickImage(images.files[index-1], index-1)">
-                        <img src="assets/prev.png" alt="" class="dirlist-icon">
+                        <!-- <img src="assets/prev.png" alt="" class="dirlist-icon"> -->
+                        <button mat-button><mat-icon>navigate_before</mat-icon></button>
                     </div>
                 </div>
-    
+
                 <div class="direction">
                     <div *ngIf="index<this.images.files.length-1" (click)="onClickImage(images.files[index+1], index+1)">
-                        <img src="assets/next.png" alt="" class="dirlist-icon">
+                        <!-- <img src="assets/next.png" alt="" class="dirlist-icon"> -->
+                        <button mat-button><mat-icon>navigate_next</mat-icon></button>
                     </div>
-        
+
                     <div *ngIf="index<this.images.files.length-1"
                         (click)="onClickImage(images.files[images.files.length-1], this.images.files.length-1)">
-                        <img src="assets/next.png" alt="" class="dirlist-icon">
-                        <img src="assets/next.png" alt="" class="dirlist-icon">
+                        <button mat-button><mat-icon>last_page</mat-icon></button>
+                        <!-- <img src="assets/next.png" alt="" class="dirlist-icon">
+                        <img src="assets/next.png" alt="" class="dirlist-icon"> -->
                     </div>
                 </div>
             </div>
