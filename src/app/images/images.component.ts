@@ -50,10 +50,16 @@ export class ImagesComponent implements OnInit
   handleKeyboardEvent(event: KeyboardEvent)
   {
     if(event.key == "/")
-    {      
+    {
+      // @HostListener('focus', null) onFocus() {
+      //   this.elementRef.nativeElement.select();
+      // }
       this.box.nativeElement.focus();
     }
-
+    // if(event.key == ".")
+    // {
+    //   this.onRandom()
+    // }
     if (event.key == "=")
     {
       if(this.index < this.images.files.length-1)
@@ -133,6 +139,12 @@ export class ImagesComponent implements OnInit
     this.setSource(this.index)
   }
 
+  onRandom()
+  {
+    this.index = getRandomInt(this.images.files.length-1)
+    this.setSource(this.index)
+  }
+
   onDownload(file)
   {
     console.log(file)
@@ -158,4 +170,9 @@ export class ImagesComponent implements OnInit
       this.setSource(0)
   })
   }
+}
+
+function getRandomInt(max)
+{
+  return Math.floor(Math.random() * Math.floor(max));
 }

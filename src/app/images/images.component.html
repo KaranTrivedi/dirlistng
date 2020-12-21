@@ -1,8 +1,7 @@
 <div class="page-container">
-    <div class="bar" *ngIf="images">
+    <div class="bar">
         <div class="inputs">
-            
-            <button mat-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger">
+            <!-- <button mat-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger">
                 {{column}}</button>
 
                 <mat-menu #menu="matMenu">
@@ -11,10 +10,11 @@
                         <button mat-menu-item (click)="onSort('modify_time')">Date</button>
                         <button mat-menu-item (click)="onSort('size')">Size</button>
                     </span>
-                </mat-menu>
+                </mat-menu> -->
+
                 <mat-form-field class="search-bar" color="accent">
                     <mat-label>Simple Filter</mat-label>
-                    <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)" #box>
+                    <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)"  (focus)="$event.target.select()" #box>
                 </mat-form-field>
         </div>
         <div *ngFor="let file of images?.files;  let i = index" [ngClass]="{'highlight': i === index}">
@@ -23,6 +23,7 @@
             </div>
         </div>
     </div>
+    <button mat-button (click)="onDownload(images.files[index])">Download</button>
 
     <div class="displayer-container">
         <div class="navigator-parent">
@@ -42,7 +43,7 @@
                 </div>
 
                 <div class="direction">
-                    <button mat-button (click)="onDownload(images.files[index])">Download</button>
+                    <button mat-button (click)="onRandom()">Random!</button>
                 </div>
 
                 <div class="direction">

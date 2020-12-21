@@ -6,14 +6,23 @@
 
 <div class="page-container">
     <div class="path">
-        <div class="loc" (click)="onNav(-1)">
-            Home
-            &nbsp;<mat-icon>chevron_right</mat-icon>&nbsp;
+        <div class="loc">
+            <button mat-button (click)="onNav(-1)">
+                Home
+            </button>
+            <button mat-button  disabled="true">
+                &nbsp;<mat-icon>chevron_right</mat-icon>&nbsp;
+            </button>
         </div>
 
-        <div *ngFor="let path_var of shows?.path_vars; let i = index" [attr.data-index]="i" (click)="onNav(i)">
+        <div *ngFor="let path_var of shows?.path_vars; let i = index" [attr.data-index]="i">
             <div class="loc">
-                {{path_var}}&nbsp;<mat-icon>chevron_right</mat-icon>&nbsp;
+                <button mat-button (click)="onNav(i)">
+                    {{path_var}}
+                </button>
+                <button mat-button disabled="true">
+                    &nbsp;<mat-icon>chevron_right</mat-icon>&nbsp;
+                </button>
             </div>
         </div>
     </div>
@@ -38,11 +47,11 @@
                     Folders - {{shows?.folders.length}}
                 </mat-panel-title>
                 <mat-panel-description>
-                    <button mat-button>Upload <mat-icon> attach_file</mat-icon></button >
+                    <!-- <button mat-button>Upload <mat-icon> attach_file</mat-icon></button > -->
                 </mat-panel-description>
             </mat-expansion-panel-header>
-            <div class="folders" *ngFor="let folder of shows?.folders" (click)="onClickShows(folder?.name)">
-                <div #folder class="folder-link">
+            <div class="folders" *ngFor="let folder of shows?.folders">
+                <div #folder class="folder-link" (click)="onClickShows(folder?.name)" matRipple>
                     <div class="name" [ngStyle]="{'color':folder?.modify_time<today ? '' : 'green' }">
                         <h6>
                             {{folder?.name}}
@@ -60,12 +69,13 @@
             </div>
         </mat-expansion-panel>
     </div>
-
     <mat-divider></mat-divider>
+
     <div class="files-container" *ngIf="shows?.files.length > 0">
+            <h6>Files</h6>
         <mat-accordion>
             <div *ngFor="let file of shows?.files">
-                <mat-expansion-panel>
+                <mat-expansion-panel matRipple>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             <div class="name" [ngStyle]="{'color':file?.modify_time<today ? '' : 'green' }">

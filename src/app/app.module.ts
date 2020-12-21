@@ -28,6 +28,8 @@ import {MatSortModule} from '@angular/material/sort';
 import { TestSamplesComponent } from './test-samples/test-samples.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatRippleModule} from '@angular/material/core';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 // import {MatToolbarModule} from '@angular/material/toolbar';
 
@@ -44,6 +46,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     TestSamplesComponent
   ],
   imports: [
+    MatSidenavModule,
+    MatRippleModule,
     MatDialogModule,
     MatButtonToggleModule,
     MatSortModule,

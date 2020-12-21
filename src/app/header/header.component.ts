@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void 
   {
   }
-  active = 1;
+  // active = 1;
+
 
 }
