@@ -21,7 +21,7 @@ export class ImagesComponent implements OnInit
 
   imageSource: string;
 
-  query=".";
+  query:string ="";
   PATH = "archives/1.%20Movies/dimid/img/"
 
   // QueryParams
@@ -51,9 +51,6 @@ export class ImagesComponent implements OnInit
   {
     if(event.key == "/")
     {
-      // @HostListener('focus', null) onFocus() {
-      //   this.elementRef.nativeElement.select();
-      // }
       this.box.nativeElement.focus();
     }
     // if(event.key == ".")
@@ -113,18 +110,8 @@ export class ImagesComponent implements OnInit
   }
   sortData(event)
   {
-    console.log(event)
-  }
-  onSort(val)
-  {
-    this.column = val
-    if (this.sort == "asc")
-    {
-      this.sort = "desc"
-    }
-    else {
-      this.sort = "asc"
-    }
+    this.column = event.active
+    this.sort = event.direction
     this.getImages()
   }
 

@@ -1,72 +1,82 @@
 <div class="page-container">
-    <div class="bar">
-        <div class="inputs">
-            <!-- <button mat-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger">
-                {{column}}</button>
+    <nav mat-tab-nav-bar backgroundColor="primary">
+        <button mat-button>
+            <mat-icon>menu</mat-icon>
+        </button>
+        <mat-form-field class="search-bar" color="accent">
+            <mat-label>Search</mat-label>
+            <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)" #box>
+        </mat-form-field>
 
-                <mat-menu #menu="matMenu">
-                    <span (mouseleave)="menuTrigger.closeMenu()">
-                        <button mat-menu-item (click)="onSort('name')">Name</button>
-                        <button mat-menu-item (click)="onSort('modify_time')">Date</button>
-                        <button mat-menu-item (click)="onSort('size')">Size</button>
-                    </span>
-                </mat-menu> -->
+        <button mat-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+                <div matSort matSortDisableClear (matSortChange)="sortData($event)" [matSortActive]="column"
+                    [matSortDirection]="sort" class="input">
+                    <th>Sort:&nbsp;&nbsp;</th>
+                    <th mat-sort-header="name">Name</th>
+                    <th mat-sort-header="modify_time">Time</th>
+                    <th mat-sort-header="size">Size</th>
+                </div>
+            </button>
+        </mat-menu>
+    </nav>
 
-                <mat-form-field class="search-bar" color="accent">
-                    <mat-label>Simple Filter</mat-label>
-                    <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)"  (focus)="$event.target.select()" #box>
-                </mat-form-field>
-        </div>
-        <div *ngFor="let file of images?.files;  let i = index" [ngClass]="{'highlight': i === index}">
-            <div alt="{{file?.name}}" class="bar-val" (click)="onClickImage(i)">
-                <img class="dirlist-icon" src="assets/{{file.ext}}.png">&nbsp;{{file?.name}} - {{file?.size_h}}
+    <div class="content-container">
+        <div class="displayer-container">
+            <div class="navigator-parent">
+                <div class="navigator-container">
+                    <div class="direction">
+                        <div (click)="onPage('first')">
+                            <button mat-button [disabled]="index===0">
+                                <mat-icon>first_page</mat-icon>
+                            </button>
+                        </div>
+
+                        <div (click)="onPage('prev')">
+                            <button mat-button [disabled]="index===0">
+                                <mat-icon>navigate_before</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="direction">
+                        <button mat-button (click)="onRandom()">Random!</button>
+                    </div>
+
+                    <div class="direction">
+                        <div (click)="onPage('next')">
+                            <button mat-button [disabled]="index===images.files.length-1">
+                                <mat-icon>navigate_next</mat-icon>
+                            </button>
+                        </div>
+
+                        <div (click)="onPage('last')">
+                            <button mat-button [disabled]="index===images.files.length-1">
+                                <mat-icon>last_page</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-container">
+                <img [src]="imageSource" class="displayer">
+            </div>
+            <div class="text-container">
+                {{images.files[index].name}} - {{images.files[index].size_h}} - {{images.files[index].ext}}
+                <button mat-button (click)="onDownload(images.files[index])">Download</button>
             </div>
         </div>
-    </div>
-    <button mat-button (click)="onDownload(images.files[index])">Download</button>
 
-    <div class="displayer-container">
-        <div class="navigator-parent">
-            <div class="navigator-container">
-                <div class="direction">
-                    <div (click)="onPage('first')">
-                        <button mat-button [disabled]="index===0">
-                            <mat-icon>first_page</mat-icon>
-                        </button>
-                    </div>
-
-                    <div (click)="onPage('prev')">
-                        <button mat-button [disabled]="index===0">
-                            <mat-icon>navigate_before</mat-icon>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="direction">
-                    <button mat-button (click)="onRandom()">Random!</button>
-                </div>
-
-                <div class="direction">
-                    <div (click)="onPage('next')">
-                        <button mat-button [disabled]="index===images.files.length-1">
-                            <mat-icon>navigate_next</mat-icon>
-                        </button>
-                    </div>
-
-                    <div (click)="onPage('last')">
-                        <button mat-button [disabled]="index===images.files.length-1">
-                            <mat-icon>last_page</mat-icon>
-                        </button>
-                    </div>
+        <div class="bar">
+            <div *ngFor="let file of images?.files;  let i = index" [ngClass]="{'highlight': i === index}">
+                <div alt="{{file?.name}}" class="bar-val" (click)="onClickImage(i)">
+                    <img class="dirlist-icon" src="assets/{{file.ext}}.png">&nbsp;{{file?.name}} - {{file?.size_h}}
                 </div>
             </div>
-        </div>
-
-        <div class="image-container">
-            <img [src]="imageSource" class="displayer">
-        </div>
-        <div class="text-container">
-            {{images.files[index].name}} - {{images.files[index].size_h}} - {{images.files[index].ext}}
         </div>
     </div>
 </div>

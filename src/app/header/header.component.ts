@@ -5,13 +5,24 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
-
+export class HeaderComponent implements OnInit
+{
   constructor() { }
   ngOnInit(): void 
   {
   }
-  // active = 1;
 
+  selectedItem = '';
 
+  listItems =
+  [
+    { linkTitle: 'Directory', link: 'directory' },
+    { linkTitle: 'Search', link: 'search' },
+    { linkTitle: 'Images', link: 'images' }
+  ];
+
+  handleClick(selectedItem)
+  {
+    this.selectedItem = selectedItem.linkTitle;
+  }
 }

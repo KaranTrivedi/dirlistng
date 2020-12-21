@@ -3,24 +3,30 @@
 </video> -->
 
 <div class="page-container">
-    <mat-form-field class="search-bar" color="accent">
-        <mat-label>Enter</mat-label>
-        <input matInput placeholder="Ex. aven*" [value]="query" (input)="onSearchChange($event.target.value)" #box>
-    </mat-form-field>
+    <nav mat-tab-nav-bar backgroundColor="primary">
+        <button mat-button>
+            <mat-icon>menu</mat-icon>
+        </button>
+        <mat-form-field class="search-bar" color="accent">
+            <mat-label>Search</mat-label>
+            <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)" #box>
+        </mat-form-field>
 
-    <div matSort 
-        matSortDisableClear
-        (matSortChange)="sortData($event)" 
-        [matSortActive]="column"
-        [matSortDirection]="sort"
-        class="input">
-
-        <th mat-sort-header="name">Name</th>
-        <th mat-sort-header="modify_time">Time</th>
-        <th mat-sort-header="size">Size</th>
-
-    </div>
-
+        <button mat-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+                <div matSort matSortDisableClear (matSortChange)="sortData($event)" [matSortActive]="column"
+                    [matSortDirection]="sort" class="input">
+                    <th>Sort:&nbsp;&nbsp;</th>
+                    <th mat-sort-header="name">Name</th>
+                    <th mat-sort-header="modify_time">Time</th>
+                    <th mat-sort-header="size">Size</th>
+                </div>
+            </button>
+        </mat-menu>
+    </nav>
     <div *ngIf="files?.exception">
         <p class="exception">{{files?.exception}}</p>
     </div>
@@ -39,7 +45,8 @@
                             </div>
                         </mat-panel-title>
                         <mat-panel-description>
-                            <button mat-button (click)="onView(file)" [disabled]="file?.ext!=='mp4'&&file?.ext!=='webm'&&file?.ext!=='mkv'&&file?.ext!=='mp4'&&file?.ext!=='avi'">View</button>
+                            <button mat-button (click)="onView(file)"
+                                [disabled]="file?.ext!=='mp4'&&file?.ext!=='webm'&&file?.ext!=='mkv'&&file?.ext!=='mp4'&&file?.ext!=='avi'">View</button>
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <div class="detail">

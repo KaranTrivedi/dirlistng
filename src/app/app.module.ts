@@ -30,6 +30,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRippleModule} from '@angular/material/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
 
 // import {MatToolbarModule} from '@angular/material/toolbar';
 
@@ -46,6 +47,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     TestSamplesComponent
   ],
   imports: [
+    MatListModule,
     MatSidenavModule,
     MatRippleModule,
     MatDialogModule,

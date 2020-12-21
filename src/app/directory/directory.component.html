@@ -5,18 +5,43 @@
 
 
 <div class="page-container">
+    <nav mat-tab-nav-bar backgroundColor="primary">
+        <button mat-button>
+            <mat-icon>menu</mat-icon>
+        </button>
+        <mat-form-field class="search-bar" color="accent">
+            <mat-label>Search</mat-label>
+            <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)" #box>
+        </mat-form-field>
+    
+        <button mat-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+                <div matSort matSortDisableClear (matSortChange)="sortData($event)" [matSortActive]="column"
+                [matSortDirection]="sort" class="input">
+                    <th>Sort:&nbsp;&nbsp;</th>
+                    <th mat-sort-header="name">Name</th>
+                    <th mat-sort-header="modify_time">Time</th>
+                    <th mat-sort-header="size">Size</th>
+                </div>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item>
+              <button mat-button>Upload <mat-icon> attach_file</mat-icon></button >
+            </button>
+          </mat-menu>
+    </nav>
     <div class="path">
-        <div class="loc">
+        <nav mat-tab-nav-bar>
             <button mat-button (click)="onNav(-1)">
                 Home
             </button>
             <button mat-button  disabled="true">
                 &nbsp;<mat-icon>chevron_right</mat-icon>&nbsp;
             </button>
-        </div>
-
-        <div *ngFor="let path_var of shows?.path_vars; let i = index" [attr.data-index]="i">
-            <div class="loc">
+            <div *ngFor="let path_var of shows?.path_vars; let i = index" [attr.data-index]="i">
                 <button mat-button (click)="onNav(i)">
                     {{path_var}}
                 </button>
@@ -24,20 +49,7 @@
                     &nbsp;<mat-icon>chevron_right</mat-icon>&nbsp;
                 </button>
             </div>
-        </div>
-    </div>
-
-    <mat-form-field class="search-bar" color="accent">
-        <mat-label>Simple Filter</mat-label>
-        <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)" #box>
-    </mat-form-field>
-
-    <div matSort matSortDisableClear (matSortChange)="sortData($event)" [matSortActive]="column"
-        [matSortDirection]="sort" class="input">
-
-        <th mat-sort-header="name">Name</th>
-        <th mat-sort-header="modify_time">Time</th>
-        <th mat-sort-header="size">Size</th>
+        </nav>
     </div>
 
     <div class="folders-container" *ngIf="shows?.folders.length > 0">
@@ -50,8 +62,8 @@
                     <!-- <button mat-button>Upload <mat-icon> attach_file</mat-icon></button > -->
                 </mat-panel-description>
             </mat-expansion-panel-header>
-            <div class="folders" *ngFor="let folder of shows?.folders">
-                <div #folder class="folder-link" (click)="onClickShows(folder?.name)" matRipple>
+            <div class="folders" *ngFor="let folder of shows?.folders" #folder>
+                <div class="folder-link" (click)="onClickShows(folder?.name)">
                     <div class="name" [ngStyle]="{'color':folder?.modify_time<today ? '' : 'green' }">
                         <h6>
                             {{folder?.name}}
@@ -60,8 +72,8 @@
                     <div class="subname">
                         <span>
                             {{folder?.modify_time_h | date:"medium"}}&nbsp;&nbsp;&nbsp;
-                            {{folder?.folder_count}}&nbsp;<img src="assets/folder_outline.png" alt="">&nbsp;
-                            {{folder?.file_count}}&nbsp;<img src="assets/document_outline.png" alt="">
+                            {{folder?.folder_count}}&nbsp;<img src="assets/folder_dark.png" alt="">&nbsp;
+                            {{folder?.file_count}}&nbsp;<img src="assets/document_dark.png" alt="">
                         </span>
                     </div>
                 </div>
@@ -69,13 +81,12 @@
             </div>
         </mat-expansion-panel>
     </div>
-    <mat-divider></mat-divider>
 
     <div class="files-container" *ngIf="shows?.files.length > 0">
             <h6>Files</h6>
         <mat-accordion>
             <div *ngFor="let file of shows?.files">
-                <mat-expansion-panel matRipple>
+                <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             <div class="name" [ngStyle]="{'color':file?.modify_time<today ? '' : 'green' }">
@@ -100,30 +111,6 @@
             <mat-divider></mat-divider>
         </mat-accordion>
     </div>
-    <!-- <div class="files-container" *ngIf="shows?.files.length > 0">
-        <mat-expansion-panel [expanded]="true">
-            <mat-expansion-panel-header>
-                <mat-panel-title>Files - {{shows?.files.length}}</mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <div class="files" *ngFor="let file of shows?.files">
-                <div class="name" [ngStyle]="{'color':file?.modify_time<today ? '' : 'green' }">
-                    <h6>
-                        {{file?.name}}
-                    </h6>
-                </div>
-                <div class="subname">
-                    <span>
-                        {{file?.modify_time_h | date:"medium"}}&nbsp;<b>{{file?.size_h}}</b>
-                    </span>
-                    <button mat-button (click)="onDownload(file?.name)">Download</button>
-                    <button mat-button (click)="onView(file?.name)"
-                        [disabled]="file?.ext!=='mp4'&&file?.ext!=='webm'&&file?.ext!=='mkv'&&file?.ext!=='mp4'&&file?.ext!=='avi'">View</button>
-                </div>
-                <mat-divider></mat-divider>
-            </div>
-        </mat-expansion-panel>
-    </div> -->
 </div>
 
 <!-- <div class="files-container" *ngIf="files?.length > 0">

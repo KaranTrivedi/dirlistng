@@ -1,0 +1,28 @@
+.nav-container
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.mat-sidenav
+{
+    width: 15%;
+}
+@media screen and (max-width: 600px)
+{
+    .mat-sidenav
+    {
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 992px)
+{
+    .mat-sidenav
+    {
+        width: 25%;
+    }
+}

@@ -1,7 +1,15 @@
 .search-bar
 {
-    width: 100%;
+    width: 30%;
 }
+@media screen and (max-width: 600px)
+{
+    .search-bar
+    {
+        width: 100%;
+    }
+}
+
 mat-icon
 {
     size: 2rem;
@@ -25,7 +33,6 @@ mat-icon
     display: flex;
     overflow: scroll;
 }
-/* For larger screens, hide scrollbar. */
 @media screen and (min-width: 600px)
 {
     .path::-webkit-scrollbar
@@ -33,7 +40,7 @@ mat-icon
       display: none;
     }
 }
-.loc
+/* .loc
 {
     display: flex;
     white-space: nowrap;
@@ -41,8 +48,7 @@ mat-icon
 .loc:hover
 {
     cursor: pointer;
-}
-
+} */
 
 .folder-link:hover
 {
