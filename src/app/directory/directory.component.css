@@ -2,12 +2,10 @@
 {
     width: 100%;
 }
-.page-container
+mat-icon
 {
-    border: 0;
-    margin: 0;
+    size: 2rem;
 }
-
 @media screen and (max-width: 600px)
 {
     .input
@@ -20,11 +18,6 @@
 .mat-expansion-panel
 {
     background: rgb(35, 35, 35);
-}
-
-mat-icon
-{
-    height: 1rem;
 }
 
 .path
@@ -45,54 +38,47 @@ mat-icon
     display: flex;
     white-space: nowrap;
 }
-.loc:hover, th:hover, .folder-container tr:hover
+.loc:hover
 {
     cursor: pointer;
 }
 
-video
-{
-    height: 720;
-}
 
+.folder-link:hover
+{
+    cursor: pointer;
+    background-color: rgb(45, 45, 45);
+}
+.folder-link
+{
+    padding: 5px;
+}
 @media screen and (max-width: 992px)
 {
-    video {
-        /* height: 480; */
-        width: auto;
-    }
-}
-
-/* @media screen and (max-width: 992px) {
-    .loc {
+    h6
+    {
         display: flex;
-        flex-wrap: wrap;
+        white-space: nowrap;
+        overflow-x: scroll;
+        /* overflow-x: hidden; */
     }
-} */
-
-.file-container
-{
-    background-color: rgb(40, 40, 40);
-    max-height: 50%;
-    overflow-y: auto;
+    ::-webkit-scrollbar
+    {
+        height: 0px;
+        background: transparent; /* make scrollbar transparent */
+    }
 }
-
-.folder-container
-{
-    /* max-height:100%; */
-    overflow-y: auto;
-    /* height: auto; */
-    background-color: rgb(30, 30, 30);
-}
-
-.files
+.subname
 {
     display: flex;
-    flex-wrap: wrap;
-    /* justify-content: space-between; */
+    color: gray;
+}
+.subname img
+{
+    height: 1rem;
 }
 
-.folders
+.folder
 {
     background-color: rgb(30, 30, 30);
     display: flex;
@@ -121,5 +107,4 @@ td
 
 .folder-container td:hover
 {
-    background-color: rgb(60, 60, 60);
 }

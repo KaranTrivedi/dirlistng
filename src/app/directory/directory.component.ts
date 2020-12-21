@@ -21,6 +21,7 @@ export class DirectoryComponent implements OnInit {
   fileToUpload: File = null;
 
   videoSource: string;
+  today = new Date(new Date().setHours(0,0,0,0)).getTime();
 
   api_url;
   // QueryParams
@@ -71,7 +72,7 @@ export class DirectoryComponent implements OnInit {
 
   onClickShows(folder)
   {
-    folder = encodeURIComponent(folder);
+    folder = encodeURIComponent(folder)
     this.path = this.path + folder + "/"
     this.navCall()
   }

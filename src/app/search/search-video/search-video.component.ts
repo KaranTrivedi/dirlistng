@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-search-video',
@@ -10,10 +11,10 @@ export class SearchVideoComponent implements OnInit {
   // @Input() src;
 
   src: string;
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
-    this.src = "http://192.168.0.15:DESKTOP-Q8UEATO/4. Videos/1. Movies/The.Tickle.King.2017.720p.AMZN.WEB-DL.DDP2.0.H.264-NTG.mkv"
+    console.log(this.data)
   }
 
 }

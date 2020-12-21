@@ -39,7 +39,7 @@ export class ApiService
 
   Download(file, path)
   {
-    file = encodeURIComponent(file);
+    // file = encodeURIComponent(file);
     const requestUrl = `${ApiService.API_URL}path/${path}${file}`
 
     this.http.get(requestUrl, {

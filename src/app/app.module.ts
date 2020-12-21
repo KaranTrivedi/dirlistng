@@ -26,6 +26,9 @@ import { SearchVideoComponent } from './search/search-video/search-video.compone
 import { ImagesComponent } from './images/images.component';
 import {MatSortModule} from '@angular/material/sort';
 import { TestSamplesComponent } from './test-samples/test-samples.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatDialogModule} from '@angular/material/dialog';
+
 // import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
@@ -41,6 +44,8 @@ import { TestSamplesComponent } from './test-samples/test-samples.component';
     TestSamplesComponent
   ],
   imports: [
+    MatDialogModule,
+    MatButtonToggleModule,
     MatSortModule,
     // MatToolbarModule,
     MatPaginatorModule,
@@ -58,6 +63,7 @@ import { TestSamplesComponent } from './test-samples/test-samples.component';
     BrowserAnimationsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [SearchVideoComponent]
 })
 export class AppModule {}

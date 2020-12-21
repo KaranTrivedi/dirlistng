@@ -3,10 +3,6 @@
     <input type="file" id="file" (change)="handleFileInput($event.target.files)">
 </div> -->
 
-<mat-form-field class="search-bar" color="accent">
-    <mat-label>Simple Filter</mat-label>
-    <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)" #box>
-</mat-form-field>
 
 <div class="page-container">
     <div class="path">
@@ -15,63 +11,75 @@
             &nbsp;<mat-icon>chevron_right</mat-icon>&nbsp;
         </div>
 
-        <div *ngFor="let path_var of shows?.path_vars; let i = index" [attr.data-index]="i"
-            (click)="onNav(i)">
+        <div *ngFor="let path_var of shows?.path_vars; let i = index" [attr.data-index]="i" (click)="onNav(i)">
             <div class="loc">
                 {{path_var}}&nbsp;<mat-icon>chevron_right</mat-icon>&nbsp;
             </div>
         </div>
     </div>
-    <br>
+
+    <mat-form-field class="search-bar" color="accent">
+        <mat-label>Simple Filter</mat-label>
+        <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)" #box>
+    </mat-form-field>
+
     <div matSort matSortDisableClear (matSortChange)="sortData($event)" [matSortActive]="column"
         [matSortDirection]="sort" class="input">
-    
+
         <th mat-sort-header="name">Name</th>
         <th mat-sort-header="modify_time">Time</th>
         <th mat-sort-header="size">Size</th>
     </div>
-    <div class="folder-container" *ngIf="shows?.folders.length > 0">
+
+    <div class="folders-container" *ngIf="shows?.folders.length > 0">
         <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    <h4>Folder</h4>
+                    Folders - {{shows?.folders.length}}
                 </mat-panel-title>
                 <!-- <mat-icon> attach_file</mat-icon> -->
             </mat-expansion-panel-header>
-                <table>
-                    <tr *ngFor="let folder of shows?.folders">
-                        <td (click)="onClickShows(folder?.name)"><span><img class="dirlist-icon"
-                                    src="assets/folder.png"></span>&nbsp;{{folder?.name}}
-                        </td>
-                        <td>
-                            {{folder?.modify_time_h}}
-                        </td>
-                    </tr>
-                </table>
-        </mat-expansion-panel>
-    </div>
-    <br>
-    <div class="files-container" *ngIf="shows?.files.length > 0">
-            <mat-expansion-panel [expanded]="true">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <h2>Files</h2>
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <div class="files" *ngFor="let file of shows?.files">
-
-                <div><img class="dirlist-icon" src="assets/document.png">&nbsp;{{file?.name}}</div>
-                <div>
-                    <button mat-button (click)="onDownload(file?.name)">Download</button>
-                    <button mat-button (click)="onView(file?.name)">View</button>
-                    {{file?.modify_time_h}} - {{file?.size_h}}
+            <div class="folders" *ngFor="let folder of shows?.folders">
+                <div (click)="onClickShows(folder?.name)" class="folder-link">
+                    <div class="name" [ngStyle]="{'color':folder?.modify_time<today ? '' : 'green' }">
+                        <h6>
+                            {{folder?.name}}
+                        </h6>
+                    </div>
+                    <div class="subname">
+                        {{folder?.modify_time_h | date:"medium"}}&nbsp;&nbsp;&nbsp;
+                        {{folder?.folder_count}}&nbsp;<img src="assets/folder_outline.png" alt="">&nbsp;
+                        {{folder?.file_count}}&nbsp;<img src="assets/document_outline.png" alt="">
+                    </div>
                 </div>
+                <mat-divider></mat-divider>
             </div>
         </mat-expansion-panel>
     </div>
-    
-    <div class="shows-container">
+
+    <mat-divider></mat-divider>
+
+    <div class="files-container" *ngIf="shows?.files.length > 0">
+        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Files - {{shows?.files.length}}</mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="files" *ngFor="let file of shows?.files">
+                <div class="name" [ngStyle]="{'color':file?.modify_time<today ? '' : 'green' }">
+                    <h6>
+                        {{file?.name}}
+                    </h6>
+                </div>
+                <div class="subname">
+                    <b>{{file?.modify_time_h | date:"medium"}}</b> {{file?.size_h}}
+                    <button mat-button (click)="onDownload(file?.name)">Download</button>
+                    <button mat-button (click)="onView(file?.name)"
+                        [disabled]="file?.ext!=='mp4'&&file?.ext!=='webm'&&file?.ext!=='mkv'&&file?.ext!=='mp4'&&file?.ext!=='avi'">View</button>
+                </div>
+                <mat-divider></mat-divider>
+            </div>
+        </mat-expansion-panel>
     </div>
 </div>
 

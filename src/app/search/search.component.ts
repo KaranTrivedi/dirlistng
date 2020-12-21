@@ -1,9 +1,10 @@
-import { Component, OnInit, PipeTransform, Pipe, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { PageEvent } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { ApiService } from 'src/services/api.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { SearchVideoComponent } from './search-video/search-video.component';
 
 // import { DomSanitizer } from '@angular/platform-browser';
 
@@ -26,6 +27,7 @@ export class SearchComponent implements OnInit
   panelOpenState = false;
 
   files;
+  file;
   api_url;
 
   //QueryParams
@@ -44,7 +46,8 @@ export class SearchComponent implements OnInit
   constructor(private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
-    private apiService: ApiService) { }
+    private apiService: ApiService,
+    private dialog: MatDialog) { }
 
   ngOnInit()
   {
@@ -68,7 +71,6 @@ export class SearchComponent implements OnInit
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent)
   {
-    console.log(event.key)
     if(event.key == "/")
     {      
       this.box.nativeElement.focus();
@@ -115,6 +117,16 @@ export class SearchComponent implements OnInit
 
   onView(file)
   {
+    this.file = file;
+    console.log(this.file)
+    //   const dialogConfig1 = new MatDialogConfig();
+
+      this.dialog.open(SearchVideoComponent, {
+        data: file,
+        height: '100%',
+        width: '100%'
+      });
+
     // this.url = ""
     // var path = encodeURIComponent(file["path"]);
     // this.url = "http://192.168.0.16:8000/path/" + path
