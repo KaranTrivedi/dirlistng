@@ -5,6 +5,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { ApiService } from 'src/services/api.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SearchVideoComponent } from './search-video/search-video.component';
+import { environment } from 'src/environments/environment'
 
 // import { DomSanitizer } from '@angular/platform-browser';
 
@@ -28,7 +29,10 @@ export class SearchComponent implements OnInit
 
   files;
   file;
-  api_url;
+
+  today = new Date(new Date().setHours(0,0,0,0)).getTime();
+
+  private API_URL= environment.API_URL;
 
   //QueryParams
   params;
@@ -51,7 +55,6 @@ export class SearchComponent implements OnInit
 
   ngOnInit()
   {
-    this.api_url = this.apiService.getApiUrl();
     this.params = this.route.queryParams.subscribe(params => {
       this.sort = params["sort"] || "desc"
       this.column = params["column"] || "modify_time"
@@ -117,12 +120,10 @@ export class SearchComponent implements OnInit
 
   onView(file)
   {
-    this.file = file;
-    console.log(this.file)
     //   const dialogConfig1 = new MatDialogConfig();
 
       this.dialog.open(SearchVideoComponent, {
-        data: file,
+        data: file.url,
         height: '100%',
         width: '100%'
       });
@@ -135,7 +136,7 @@ export class SearchComponent implements OnInit
   private getFiles() {
     this.from = this.pageIndex * this.pageSize
     const requestUrl =
-    `${this.api_url}search/?column=${this.column}&sort=${this.sort}&query=${this.query}&from_doc=${this.from}&size=${this.pageSize}`
+    `${this.API_URL}search/?column=${this.column}&sort=${this.sort}&query=${this.query}&from_doc=${this.from}&size=${this.pageSize}`
 
     this.http.get(requestUrl,
       {

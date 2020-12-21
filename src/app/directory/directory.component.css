@@ -68,22 +68,53 @@ mat-icon
         background: transparent; /* make scrollbar transparent */
     }
 }
+
+mat-panel-title
+{
+    display: inline;
+}
+@media screen and (max-width: 992px)
+{
+    .mat-expansion-panel-header-title
+    {
+        white-space: nowrap;
+        overflow-x: hidden;
+    }
+    .name
+    {
+        overflow-x: scroll;
+    }
+    ::-webkit-scrollbar
+    {
+        height: 0px;
+        background: transparent; /* make scrollbar transparent */
+    }
+}
+.name
+{
+    font-size: 1rem;
+    color: white;
+}
 .subname
 {
-    display: flex;
+    font-size: 0.7rem;
+}
+.detail
+{
     color: gray;
 }
+
 .subname img
 {
     height: 1rem;
 }
 
-.folder
+/* .folder
 {
     background-color: rgb(30, 30, 30);
     display: flex;
     justify-content: space-between;
-}
+} */
 
 .folders:hover
 {
@@ -103,8 +134,4 @@ table
 td
 {
     white-space: nowrap;
-}
-
-.folder-container td:hover
-{
 }

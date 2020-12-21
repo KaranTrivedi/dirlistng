@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/services/api.service';
 import { Shows } from '../directory/shows';
+import { environment } from 'src/environments/environment'
 
 @Component({
   selector: 'app-images',
@@ -15,10 +16,8 @@ export class ImagesComponent implements OnInit
   @ViewChild("box") box;
 
   images: any;
-  file: any;
-  currentFile: string;
-  url;
-  api_url;
+
+  private API_URL= environment.API_URL;
 
   imageSource: string;
 
@@ -39,7 +38,6 @@ export class ImagesComponent implements OnInit
 
   ngOnInit()
   {
-    this.api_url = this.apiService.getApiUrl();
     this.params = this.route.queryParams.subscribe(params => {
       this.sort = params["sort"] || "desc"
       this.index = params["index"] || 0
@@ -107,16 +105,30 @@ export class ImagesComponent implements OnInit
     }
     this.setSource(this.index)
   }
+  sortData(event)
+  {
+    console.log(event)
+  }
+  onSort(val)
+  {
+    this.column = val
+    if (this.sort == "asc")
+    {
+      this.sort = "desc"
+    }
+    else {
+      this.sort = "asc"
+    }
+    this.getImages()
+  }
 
   setSource(index)
   {
-    this.imageSource = `${this.api_url}path/${this.PATH}${this.images.files[index].name}`
-    this.file = this.images.files[index]
+    this.imageSource = `${this.API_URL}path/${this.PATH}${this.images.files[index].name}`
   }
 
-  onClickImage(file, index)
+  onClickImage(index)
   {
-    this.currentFile = file.name
     this.index = index
     this.setSource(this.index)
   }
@@ -136,7 +148,7 @@ export class ImagesComponent implements OnInit
   private getImages()
   {
     const requestUrl =
-    `${this.api_url}path/archives/1.%20Movies/dimid/img/?&column=${this.column}&sort=${this.sort}&query=${this.query}`;
+    `${this.API_URL}path/archives/1.%20Movies/dimid/img/?&column=${this.column}&sort=${this.sort}&query=${this.query}`;
 
     this.http.get<Shows>(requestUrl,
     {

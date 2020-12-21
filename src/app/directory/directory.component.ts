@@ -4,6 +4,9 @@ import { Shows } from './shows';
 // import { FileService } from './files.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/services/api.service'
+import { SearchVideoComponent } from '../search/search-video/search-video.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment'
 
 @Component({
   selector: 'app-downloads',
@@ -23,7 +26,7 @@ export class DirectoryComponent implements OnInit {
   videoSource: string;
   today = new Date(new Date().setHours(0,0,0,0)).getTime();
 
-  api_url;
+  private API_URL= environment.API_URL;
   // QueryParams
   params;
   path;
@@ -35,11 +38,11 @@ export class DirectoryComponent implements OnInit {
   constructor(private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
-    private apiService: ApiService) { }
+    private apiService: ApiService,
+    private dialog: MatDialog) { }
 
   ngOnInit()
   {
-    this.api_url = this.apiService.getApiUrl();
     this.params = this.route.queryParams.subscribe(params => {
       this.path = params["path"] || ""
       this.sort = params["sort"] || "desc"
@@ -83,11 +86,17 @@ export class DirectoryComponent implements OnInit {
 
   onView(file)
   {
-    file = encodeURIComponent(file);
-    this.videoSource = `${this.api_url}path/${this.path}${file}`
-    // Launch component.
+    this.file = file;
+    console.log(this.file)
+    //   const dialogConfig1 = new MatDialogConfig();
+    
+    this.dialog.open(SearchVideoComponent,
+      {
+        data: `${this.API_URL}path/${this.path}${encodeURIComponent(file)}`,
+        height: '100%',
+        width: '100%'
+      });
   }
-
   onNav(i)
   {
     if (i == -1)
@@ -127,9 +136,7 @@ export class DirectoryComponent implements OnInit {
   private getShows()
   {
     const requestUrl =
-      `${this.api_url}path/${this.path}?&column=${this.column}&sort=${this.sort}&query=${this.query}`;
-      // return this._httpClient.get<Alert_List>(requestUrl);
-
+      `${this.API_URL}path/${this.path}?&column=${this.column}&sort=${this.sort}&query=${this.query}`;
       this.http.get<Shows>(requestUrl, {
       })
         .subscribe(posts => {

@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment'
 
 @Injectable(
   {
@@ -11,10 +12,10 @@ import { Observable, BehaviorSubject } from 'rxjs';
 
 export class ApiService
 {
-  private static API_URL: string = 'http://192.168.0.16:8000/';
   setDays$: Observable<any>;
   setAppcodes$: Observable<any>;
-  urlAddress = ApiService.API_URL;
+
+  private API_URL= environment.API_URL;
 
   private daysSubject = new BehaviorSubject<any>({});
   private appcodesSubject = new BehaviorSubject<any>({});
@@ -26,7 +27,7 @@ export class ApiService
 
   getApiUrl()
   {
-    return ApiService.API_URL;
+    return this.API_URL;
   }
 
   setDays(days) {
@@ -39,8 +40,7 @@ export class ApiService
 
   Download(file, path)
   {
-    // file = encodeURIComponent(file);
-    const requestUrl = `${ApiService.API_URL}path/${path}${file}`
+    const requestUrl = `${this.API_URL}path/${path}${encodeURIComponent(file)}`
 
     this.http.get(requestUrl, {
       responseType: 'blob',
@@ -60,7 +60,7 @@ export class ApiService
   }
 
   public getData = (route: string) => {
-    return this.http.get(this.createCompleteRoute(route, this.urlAddress));
+    return this.http.get(this.createCompleteRoute(route, this.API_URL));
   };
 
   // public postData = (route: string) => {

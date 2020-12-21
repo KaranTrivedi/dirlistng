@@ -1,6 +1,11 @@
-.search-bar
+.inputs
 {
     width: 100%;
+}
+.search-bar
+{
+    min-width: 75%;
+    max-width: 100%;
 }
 
 .page-container
@@ -34,14 +39,19 @@
         margin: auto;
     }
 }
-.image-container, .text-container
+.image-container
 {
     display: flex;
     justify-content: space-around;
     margin: auto;
     word-wrap: break-word;
 }
-
+.text-container
+{
+    justify-content: space-around;
+    display: flex;
+    word-wrap: break-word;
+}
 .navigator-parent
 {
     max-width: 25%;
@@ -93,7 +103,7 @@
     {
         padding: 0;
         margin: auto;
-        max-width: 100%;
+        width: 100%;
         /* height: auto; */
     }
 }

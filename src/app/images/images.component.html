@@ -1,26 +1,43 @@
 <div class="page-container">
     <div class="bar" *ngIf="images">
-        <mat-form-field class="search-bar" color="accent">
-            <mat-label>Simple Filter</mat-label>
-            <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)" #box>
-        </mat-form-field>
-        <div *ngFor="let file of images?.files;  let i = index" [ngClass]="{'highlight': file.name === currentFile}">
-            <div alt="{{file?.name}}" class="bar-val" (click)="onClickImage(file, i)">
-                <img class="dirlist-icon" src="assets/{{file.ext}}.png">&nbsp;{{file?.name}}
+        <div class="inputs">
+            
+            <button mat-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger">
+                {{column}}</button>
+
+                <mat-menu #menu="matMenu">
+                    <span (mouseleave)="menuTrigger.closeMenu()">
+                        <button mat-menu-item (click)="onSort('name')">Name</button>
+                        <button mat-menu-item (click)="onSort('modify_time')">Date</button>
+                        <button mat-menu-item (click)="onSort('size')">Size</button>
+                    </span>
+                </mat-menu>
+                <mat-form-field class="search-bar" color="accent">
+                    <mat-label>Simple Filter</mat-label>
+                    <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)" #box>
+                </mat-form-field>
+        </div>
+        <div *ngFor="let file of images?.files;  let i = index" [ngClass]="{'highlight': i === index}">
+            <div alt="{{file?.name}}" class="bar-val" (click)="onClickImage(i)">
+                <img class="dirlist-icon" src="assets/{{file.ext}}.png">&nbsp;{{file?.name}} - {{file?.size_h}}
             </div>
         </div>
     </div>
 
-    <div class="displayer-container" *ngIf="file">
+    <div class="displayer-container">
         <div class="navigator-parent">
             <div class="navigator-container">
                 <div class="direction">
                     <div (click)="onPage('first')">
-                        <button mat-button [disabled]="index===0"><mat-icon>first_page</mat-icon></button>
+                        <button mat-button [disabled]="index===0">
+                            <mat-icon>first_page</mat-icon>
+                        </button>
                     </div>
 
                     <div (click)="onPage('prev')">
-                        <button mat-button [disabled]="index===0"><mat-icon>navigate_before</mat-icon></button>
+                        <button mat-button [disabled]="index===0">
+                            <mat-icon>navigate_before</mat-icon>
+                        </button>
                     </div>
                 </div>
 
@@ -30,11 +47,15 @@
 
                 <div class="direction">
                     <div (click)="onPage('next')">
-                        <button mat-button [disabled]="index===images.files.length-1"><mat-icon>navigate_next</mat-icon></button>
+                        <button mat-button [disabled]="index===images.files.length-1">
+                            <mat-icon>navigate_next</mat-icon>
+                        </button>
                     </div>
 
                     <div (click)="onPage('last')">
-                        <button mat-button [disabled]="index===images.files.length-1"><mat-icon>last_page</mat-icon></button>
+                        <button mat-button [disabled]="index===images.files.length-1">
+                            <mat-icon>last_page</mat-icon>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -44,7 +65,7 @@
             <img [src]="imageSource" class="displayer">
         </div>
         <div class="text-container">
-            {{file.name}}-{{file.size_h}}-{{file.ext}}
+            {{images.files[index].name}} - {{images.files[index].size_h}} - {{images.files[index].ext}}
         </div>
     </div>
 </div>
