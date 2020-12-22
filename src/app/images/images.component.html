@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            <div class="image-container">
+            <div class="image-container"  (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
                 <img [src]="imageSource" class="displayer">
             </div>
             <div class="text-container">

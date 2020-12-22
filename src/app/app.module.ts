@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
@@ -33,7 +33,11 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatTooltipModule} from '@angular/material/tooltip';
 
-// import {MatToolbarModule} from '@angular/material/toolbar';
+export class MyHammerConfig extends HammerGestureConfig  {
+  overrides = <any>{
+    'swipe': {velocity: 0.4, threshold: 20} // override default settings
+  }
+}
 
 @NgModule({
   declarations: [
@@ -70,7 +74,11 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     NgbModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HAMMER_GESTURE_CONFIG,
+    useClass: MyHammerConfig
+  }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [SearchVideoComponent]
 })

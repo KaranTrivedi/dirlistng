@@ -11,7 +11,7 @@ export class AppComponent
 
   title = 'dirlistng';
   isShowing:boolean = false;
-  
+
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent)
   {
