@@ -57,7 +57,8 @@
 {
     justify-content: center;
     display: flex;
-    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .navigator-parent
 {

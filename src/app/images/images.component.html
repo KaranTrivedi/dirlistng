@@ -1,4 +1,4 @@
-<div class="page-container">
+<div class="page-container" (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
     <nav mat-tab-nav-bar backgroundColor="primary">
         <button mat-button>
             <mat-icon matTooltip="Hotkey: `">menu</mat-icon>
@@ -61,12 +61,14 @@
                     </div>
                 </div>
             </div>
-
-            <div class="image-container"  (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
+            <div class="text-container">
+                {{images.files[index].name}}
+            </div>
+            <div class="image-container">
                 <img [src]="imageSource" class="displayer">
             </div>
             <div class="text-container">
-                {{images.files[index].name}} - {{images.files[index].size_h}} - {{images.files[index].ext}}
+                    {{images.files[index].size_h}} - {{images.files[index].ext}}
                 <button mat-button (click)="onDownload(images.files[index])">Download</button>
             </div>
         </div>
@@ -74,7 +76,7 @@
         <div class="bar">
             <div *ngFor="let file of images?.files;  let i = index" [ngClass]="{'highlight': i === index}">
                 <div alt="{{file?.name}}" class="bar-val" (click)="onClickImage(i)">
-                    <img class="img-icon" src="assets/{{file.ext}}.png">&nbsp;{{file?.name}} - {{file?.size_h}}
+                    <img mat-ripple class="img-icon" src="assets/{{file.ext}}.png">&nbsp;{{file?.name}} - {{file?.size_h}}
                 </div>
             </div>
         </div>
