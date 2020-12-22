@@ -108,6 +108,11 @@ export class SearchComponent implements OnInit
     this.router.navigate(['search'], { queryParams: { sort: this.sort, column: this.column, query: this.query, page: this.pageIndex, size: this.pageSize } });
   }
 
+  onToggle()
+  {
+    this.apiService.navToggle();
+  }
+
   onNav(file)
   {
     this.router.navigate(['directory'], { queryParams: { path: file.parent} });

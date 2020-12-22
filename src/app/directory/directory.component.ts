@@ -73,6 +73,11 @@ export class DirectoryComponent implements OnInit {
   //   });
   // }
 
+  onToggle()
+  {
+    this.apiService.navToggle()
+  }
+
   onClickShows(folder)
   {
     this.path = this.path + encodeURIComponent(folder) + "/"

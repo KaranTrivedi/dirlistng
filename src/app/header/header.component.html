@@ -5,9 +5,9 @@
 </nav> -->
 
 <mat-nav-list>
-    <a mat-list-item [routerLink]='["directory"]'><mat-icon>folder</mat-icon>Directory</a>
-    <a mat-list-item [routerLink]='["search"]'><mat-icon>search</mat-icon>Search</a>
-    <a mat-list-item [routerLink]='["images"]'><mat-icon>image</mat-icon>Images</a>
+    <a (click)="onToggle()" mat-list-item [routerLink]='["directory"]'><mat-icon>folder</mat-icon>Directory</a>
+    <a (click)="onToggle()" mat-list-item [routerLink]='["search"]'><mat-icon>search</mat-icon>Search</a>
+    <a (click)="onToggle()" mat-list-item [routerLink]='["images"]'><mat-icon>image</mat-icon>Images</a>
 </mat-nav-list>
 
 <!-- <mat-nav-list>

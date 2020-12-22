@@ -32,6 +32,7 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { ApiService } from 'src/services/api.service';
 
 // export class MyHammerConfig extends HammerGestureConfig  {
 //   overrides = <any>{
@@ -76,7 +77,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
   ],
   providers:
   [
-
+    ApiService
   ],
   bootstrap: [AppComponent],
   entryComponents: [SearchVideoComponent]

@@ -3,10 +3,9 @@
     <input type="file" id="file" (change)="handleFileInput($event.target.files)">
 </div> -->
 
-
 <div class="page-container">
     <nav mat-tab-nav-bar backgroundColor="primary">
-        <button mat-button>
+        <button mat-button (click)="onToggle()">
             <mat-icon>menu</mat-icon>
         </button>
         <mat-form-field class="search-bar" color="accent">

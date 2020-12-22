@@ -176,6 +176,11 @@ export class ImagesComponent implements OnInit
     this.apiService.Download(this.images.files[this.index].name, this.PATH)
   }
 
+  onToggle()
+  {
+    this.apiService.navToggle();
+  }
+
   onSearchChange(value)
   {
     this.query = value.trim().toLowerCase();

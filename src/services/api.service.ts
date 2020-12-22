@@ -1,7 +1,7 @@
 
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment'
 
 @Injectable(
@@ -12,17 +12,16 @@ import { environment } from 'src/environments/environment'
 
 export class ApiService
 {
-  setDays$: Observable<any>;
   setAppcodes$: Observable<any>;
 
   private API_URL= environment.API_URL;
 
-  private daysSubject = new BehaviorSubject<any>({});
-  private appcodesSubject = new BehaviorSubject<any>({});
+  invokeToggleFunction = new EventEmitter();
+  subVar: Subscription;
 
-  constructor(private http: HttpClient) {
-    this.setDays$ = this.daysSubject.asObservable();
-    this.setAppcodes$ = this.appcodesSubject.asObservable();
+  constructor(private http: HttpClient)
+  {
+    
   }
 
   getApiUrl()
@@ -30,13 +29,14 @@ export class ApiService
     return this.API_URL;
   }
 
-  setDays(days) {
-    this.daysSubject.next(days);
+  navToggle()
+  {
+    this.invokeToggleFunction.emit();
   }
 
-  setAppcodes(appcodes) {
-    this.appcodesSubject.next(appcodes);
-  }
+  // setAppcodes(appcodes) {
+  //   this.appcodesSubject.next(appcodes);
+  // }
 
   Download(file, path)
   {
