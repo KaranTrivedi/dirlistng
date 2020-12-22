@@ -6,10 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DirectoryComponent } from './directory/directory.component';
-import { FoldersComponent } from './directory/folders/folders.component';
-import { FilesComponent } from './directory/files/files.component';
 import { SearchComponent } from './search/search.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './vertical-nav/vertical-nav.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -44,8 +42,6 @@ import { ApiService } from 'src/services/api.service';
   declarations: [
     AppComponent,
     DirectoryComponent,
-    FoldersComponent,
-    FilesComponent,
     SearchComponent,
     HeaderComponent,
     SearchVideoComponent,

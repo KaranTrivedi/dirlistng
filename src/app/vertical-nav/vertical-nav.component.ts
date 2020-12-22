@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/services/api.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-vertical-nav',
+  templateUrl: './vertical-nav.component.html',
+  styleUrls: ['./vertical-nav.component.css']
 })
 export class HeaderComponent implements OnInit
 {

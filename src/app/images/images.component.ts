@@ -3,8 +3,8 @@ import { HostListener, ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/services/api.service';
-import { Shows } from '../directory/shows';
 import { environment } from 'src/environments/environment'
+import { Directory } from '../interfaces';
 
 @Component({
   selector: 'app-images',
@@ -192,7 +192,7 @@ export class ImagesComponent implements OnInit
     const requestUrl =
     `${this.API_URL}path/archives/1.%20Movies/dimid/img/?&column=${this.column}&sort=${this.sort}&query=${this.query}`;
 
-    this.http.get<Shows>(requestUrl,
+    this.http.get<Directory>(requestUrl,
     {
     })
     .subscribe(posts => {

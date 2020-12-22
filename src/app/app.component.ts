@@ -12,7 +12,6 @@ export class AppComponent implements OnInit
   @ViewChild('sidenav') sidenav;
 
   title = 'dirlistng';
-  isNavOpen: boolean = false;
 
   constructor(private apiService: ApiService)
   {

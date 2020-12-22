@@ -1,7 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Shows } from './shows';
-// import { FileService } from './files.service';
+import { Directory } from 'src/app/interfaces'
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/services/api.service'
 import { SearchVideoComponent } from '../search/search-video/search-video.component';
@@ -47,7 +46,7 @@ export class DirectoryComponent implements OnInit {
       this.path = params["path"] || ""
       this.sort = params["sort"] || "desc"
       this.column = params["column"] || "modify_time"
-      this.getShows()
+      this.getDirectory()
     })
   }
 
@@ -122,7 +121,7 @@ export class DirectoryComponent implements OnInit {
   onSearchChange(value)
   {
     this.query = value.trim().toLowerCase();
-    this.getShows()
+    this.getDirectory()
   }
 
   sortData(event)
@@ -137,15 +136,16 @@ export class DirectoryComponent implements OnInit {
     this.router.navigate(['directory'], { queryParams: { path: this.path, sort: this.sort, column: this.column } });
   }
 
-  private getShows()
+  private getDirectory()
   {
     const requestUrl =
       `${this.API_URL}path/${this.path}?&column=${this.column}&sort=${this.sort}&query=${this.query}`;
-      this.http.get<Shows>(requestUrl, {
+      this.http.get<Directory>(requestUrl, {
       })
         .subscribe(posts => {
           this.shows = posts;
-          if (!this.shows.valid) {
+          if (!this.shows.valid)
+          {
             this.path = ""
             this.navCall()
           }
