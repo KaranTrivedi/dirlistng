@@ -13,7 +13,7 @@
             <mat-label>Search</mat-label>
             <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)" #box>
         </mat-form-field>
-    
+
         <button mat-button [matMenuTriggerFor]="menu">
             <mat-icon>more_vert</mat-icon>
         </button>
@@ -51,7 +51,7 @@
             </div>
         </nav>
     </div>
-
+    <mat-divider></mat-divider>
     <div class="folders-container" *ngIf="shows?.folders.length > 0">
         <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>

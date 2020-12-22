@@ -31,6 +31,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatRippleModule} from '@angular/material/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 // import {MatToolbarModule} from '@angular/material/toolbar';
 
@@ -47,6 +48,7 @@ import {MatListModule} from '@angular/material/list';
     TestSamplesComponent
   ],
   imports: [
+    MatTooltipModule,
     MatListModule,
     MatSidenavModule,
     MatRippleModule,

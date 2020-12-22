@@ -8,13 +8,8 @@
 
 @import '@angular/material/prebuilt-themes/purple-green.css';
 
-.dirlist-icon
+body
 {
-  cursor: pointer;
-  height: 1em;
-}
-
-body {
   color: rgb(200, 200, 200);
   background-color: rgb(40, 40, 40);
 }

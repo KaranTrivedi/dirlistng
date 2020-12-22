@@ -53,10 +53,10 @@ export class ImagesComponent implements OnInit
     {
       this.box.nativeElement.focus();
     }
-    // if(event.key == ".")
-    // {
-    //   this.onRandom()
-    // }
+    if(event.key == ".")
+    {
+      this.onRandom()
+    }
     if (event.key == "=")
     {
       if(this.index < this.images.files.length-1)

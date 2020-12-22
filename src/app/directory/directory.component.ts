@@ -75,8 +75,7 @@ export class DirectoryComponent implements OnInit {
 
   onClickShows(folder)
   {
-    folder = encodeURIComponent(folder)
-    this.path = this.path + folder + "/"
+    this.path = this.path + encodeURIComponent(folder) + "/"
     this.navCall()
   }
   onDownload(file)
