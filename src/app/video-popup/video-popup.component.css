@@ -1,0 +1,34 @@
+*
+{
+    padding: 0;
+    margin: 0;
+}
+.container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+@media screen and (min-height: 300px)
+{
+    video
+    {
+        max-height: 200px;
+    }
+}
+
+@media screen and (min-height: 600px)
+{
+    video
+    {
+        max-height: 500px;
+    }
+}
+
+@media screen and (min-height: 900px)
+{
+    video
+    {
+        max-height: 750px;
+    }
+}

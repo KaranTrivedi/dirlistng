@@ -9,7 +9,7 @@
             <mat-icon>menu</mat-icon>
         </button>
         <mat-form-field class="search-bar" color="accent">
-            <mat-label>Search</mat-label>
+            <mat-label *ngIf="shows?.path_vars.length > 0">{{shows.path_vars[shows.path_vars.length-1]}}</mat-label>
             <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)" #box>
         </mat-form-field>
 
@@ -61,7 +61,24 @@
                     <!-- <button mat-button>Upload <mat-icon> attach_file</mat-icon></button > -->
                 </mat-panel-description>
             </mat-expansion-panel-header>
-            <div class="folders" *ngFor="let folder of shows?.folders" #folder>
+
+            <mat-selection-list [multiple]="false">
+                <mat-list-option *ngFor="let folder of shows?.folders" (click)="onClickShows(folder?.name)">
+                    <mat-icon [ngStyle]="{'color': 'gray' }" mat-list-icon>folder</mat-icon>
+                    <div class="name"  mat-line [ngStyle]="{'color':folder?.modify_time<today ? '' : 'green' }">{{folder?.name}}</div>
+                    <div class="subname" mat-line>{{folder?.modify_time_h | date:"medium"}}&nbsp;&nbsp;&nbsp;
+                        <b>
+                            {{folder?.folder_count}}&nbsp;<img class="dirlist-icon" src="assets/folder_dark.png" alt="">&nbsp;
+                        </b>
+                        <b>
+                            {{folder?.file_count}}&nbsp;<img class="dirlist-icon" src="assets/document_dark.png" alt="">
+                        </b>
+                    </div>
+                </mat-list-option>
+                <mat-divider></mat-divider>
+            </mat-selection-list>
+
+            <!-- <div class="folders" *ngFor="let folder of shows?.folders" #folder>
                 <div class="folder-link" (click)="onClickShows(folder?.name)">
                     <div class="name" [ngStyle]="{'color':folder?.modify_time<today ? '' : 'green' }">
                         <h6>
@@ -69,15 +86,17 @@
                         </h6>
                     </div>
                     <div class="subname">
-                        <span>
-                            {{folder?.modify_time_h | date:"medium"}}&nbsp;&nbsp;&nbsp;
-                            {{folder?.folder_count}}&nbsp;<img src="assets/folder_dark.png" alt="">&nbsp;
-                            {{folder?.file_count}}&nbsp;<img src="assets/document_dark.png" alt="">
-                        </span>
+                            {{folder?.modify_tim_h | date:"medium"}}&nbsp;&nbsp;&nbsp;
+                            <b>
+                                {{folder?.folder_count}}&nbsp;<img src="assets/folder_dark.png" alt="">&nbsp;
+                            </b>
+                            <b>
+                                {{folder?.file_count}}&nbsp;<img src="assets/document_dark.png" alt="">
+                            </b>
                     </div>
                 </div>
                 <mat-divider></mat-divider>
-            </div>
+            </div> -->
         </mat-expansion-panel>
     </div>
 

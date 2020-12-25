@@ -20,12 +20,12 @@ import {MatExpansionModule} from '@angular/material/expansion';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { SearchVideoComponent } from './search/search-video/search-video.component';
+import { VideoPopupComponent } from './video-popup/video-popup.component';
 import { ImagesComponent } from './images/images.component';
 import {MatSortModule} from '@angular/material/sort';
 import { TestSamplesComponent } from './test-samples/test-samples.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 import {MatRippleModule} from '@angular/material/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
@@ -44,7 +44,7 @@ import { ApiService } from 'src/services/api.service';
     DirectoryComponent,
     SearchComponent,
     HeaderComponent,
-    SearchVideoComponent,
+    VideoPopupComponent,
     ImagesComponent,
     TestSamplesComponent
   ],
@@ -73,9 +73,10 @@ import { ApiService } from 'src/services/api.service';
   ],
   providers:
   [
-    ApiService
+    ApiService,
+    // {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {}}
   ],
   bootstrap: [AppComponent],
-  entryComponents: [SearchVideoComponent]
+  entryComponents: [VideoPopupComponent]
 })
 export class AppModule {}

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Directory } from 'src/app/interfaces'
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/services/api.service'
-import { SearchVideoComponent } from '../search/search-video/search-video.component';
+import { VideoPopupComponent } from '../video-popup/video-popup.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment'
 
@@ -47,6 +47,7 @@ export class DirectoryComponent implements OnInit {
       this.sort = params["sort"] || "desc"
       this.column = params["column"] || "modify_time"
       this.getDirectory()
+      console.log(params)
     })
   }
 
@@ -93,9 +94,9 @@ export class DirectoryComponent implements OnInit {
     console.log(this.file)
     //   const dialogConfig1 = new MatDialogConfig();
     
-    this.dialog.open(SearchVideoComponent,
+    this.dialog.open(VideoPopupComponent,
       {
-        data: `${this.API_URL}path/${this.path}${encodeURIComponent(file)}`,
+        data: `${this.API_URL}directory/${this.path}${encodeURIComponent(file)}`,
         height: '100%',
         width: '100%'
       });
@@ -139,7 +140,7 @@ export class DirectoryComponent implements OnInit {
   private getDirectory()
   {
     const requestUrl =
-      `${this.API_URL}path/${this.path}?&column=${this.column}&sort=${this.sort}&query=${this.query}`;
+      `${this.API_URL}directory/${this.path}?&column=${this.column}&sort=${this.sort}&query=${this.query}`;
       this.http.get<Directory>(requestUrl, {
       })
         .subscribe(posts => {

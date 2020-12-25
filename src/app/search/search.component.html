@@ -1,7 +1,3 @@
-<!-- <video controls class="videoInsert" *ngIf="file">
-    <source [src]="file.url">
-</video> -->
-
 <div class="page-container">
     <nav mat-tab-nav-bar backgroundColor="primary">
         <button mat-button (click)="onToggle()">
@@ -9,7 +5,7 @@
         </button>
         <mat-form-field class="search-bar" color="accent">
             <mat-label>Search</mat-label>
-            <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)" #box>
+            <input matInput [value]="query" (input)="onSearchChange($event.target.value)" #box>
         </mat-form-field>
 
         <button mat-button [matMenuTriggerFor]="menu">
@@ -32,13 +28,16 @@
     </div>
 
     <div class="files-container" *ngIf="files?.length > 0">
-        <mat-accordion>
+        <mat-accordion displayMode="flat">
             <div *ngFor="let file of files.data;">
                 <mat-expansion-panel>
-                    <mat-expansion-panel-header>
+                    <mat-expansion-panel-header  [collapsedHeight]="'70px'" [expandedHeight]="'70px'">
                         <mat-panel-title>
                             <div class="name" [ngStyle]="{'color':file?.modify_time<today ? '' : 'green' }">
                                 {{file?.name}}
+                            </div>
+                            <div class="subname">
+                                {{file?.parent}}
                             </div>
                             <div class="subname">
                                 <b>{{file?.size_h}}</b> - {{file?.modify_time_h | date:"medium"}}
@@ -46,7 +45,7 @@
                         </mat-panel-title>
                         <mat-panel-description>
                             <button mat-button (click)="onView(file)"
-                                [disabled]="file?.ext!=='mp4'&&file?.ext!=='webm'&&file?.ext!=='mkv'&&file?.ext!=='mp4'&&file?.ext!=='avi'">View</button>
+                            [disabled]="file?.ext!=='mp4'&&file?.ext!=='webm'&&file?.ext!=='mkv'&&file?.ext!=='mp4'&&file?.ext!=='avi'">View</button>
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <div class="detail">
@@ -57,14 +56,14 @@
                     <button mat-button (click)="onNav(file)">View Folder</button>
                     <button mat-button (click)="onDownload(file)">Download</button>
                 </mat-expansion-panel>
+                <mat-divider></mat-divider>
             </div>
-            <mat-divider></mat-divider>
         </mat-accordion>
     </div>
-</div>
 
-<div class="footer">
-    <mat-paginator [pageIndex]="pageIndex" [length]="files?.length" [pageSize]="pageSize"
-        [pageSizeOptions]="pageSizeOptions" (page)="paginate($event)">
-    </mat-paginator>
+    <div class="footer">
+        <mat-paginator [pageIndex]="pageIndex" [length]="files?.length" [pageSize]="pageSize"
+            [pageSizeOptions]="pageSizeOptions" (page)="paginate($event)">
+        </mat-paginator>
+    </div>
 </div>

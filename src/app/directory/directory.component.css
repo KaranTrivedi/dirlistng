@@ -53,7 +53,7 @@ mat-icon
 .folder-link:hover
 {
     cursor: pointer;
-    background-color: rgb(45, 45, 45);
+    background-color: rgb(40, 40, 40);
 }
 .folder-link
 {
@@ -105,39 +105,17 @@ mat-panel-title
 {
     font-size: 0.7rem;
 }
+
 .detail
 {
     color: gray;
 }
 
-.subname img
+.dirlist-icon
 {
     height: 1rem;
 }
-
-/* .folder
+.subname img
 {
-    background-color: rgb(30, 30, 30);
-    display: flex;
-    justify-content: space-between;
-} */
-
-.folders:hover
-{
-    cursor: pointer;
-}
-
-table
-{
-    width: 100%;
-}
-
-/* th
-{
-    border: 1px solid gray;
-} */
-
-td
-{
-    white-space: nowrap;
+    height: 1rem;
 }

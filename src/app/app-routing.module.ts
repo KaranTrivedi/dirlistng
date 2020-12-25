@@ -6,12 +6,15 @@ import { SearchComponent } from './search/search.component';
 import { TestSamplesComponent } from './test-samples/test-samples.component';
 
 const routes: Routes = [
-  { path: 'directory', component: DirectoryComponent },
+  {
+    path: 'directory',
+    pathMatch: 'full',
+    component: DirectoryComponent
+  },
   { path: 'search', component: SearchComponent },
   { path: 'images', component: ImagesComponent },
   { path: 'test', component:  TestSamplesComponent},
-  {path: '**', redirectTo: 'directory'}
-
+  { path: '**', redirectTo: 'directory'}
 ];
 
 @NgModule({

@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { PageEvent } from '@angular/material/paginator';
 import { ApiService } from 'src/services/api.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { SearchVideoComponent } from './search-video/search-video.component';
+import { VideoPopupComponent } from '../video-popup/video-popup.component';
 import { environment } from 'src/environments/environment'
 
 // import { DomSanitizer } from '@angular/platform-browser';
@@ -22,6 +22,7 @@ import { environment } from 'src/environments/environment'
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
+
 export class SearchComponent implements OnInit
 {
   @ViewChild("box") box;
@@ -104,7 +105,6 @@ export class SearchComponent implements OnInit
 
   navCall()
   {
-    // this.panelOpenState = false;
     this.router.navigate(['search'], { queryParams: { sort: this.sort, column: this.column, query: this.query, page: this.pageIndex, size: this.pageSize } });
   }
 
@@ -127,15 +127,12 @@ export class SearchComponent implements OnInit
   {
     //   const dialogConfig1 = new MatDialogConfig();
 
-      this.dialog.open(SearchVideoComponent, {
+      this.dialog.open(VideoPopupComponent, {
         data: file.url,
-        height: '100%',
-        width: '100%'
+        height: '66%',
+        width: '80%'
       });
 
-    // this.url = ""
-    // var path = encodeURIComponent(file["path"]);
-    // this.url = "http://192.168.0.16:8000/path/" + path
   }
 
   private getFiles() {

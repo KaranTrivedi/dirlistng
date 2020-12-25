@@ -2,11 +2,11 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-search-video',
-  templateUrl: './search-video.component.html',
-  styleUrls: ['./search-video.component.css']
+  selector: 'app-video-popup',
+  templateUrl: './video-popup.component.html',
+  styleUrls: ['./video-popup.component.css']
 })
-export class SearchVideoComponent implements OnInit {
+export class VideoPopupComponent implements OnInit {
 
   // @Input() src;
 
