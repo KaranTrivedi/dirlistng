@@ -6,7 +6,15 @@
     left: 0;
     right: 0;
 }
-
+.top-nav
+{
+    align-content: center;
+}
+img
+{
+    width: 50%;
+    padding: 1rem;
+}
 .mat-sidenav
 {
     width: 15%;

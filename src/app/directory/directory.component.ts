@@ -81,6 +81,7 @@ export class DirectoryComponent implements OnInit {
   onClickShows(folder)
   {
     this.path = this.path + encodeURIComponent(folder) + "/"
+    this.query = ""
     this.navCall()
   }
   onDownload(file)
@@ -123,6 +124,7 @@ export class DirectoryComponent implements OnInit {
   {
     this.query = value.trim().toLowerCase();
     this.getDirectory()
+    this.navCall()
   }
 
   sortData(event)
@@ -134,7 +136,7 @@ export class DirectoryComponent implements OnInit {
 
   navCall()
   {
-    this.router.navigate(['directory'], { queryParams: { path: this.path, sort: this.sort, column: this.column } });
+    this.router.navigate(['directory'], { queryParams: { path: this.path, sort: this.sort, column: this.column, query: this.query } });
   }
 
   private getDirectory()

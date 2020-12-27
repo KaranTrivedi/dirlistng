@@ -135,6 +135,18 @@ export class SearchComponent implements OnInit
 
   }
 
+  onRefresh()
+  {
+    const requestUrl = `${this.API_URL}search/refresh`
+
+    this.http.get(requestUrl,
+      {
+      })
+      .subscribe(posts => {
+        this.files = posts;
+      })
+  }
+
   private getFiles() {
     this.from = this.pageIndex * this.pageSize
     const requestUrl =

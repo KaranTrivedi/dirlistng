@@ -1,11 +1,15 @@
 <div class="page-container">
     <nav mat-tab-nav-bar backgroundColor="primary">
         <button mat-button (click)="onToggle()">
-            <mat-icon>menu</mat-icon>
+            <!-- <mat-icon>menu</mat-icon> -->
+            <mat-icon>search</mat-icon>
         </button>
         <mat-form-field class="search-bar" color="accent">
             <mat-label>Search</mat-label>
             <input matInput [value]="query" (input)="onSearchChange($event.target.value)" #box>
+            <button mat-button *ngIf="query" matSuffix mat-icon-button aria-label="Clear" (click)="onSearchChange('')">
+                <mat-icon>close</mat-icon>
+            </button>
         </mat-form-field>
 
         <button mat-button [matMenuTriggerFor]="menu">
@@ -26,11 +30,11 @@
     <div *ngIf="files?.exception">
         <p class="exception">{{files?.exception}}</p>
     </div>
-
+    <button mat-button (click)="onRefresh()">Refresh</button>
     <div class="files-container" *ngIf="files?.length > 0">
-        <mat-accordion displayMode="flat">
+        <mat-accordion backgroundColor="accent">
             <div *ngFor="let file of files.data;">
-                <mat-expansion-panel>
+                <mat-expansion-panel  togglePosition="before">
                     <mat-expansion-panel-header  [collapsedHeight]="'70px'" [expandedHeight]="'70px'">
                         <mat-panel-title>
                             <div class="name" [ngStyle]="{'color':file?.modify_time<today ? '' : 'green' }">
@@ -40,7 +44,7 @@
                                 {{file?.parent}}
                             </div>
                             <div class="subname">
-                                <b>{{file?.size_h}}</b> - {{file?.modify_time_h | date:"medium"}}
+                                <b>{{file?.size_h}}</b> - {{file?.modify_time_h | date:"MMM d yy, hh:mm:ss a"}}
                             </div>
                         </mat-panel-title>
                         <mat-panel-description>
@@ -56,7 +60,7 @@
                     <button mat-button (click)="onNav(file)">View Folder</button>
                     <button mat-button (click)="onDownload(file)">Download</button>
                 </mat-expansion-panel>
-                <mat-divider></mat-divider>
+                <mat-divider color="accent"></mat-divider>
             </div>
         </mat-accordion>
     </div>

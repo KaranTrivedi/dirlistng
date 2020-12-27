@@ -7,9 +7,7 @@ import { TestSamplesComponent } from './test-samples/test-samples.component';
 
 const routes: Routes = [
   {
-    path: 'directory',
-    pathMatch: 'full',
-    component: DirectoryComponent
+    path: 'directory', component: DirectoryComponent
   },
   { path: 'search', component: SearchComponent },
   { path: 'images', component: ImagesComponent },

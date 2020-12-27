@@ -1,5 +1,8 @@
 <mat-sidenav-container class="nav-container">
     <mat-sidenav #sidenav mode="over">
+        <nav mat-tab-nav-bar backgroundColor="primary" class="top-nav">
+            <img src="../favicon.ico">
+        </nav>
         <nav mat-tab-nav-bar backgroundColor="primary">
             <button mat-button (click)="sidenav.toggle()">
                 <mat-icon>menu</mat-icon>

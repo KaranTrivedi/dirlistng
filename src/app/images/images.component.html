@@ -1,12 +1,16 @@
 <div class="page-container" (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
     <nav mat-tab-nav-bar backgroundColor="primary">
         <button mat-button (click)="onToggle()">
-            <mat-icon matTooltip="Hotkey: `">menu</mat-icon>
+            <!-- <mat-icon>menu</mat-icon> -->
+            <mat-icon matTooltip="Hotkey: `">image</mat-icon>
         </button>
         <mat-form-field class="search-bar" color="accent">
             <mat-label>Search</mat-label>
             <input matTooltip="Hotkey: /" matInput placeholder="Ex. aven" [value]="query"
                 (input)="onSearchChange($event.target.value)" #box>
+                <button mat-button *ngIf="query" matSuffix mat-icon-button aria-label="Clear" (click)="onSearchChange('')">
+                    <mat-icon>close</mat-icon>
+                </button>
         </mat-form-field>
 
         <button mat-button [matMenuTriggerFor]="menu">
