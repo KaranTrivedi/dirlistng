@@ -8,9 +8,17 @@
     <a (click)="onToggle()" mat-list-item [routerLink]='["directory"]' routerLinkActive="active"><mat-icon>folder</mat-icon>Directory</a>
     <mat-divider></mat-divider>
     <a (click)="onToggle()" mat-list-item [routerLink]='["search"]' routerLinkActive="active"><mat-icon>search</mat-icon>Search</a>
-    <mat-divider color="accent"></mat-divider>
+    <mat-divider></mat-divider>
     <a (click)="onToggle()" mat-list-item [routerLink]='["images"]' routerLinkActive="active"><mat-icon>image</mat-icon>Images</a>
-    <mat-divider color="accent"></mat-divider>
+    <mat-divider></mat-divider>
+    Favourites:
+    <mat-divider></mat-divider>
+    <a (click)="onToggle()" mat-list-item [routerLink]='["directory"]' [queryParams]="{path: 'downloads'}" routerLinkActive="active"><mat-icon>folder</mat-icon>Downloads</a>
+    <mat-divider></mat-divider>
+    <a (click)="onToggle()" mat-list-item [routerLink]='["directory"]' [queryParams]="{path: 'archives%2F1.%20Movies'}" routerLinkActive="active"><mat-icon>folder</mat-icon>Movies</a>
+    <mat-divider></mat-divider>
+    <a (click)="onToggle()" mat-list-item [routerLink]='["directory"]' [queryParams]="{path: 'archives%2F2.%20T.v.%20Shows'}" routerLinkActive="active"><mat-icon>folder</mat-icon>Shows</a>
+    <mat-divider></mat-divider>
 </mat-nav-list>
 
 <!-- <mat-nav-list>

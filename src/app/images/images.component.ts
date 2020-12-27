@@ -63,10 +63,10 @@ export class ImagesComponent implements OnInit
     }
   }
 
-  @HostListener('document:keypress', ['$event'])
+  @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent)
   {
-    if(event.key == "/")
+    if(event.key == "Insert")
     {
       this.box.nativeElement.focus();
     }
@@ -74,11 +74,11 @@ export class ImagesComponent implements OnInit
     {
       this.onRandom()
     }
-    if (event.key == "=")
+    if (event.key == "ArrowRight")
     {
       this.nextIndex()
     }
-    if (event.key == "-")
+    if (event.key == "ArrowLeft")
     {
       this.prevIndex()
     }
@@ -170,9 +170,8 @@ export class ImagesComponent implements OnInit
     this.setSource(this.index)
   }
 
-  onDownload(file)
+  onDownload()
   {
-    console.log(file)
     this.apiService.Download(this.images.files[this.index].name, this.PATH)
   }
 
@@ -198,6 +197,10 @@ export class ImagesComponent implements OnInit
     .subscribe(posts => {
       this.images = posts;
       this.setSource(0)
+      if (this.images.lenght === 0)
+      {
+        this.onSearchChange("")
+      }
   })
   }
 }

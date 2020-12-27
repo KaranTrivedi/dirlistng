@@ -72,12 +72,22 @@ export class SearchComponent implements OnInit
     }
   }
 
-  @HostListener('document:keypress', ['$event'])
+  @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent)
   {
-    if(event.key == "/")
-    {      
+    if(event.key == "Insert")
+    {
       this.box.nativeElement.focus();
+    }
+    if(event.key == "ArrowRight")
+    {
+      this.pageIndex = Number(this.pageIndex) + 1
+      this.navCall()
+    }
+    if(event.key == "ArrowLeft" && Number(this.pageIndex) > 0)
+    {
+      this.pageIndex = Number(this.pageIndex) - 1
+      this.navCall()
     }
   }
   paginate(event?:PageEvent)
@@ -132,7 +142,6 @@ export class SearchComponent implements OnInit
         height: '66%',
         width: '80%'
       });
-
   }
 
   onRefresh()

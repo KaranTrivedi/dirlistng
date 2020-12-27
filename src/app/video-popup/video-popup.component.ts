@@ -13,8 +13,17 @@ export class VideoPopupComponent implements OnInit {
   src: string;
   constructor(@Inject(MAT_DIALOG_DATA) public data) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
     console.log(this.data)
   }
 
+  onSeeked(event)
+  {
+    console.log(event)
+  }
+  onSeeking(event)
+  {
+    console.log(event)
+  }
 }

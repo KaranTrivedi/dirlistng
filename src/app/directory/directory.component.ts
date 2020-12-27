@@ -47,16 +47,14 @@ export class DirectoryComponent implements OnInit {
       this.sort = params["sort"] || "desc"
       this.column = params["column"] || "modify_time"
       this.getDirectory()
-      console.log(params)
     })
   }
 
-  @HostListener('document:keypress', ['$event'])
+  @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent)
   {
-    console.log(event.key)
-    if(event.key == "/")
-    {      
+    if(event.key == "Insert")
+    {
       this.box.nativeElement.focus();
     }
   }
@@ -92,12 +90,11 @@ export class DirectoryComponent implements OnInit {
   onView(file)
   {
     this.file = file;
-    console.log(this.file)
     //   const dialogConfig1 = new MatDialogConfig();
     
     this.dialog.open(VideoPopupComponent,
       {
-        data: `${this.API_URL}directory/${this.path}${encodeURIComponent(file)}`,
+        data: `${this.API_URL}directory/${this.path}${file}`,
         height: '100%',
         width: '100%'
       });

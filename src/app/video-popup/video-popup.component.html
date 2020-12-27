@@ -1,5 +1,5 @@
 <div class="container">
-    <video controls loop muted>
+    <video controls loop muted (seeking)="onSeeking($event)" (seeked)="onSeeked($event)">
         <source [src]="data">
     </video>
     <button cdkFocusInitial mat-button mat-dialog-close>Close</button>
