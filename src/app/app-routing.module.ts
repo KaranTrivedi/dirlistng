@@ -11,7 +11,9 @@ const routes: Routes = [
   },
   { path: 'search', component: SearchComponent },
   { path: 'images', component: ImagesComponent },
-  { path: 'test', component:  TestSamplesComponent},
+  { path: 'test/:id1', component:  TestSamplesComponent},
+  { path: 'test/:id1/:id2', component:  TestSamplesComponent},
+  { path: 'test/:id1/:id2/:id3', component:  TestSamplesComponent},
   { path: '**', redirectTo: 'directory'}
 ];
 
