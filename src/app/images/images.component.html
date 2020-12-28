@@ -6,7 +6,7 @@
         </button>
         <mat-form-field class="search-bar" color="accent">
             <mat-label>Search</mat-label>
-            <input matTooltip="Hotkey: /" matInput placeholder="Ex. aven" [value]="query"
+            <input matTooltip="Hotkey: Insert" matInput placeholder="Ex. aven" [value]="query"
                 (input)="onSearchChange($event.target.value)" #box>
                 <button mat-button *ngIf="query" matSuffix mat-icon-button aria-label="Clear" (click)="onSearchChange('')">
                     <mat-icon>close</mat-icon>
@@ -34,20 +34,20 @@
             <div class="navigator-parent">
                 <div class="navigator-container">
 
-                    <button (click)="onPage('first')" matTooltip="Hotkey: [" mat-button [disabled]="index===0">
+                    <button (click)="onPage('first')" matTooltip="Hotkey: Home" mat-button [disabled]="index===0">
                         <mat-icon>first_page</mat-icon>
                     </button>
 
-                    <button mat-button matTooltip="Hotkey: -" (click)="onPage('prev')" [disabled]="index===0">
+                    <button mat-button matTooltip="Hotkey: PageUp" (click)="onPage('prev')" [disabled]="index===0">
                         <mat-icon>navigate_before</mat-icon>
                     </button>
 
                     <button matTooltip="Hotkey: ." mat-button (click)="onRandom()">Random!</button>
-                    <button (click)="onPage('next')" matTooltip="Hotkey: =" mat-button
+                    <button (click)="onPage('next')" matTooltip="Hotkey: PageDown" mat-button
                         [disabled]="index===images.files.length-1">
                         <mat-icon>navigate_next</mat-icon>
                     </button>
-                    <button (click)="onPage('last')" matTooltip="Hotkey: ]" mat-button
+                    <button (click)="onPage('last')" matTooltip="Hotkey: End" mat-button
                         [disabled]="index===images.files.length-1">
                         <mat-icon>last_page</mat-icon>
                     </button>

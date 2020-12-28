@@ -79,12 +79,12 @@ export class SearchComponent implements OnInit
     {
       this.box.nativeElement.focus();
     }
-    if(event.key == "ArrowRight")
+    if(event.key == "PageUp")
     {
       this.pageIndex = Number(this.pageIndex) + 1
       this.navCall()
     }
-    if(event.key == "ArrowLeft" && Number(this.pageIndex) > 0)
+    if(event.key == "PageDown" && Number(this.pageIndex) > 0)
     {
       this.pageIndex = Number(this.pageIndex) - 1
       this.navCall()

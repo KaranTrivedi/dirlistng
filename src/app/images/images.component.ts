@@ -66,6 +66,7 @@ export class ImagesComponent implements OnInit
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent)
   {
+    console.log(event.key)
     if(event.key == "Insert")
     {
       this.box.nativeElement.focus();
@@ -74,19 +75,19 @@ export class ImagesComponent implements OnInit
     {
       this.onRandom()
     }
-    if (event.key == "ArrowRight")
+    if (event.key == "PageDown")
     {
       this.nextIndex()
     }
-    if (event.key == "ArrowLeft")
+    if (event.key == "PageUp")
     {
       this.prevIndex()
     }
-    if (event.key == "]")
+    if (event.key == "End")
     {
       this.index = this.images.files.length-1
     }
-    if (event.key == "[")
+    if (event.key == "Home")
     {
       this.index = 0
     }

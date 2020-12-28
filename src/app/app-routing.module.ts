@@ -7,7 +7,6 @@ import { TestSamplesComponent } from './test-samples/test-samples.component';
 
 const routes: Routes = [
   { path: 'directory', component: DirectoryComponent},
-  { path: 'test', component:  TestSamplesComponent},
   { path: 'directory/:id1', component:  DirectoryComponent},
   { path: 'directory/:id1/:id2', component:  DirectoryComponent},
   { path: 'directory/:id1/:id2/:id3', component:  DirectoryComponent},
@@ -16,7 +15,11 @@ const routes: Routes = [
   { path: 'directory/:id1/:id2/:id3/:id4/:id5', component:  DirectoryComponent},
   { path: 'directory/:id1/:id2/:id3/:id4/:id5/:id6', component:  DirectoryComponent},
   { path: 'directory/:id1/:id2/:id3/:id4/:id5/:id6/:id7', component:  DirectoryComponent},
+  { path: 'directory/:id1/:id2/:id3/:id4/:id5/:id6/:id7/:id8', component:  DirectoryComponent},
+  { path: 'directory/:id1/:id2/:id3/:id4/:id5/:id6/:id7/:id8/:id9', component:  DirectoryComponent},
+  { path: 'directory/:id1/:id2/:id3/:id4/:id5/:id6/:id7/:id8/:id9/:id10', component:  DirectoryComponent},
 
+  { path: 'test', component:  TestSamplesComponent},
   { path: 'search', component: SearchComponent },
   { path: 'images', component: ImagesComponent },
   { path: '**', redirectTo: 'directory'}
