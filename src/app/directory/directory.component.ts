@@ -14,7 +14,8 @@ import { environment } from 'src/environments/environment'
   encapsulation: ViewEncapsulation.None
 })
 
-export class DirectoryComponent implements OnInit {
+export class DirectoryComponent implements OnInit
+{
   @ViewChild("box") box;
 
   shows: any;
@@ -43,9 +44,12 @@ export class DirectoryComponent implements OnInit {
 
   ngOnInit()
   {
+    this.path = Object.values(this.route.snapshot.params).join("/")
+
     this.params = this.route.queryParams.subscribe(params => {
-      this.path = params["path"] || ""
+      // this.path = params["path"] || ""
       this.sort = params["sort"] || "desc"
+      this.query = params["query"] || ""
       this.column = params["column"] || "modify_time"
       this.getDirectory()
     })
@@ -79,7 +83,7 @@ export class DirectoryComponent implements OnInit {
 
   onClickShows(folder)
   {
-    this.path = this.path + encodeURIComponent(folder) + "/"
+    this.path = this.path + "/" + folder
     this.query = ""
     this.navCall()
   }
@@ -92,10 +96,10 @@ export class DirectoryComponent implements OnInit {
   {
     this.file = file;
     //   const dialogConfig1 = new MatDialogConfig();
-    
+
     this.dialog.open(VideoPopupComponent,
       {
-        data: `${this.API_URL}directory/${this.path}${file}`,
+        data: `${this.API_URL}directory/${this.path}/${file}`,
         height: '100%',
         width: '100%'
       });
@@ -134,7 +138,17 @@ export class DirectoryComponent implements OnInit {
 
   navCall()
   {
-    this.router.navigate(['directory'], { queryParams: { path: this.path, sort: this.sort, column: this.column, query: this.query } });
+    // this.router.navigate(['directory'], { queryParams: { path: this.path, sort: this.sort, column: this.column, query: this.query } });
+    this.router.navigate(
+      [`directory/${this.path}`],
+      {
+        queryParams:
+        {
+          sort: this.sort,
+          column: this.column,
+          query: this.query
+        }
+      });
   }
 
   private getDirectory()
