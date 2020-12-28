@@ -14,6 +14,15 @@ mat-icon
 {
     size: 2rem;
 }
+
+.mat-expansion-panel-header
+{
+    padding: 0 !important;
+}
+.mat-expansion-panel-body
+{
+    padding: 0 !important;
+}
 @media screen and (max-width: 600px)
 {
     .input
@@ -22,11 +31,6 @@ mat-icon
         justify-content: space-around;
     }
 }
-
-/* .mat-expansion-panel
-{
-    background-color: rgb(40, 40, 40);
-} */
 
 .path
 {
@@ -40,15 +44,6 @@ mat-icon
       display: none;
     }
 }
-/* .loc
-{
-    display: flex;
-    white-space: nowrap;
-}
-.loc:hover
-{
-    cursor: pointer;
-} */
 
 .folder-link:hover
 {
@@ -75,10 +70,10 @@ mat-icon
     }
 }
 
-mat-panel-title
+/* mat-panel-title
 {
     display: inline;
-}
+} */
 
 .name
 {

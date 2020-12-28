@@ -69,7 +69,7 @@
             <mat-selection-list [multiple]="false">
                 <mat-list-option *ngFor="let folder of shows?.folders" (click)="onClickShows(folder?.name)">
                     <mat-icon [ngStyle]="{'color': 'gray' }" mat-list-icon>folder</mat-icon>
-                    <div class="name" mat-line [ngStyle]="{'color':folder?.modify_time<today ? '' : '#1b5e20' }">{{folder?.name}}</div>
+                    <div class="name" mat-line [ngStyle]="{'color':folder?.modify_time<today ? '' : '#1b5e20', 'font-weight' : folder?.modify_time<today ? '' : 'bolder' }">{{folder?.name}}</div>
                     <div class="subname" mat-line>{{folder?.modify_time_h | date:"MMM d yy, hh:mm:ss a"}}&nbsp;&nbsp;&nbsp;
                         <b>
                             {{folder?.folder_count}}&nbsp;
@@ -86,26 +86,29 @@
     </div>
 
     <div class="files-container" *ngIf="shows?.files.length > 0">
-            <h6 *ngIf="shows?.files.length === 1">1 File - {{shows.file_size_total_h}}</h6>
-            <h6 *ngIf="shows?.files.length > 1">{{shows?.files.length}} Files - {{shows.file_size_total_h}}</h6>
-        <mat-accordion>
+        <h6 *ngIf="shows?.files.length === 1">1 File - {{shows.file_size_total_h}}</h6>
+        <h6 *ngIf="shows?.files.length > 1">{{shows?.files.length}} Files - {{shows.file_size_total_h}}</h6>
+
+        <mat-accordion hideToggle="true">
             <div *ngFor="let file of shows?.files">
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            <!-- <mat-list>
+                        <mat-panel-title >
+                            <mat-list>
                                 <mat-list-item>
                                     <mat-icon [ngStyle]="{'color': 'gray' }" mat-list-icon>insert_drive_file</mat-icon>
-                                    <div mat-line class="name">{{file?.name}}</div>
+                                    <div mat-line  [ngStyle]="{'color':file?.modify_time<today ? '' : '#1b5e20', 'font-weight' : file?.modify_time<today ? '' : 'bolder' }">
+                                        {{file?.name}}
+                                    </div>
                                     <div class="subname" mat-line> <b>{{file?.size_h}}</b> - {{file?.modify_time_h | date:"MMM d yy, hh:mm:ss a"}}</div>
                                 </mat-list-item>
-                            </mat-list> -->
-                            <div [ngStyle]="{'color':file?.modify_time<today ? '' : '#1b5e20' }">
+                            </mat-list>
+                            <!-- <div [ngStyle]="{'color':file?.modify_time<today ? '' : '#1b5e20', 'font-weight' : file?.modify_time<today ? '' : 'bolder' }">
                                 {{file?.name}}
                             </div>
                             <div class="subname">
                                 <b>{{file?.size_h}}</b> - {{file?.modify_time_h | date:"MMM d yy, hh:mm:ss a"}}
-                            </div>
+                            </div> -->
                         </mat-panel-title>
                         <mat-panel-description>
                             <button mat-button (click)="onView(file?.name)" [disabled]="file?.ext!=='mp4'&&file?.ext!=='webm'&&file?.ext!=='mkv'&&file?.ext!=='mp4'&&file?.ext!=='avi'">View</button>
@@ -114,7 +117,7 @@
                     <div class="detail">
                         <b>Name:</b> {{file?.name}}
                         <br>
-                        <b>Relative Path:</b> {{file?.path}}
+                        <b>Path:</b> {{file?.path}}
                         <br>
                         <b>Size:</b> {{file?.size_h}}
                         <br>

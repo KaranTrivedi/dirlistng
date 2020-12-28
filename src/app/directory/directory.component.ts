@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, HostListener, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Directory } from 'src/app/interfaces'
 import { Router, ActivatedRoute } from '@angular/router';
@@ -10,7 +10,8 @@ import { environment } from 'src/environments/environment'
 @Component({
   selector: 'app-downloads',
   templateUrl: './directory.component.html',
-  styleUrls: ['./directory.component.css']
+  styleUrls: ['./directory.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class DirectoryComponent implements OnInit {

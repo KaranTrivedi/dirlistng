@@ -32,12 +32,12 @@
     </div>
     <button mat-button (click)="onRefresh()">Refresh</button>
     <div class="files-container" *ngIf="files?.length > 0">
-        <mat-accordion backgroundColor="accent">
+        <mat-accordion hideToggle="true">
             <div *ngFor="let file of files.data;">
                 <mat-expansion-panel  togglePosition="before">
                     <mat-expansion-panel-header  [collapsedHeight]="'70px'" [expandedHeight]="'70px'">
                         <mat-panel-title>
-                            <div class="name" [ngStyle]="{'color':file?.modify_time<today ? '' : 'green' }">
+                            <div class="name" [ngStyle]="{'color':file?.modify_time<today ? '' : '#1b5e20', 'font-weight' : file?.modify_time<today ? '' : 'bolder' }">
                                 {{file?.name}}
                             </div>
                             <div class="subname">

@@ -2,5 +2,18 @@
     <video controls loop muted (seeking)="onSeeking($event)" (seeked)="onSeeked($event)">
         <source [src]="data">
     </video>
+    <!-- <script language="javascript">
+        $(function () {
+        var v = $("#video").get(0);
+            $('#play').click(function(){
+                   v.play();
+            });
+   
+           $('.s').click(function(){
+               alert("Clicked: "+$(this).html() +"- has time of -" + $(this).attr('s') );
+               v.currentTime = $(this).attr('s'); v.play();
+           });
+        });
+       </script> -->
     <button cdkFocusInitial mat-button mat-dialog-close>Close</button>
 </div>
