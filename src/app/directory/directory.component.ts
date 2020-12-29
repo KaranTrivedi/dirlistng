@@ -114,7 +114,7 @@ export class DirectoryComponent implements OnInit
     {
       var path = ""
       for (var x = 0; x <= i; x++) {
-        path = path + encodeURIComponent(this.shows.path_vars[x]) + "/"
+        path = path + this.shows.path_vars[x] + "/"
       }
     }
 
@@ -125,7 +125,6 @@ export class DirectoryComponent implements OnInit
   onSearchChange(value)
   {
     this.query = value.trim().toLowerCase();
-    this.getDirectory()
     this.navCall()
   }
 

@@ -66,7 +66,6 @@ export class ImagesComponent implements OnInit
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent)
   {
-    console.log(event.key)
     if(event.key == "Insert")
     {
       this.box.nativeElement.focus();

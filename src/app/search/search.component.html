@@ -1,11 +1,11 @@
 <div class="page-container">
-    <nav mat-tab-nav-bar backgroundColor="primary">
+    <mat-toolbar color="primary">
         <button mat-button (click)="onToggle()">
             <!-- <mat-icon>menu</mat-icon> -->
             <mat-icon>search</mat-icon>
         </button>
         <mat-form-field class="search-bar" color="accent">
-            <mat-label>Search</mat-label>
+            <!-- <mat-label>Search</mat-label> -->
             <input matInput [value]="query" (input)="onSearchChange($event.target.value)" #box>
             <button mat-button *ngIf="query" matSuffix mat-icon-button aria-label="Clear" (click)="onSearchChange('')">
                 <mat-icon>close</mat-icon>
@@ -18,15 +18,20 @@
         <mat-menu #menu="matMenu">
             <button mat-menu-item>
                 <div matSort matSortDisableClear (matSortChange)="sortData($event)" [matSortActive]="column"
-                    [matSortDirection]="sort" class="input">
+                [matSortDirection]="sort" class="input">
                     <th>Sort:&nbsp;&nbsp;</th>
                     <th mat-sort-header="name">Name</th>
                     <th mat-sort-header="modify_time">Time</th>
                     <th mat-sort-header="size">Size</th>
                 </div>
             </button>
-        </mat-menu>
-    </nav>
+            <mat-divider></mat-divider>
+            <button mat-menu-item>
+              <button mat-button>Upload <mat-icon> attach_file</mat-icon></button >
+            </button>
+          </mat-menu>
+    </mat-toolbar>
+
     <div *ngIf="files?.exception">
         <p class="exception">{{files?.exception}}</p>
     </div>

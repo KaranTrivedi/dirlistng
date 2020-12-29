@@ -13,11 +13,11 @@
     <mat-divider></mat-divider>
     Favourites:
     <mat-divider></mat-divider>
-    <a (click)="onToggle()" mat-list-item [routerLink]='["directory"]' [queryParams]="{path: 'downloads'}" routerLinkActive="active"><mat-icon>folder</mat-icon>Downloads</a>
+    <a (click)="onToggle()" mat-list-item [routerLink]='["directory/downloads"]' routerLinkActive="active"><mat-icon>folder</mat-icon>Downloads</a>
     <mat-divider></mat-divider>
-    <a (click)="onToggle()" mat-list-item [routerLink]='["directory"]' [queryParams]="{path: 'archives/1. Movies/'}" routerLinkActive="active"><mat-icon>folder</mat-icon>Movies</a>
+    <a (click)="onToggle()" mat-list-item [routerLink]='["directory/archives/1. Movies"]' routerLinkActive="active"><mat-icon>folder</mat-icon>Movies</a>
     <mat-divider></mat-divider>
-    <a (click)="onToggle()" mat-list-item [routerLink]='["directory"]' [queryParams]="{path: 'archives/2. T.v. Shows/'}" routerLinkActive="active"><mat-icon>folder</mat-icon>Shows</a>
+    <a (click)="onToggle()" mat-list-item [routerLink]='["directory/archives/2. T.v. Shows"]' routerLinkActive="active"><mat-icon>folder</mat-icon>Shows</a>
     <mat-divider></mat-divider>
 </mat-nav-list>
 

@@ -31,12 +31,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { ApiService } from 'src/services/api.service';
+// import {MatCardModule} from '@angular/material/card';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
-// export class MyHammerConfig extends HammerGestureConfig  {
-//   overrides = <any>{
-//     'swipe': {velocity: 0.4, threshold: 20} // override default settings
-//   }
-// }
 
 @NgModule({
   declarations: [
@@ -49,6 +46,8 @@ import { ApiService } from 'src/services/api.service';
     TestSamplesComponent
   ],
   imports: [
+    // MatCardModule,
+    MatToolbarModule,
     MatTooltipModule,
     MatListModule,
     MatSidenavModule,

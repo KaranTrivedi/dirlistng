@@ -32,7 +32,7 @@ export class AppComponent implements OnInit
     this.sidenav.toggle()
   }
 
-  @HostListener('document:keypress', ['$event'])
+  @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent)
   {
     if(event.key == "`")

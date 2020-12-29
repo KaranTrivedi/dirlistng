@@ -1,17 +1,12 @@
-<!-- <div class="form-group">
-    <label for="file">Choose File</label>
-    <input type="file" id="file" (change)="handleFileInput($event.target.files)">
-</div> -->
-
 <div class="page-container">
-    <nav mat-tab-nav-bar backgroundColor="primary">
+    <mat-toolbar color="primary">
         <button mat-button (click)="onToggle()">
             <!-- <mat-icon>menu</mat-icon> -->
             <mat-icon>folder</mat-icon>
         </button>
         <mat-form-field class="search-bar" color="accent">
-            <mat-label *ngIf="shows?.path_vars.length > 0">{{shows.path_vars[shows.path_vars.length-1]}}</mat-label>
-            <input matInput placeholder="Ex. aven" [value]="query" (input)="onSearchChange($event.target.value)" #box>
+            <!-- <mat-label *ngIf="shows?.path_vars.length > 0">{{shows.path_vars[shows.path_vars.length-1]}}</mat-label> -->
+            <input matInput [value]="query" (input)="onSearchChange($event.target.value)" #box>
             <button mat-button *ngIf="query" matSuffix mat-icon-button aria-label="Clear" (click)="onSearchChange('')">
                 <mat-icon>close</mat-icon>
             </button>
@@ -35,7 +30,8 @@
               <button mat-button>Upload <mat-icon> attach_file</mat-icon></button >
             </button>
           </mat-menu>
-    </nav>
+    </mat-toolbar>
+
     <div class="path">
         <nav mat-tab-nav-bar>
             <button mat-button (click)="onNav(-1)">
@@ -69,7 +65,7 @@
             <mat-selection-list [multiple]="false">
                 <mat-list-option *ngFor="let folder of shows?.folders" (click)="onClickShows(folder?.name)">
                     <mat-icon [ngStyle]="{'color': 'gray' }" mat-list-icon>folder</mat-icon>
-                    <div class="name" mat-line [ngStyle]="{'color':folder?.modify_time<today ? '' : '#1b5e20', 'font-weight' : folder?.modify_time<today ? '' : 'bolder' }">{{folder?.name}}</div>
+                    <div class="name" mat-line [ngStyle]="{'color':folder?.modify_time<today ? '' : 'rgb(121 224 128)', 'font-weight' : folder?.modify_time<today ? '' : 'bolder' }">{{folder?.name}}</div>
                     <div class="subname" mat-line>{{folder?.modify_time_h | date:"MMM d yy, hh:mm:ss a"}}&nbsp;&nbsp;&nbsp;
                         <b>
                             {{folder?.folder_count}}&nbsp;
@@ -106,7 +102,7 @@
                                     <mat-list-item>
                                         <mat-icon [ngStyle]="{'color': 'gray' }" mat-list-icon>insert_drive_file</mat-icon>
                                         <div mat-line
-                                            [ngStyle]="{'color':file?.modify_time<today ? '' : '#1b5e20', 'font-weight' : file?.modify_time<today ? '' : 'bolder' }">
+                                            [ngStyle]="{'color':file?.modify_time<today ? '' : 'rgb(121 224 128)', 'font-weight' : file?.modify_time<today ? '' : 'bolder' }">
                                             {{file?.name}}
                                         </div>
                                         <div class="subname" mat-line> <b>{{file?.size_h}}</b> - {{file?.modify_time_h |
@@ -137,54 +133,7 @@
     </div>
 </div>
 
-<!-- <div class="files-container" *ngIf="files?.length > 0">
-    <h3>Folders</h3>
-    <table>
-        <thead>
-            <tr class="table-header">
-                <th (click)="onSort('name')">
-                    Name
-                </th>
-                <th (click)="onSort('size')">
-                    Location
-                </th>
-                <th (click)="onSort('size')">
-                    Size
-                </th>
-                <th (click)="onSort('modify_time')">
-                    Modified On
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let file of files.data">
-                <td>
-                    <span><img src="assets/document.png" class="dirlist-icon"></span>&nbsp;{{file?.name}}
-                </td>
-                <td>
-                    {{file?.parent}}
-                </td>
-                <td>
-                    {{file?.size_h}}
-                </td>
-                <td>
-                    {{file?.modify_time_h}}
-                </td>
-                <td>
-                    <button mat-button (click)="onView(file)">View</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div> -->
-
-<!-- <div *ngIf="show_vid">
-    <button mat-button (click)="toggleVid()">Close video</button>
-    <h2>{{file}}</h2>
-    <div class="video">
-        <video controls #videoPlayer>
-            <source [src]="url">
-            Browser not supported
-        </video>
-    </div>
+<!-- <div class="form-group">
+    <label for="file">Choose File</label>
+    <input type="file" id="file" (change)="handleFileInput($event.target.files)">
 </div> -->

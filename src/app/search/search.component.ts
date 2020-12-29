@@ -65,26 +65,27 @@ export class SearchComponent implements OnInit
       this.getFiles()
     })
   }
-  setPageSizeOptions(setPageSizeOptionsInput: string) {
+  setPageSizeOptions(setPageSizeOptionsInput: string)
+  {
     if (setPageSizeOptionsInput)
     {
       this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
     }
   }
 
-  @HostListener('document:keydown', ['$event'])
+@HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent)
   {
     if(event.key == "Insert")
     {
       this.box.nativeElement.focus();
     }
-    if(event.key == "PageUp")
+    if(event.key == "PageDown")
     {
       this.pageIndex = Number(this.pageIndex) + 1
       this.navCall()
     }
-    if(event.key == "PageDown" && Number(this.pageIndex) > 0)
+    if(event.key == "PageUp" && Number(this.pageIndex) > 0)
     {
       this.pageIndex = Number(this.pageIndex) - 1
       this.navCall()
