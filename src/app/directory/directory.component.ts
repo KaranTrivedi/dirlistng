@@ -99,7 +99,7 @@ export class DirectoryComponent implements OnInit
 
     this.dialog.open(VideoPopupComponent,
       {
-        data: `${this.API_URL}directory/${this.path}/${file}`,
+        data: `${this.API_URL}/directory/file/${this.path}/${file}`,
         height: '100%',
         width: '100%'
       });
@@ -153,7 +153,7 @@ export class DirectoryComponent implements OnInit
   private getDirectory()
   {
     const requestUrl =
-      `${this.API_URL}directory/${this.path}?&column=${this.column}&sort=${this.sort}&query=${this.query}`;
+      `${this.API_URL}/directory/folder/${this.path}?&column=${this.column}&sort=${this.sort}&query=${this.query}`;
       this.http.get<Directory>(requestUrl, {
       })
         .subscribe(posts => {

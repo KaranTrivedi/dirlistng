@@ -11,7 +11,9 @@
     <mat-divider></mat-divider>
     <a (click)="onToggle()" mat-list-item [routerLink]='["images"]' routerLinkActive="active"><mat-icon>image</mat-icon>Images</a>
     <mat-divider></mat-divider>
-    Favourites:
+    <div>
+        <mat-icon>favorite_border</mat-icon> Favourites:
+    </div>
     <mat-divider></mat-divider>
     <a (click)="onToggle()" mat-list-item [routerLink]='["directory/downloads"]' routerLinkActive="active"><mat-icon>folder</mat-icon>Downloads</a>
     <mat-divider></mat-divider>

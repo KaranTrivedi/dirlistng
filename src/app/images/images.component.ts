@@ -155,7 +155,7 @@ export class ImagesComponent implements OnInit
 
   setSource(index)
   {
-    this.imageSource = `${this.API_URL}directory/${this.PATH}${this.images.files[index].name}`
+    this.imageSource = `${this.API_URL}/directory/file/${this.PATH}${this.images.files[index].name}`
   }
 
   onClickImage(index)
@@ -189,7 +189,7 @@ export class ImagesComponent implements OnInit
   private getImages()
   {
     const requestUrl =
-    `${this.API_URL}directory/${this.PATH}?&column=${this.column}&sort=${this.sort}&query=${this.query}`;
+    `${this.API_URL}/directory/folder/${this.PATH}?&column=${this.column}&sort=${this.sort}&query=${this.query}`;
 
     this.http.get<Directory>(requestUrl,
     {

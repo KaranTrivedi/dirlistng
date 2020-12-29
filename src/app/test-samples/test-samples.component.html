@@ -1,6 +1,6 @@
 <div class="video">
-    <video controls (click)="toggleVideo()" height="240" #videoPlayer>
-        <!-- <source src="{{videoSource}}"/> -->
+    <video controls (click)="toggleVideo()" height="640" #videoPlayer (seeking)="onSeeking($event)" (seeked)="onSeeked($event)">
+        <source src="{{videoSource}}"/>
         Browser not supported
     </video>
 </div>

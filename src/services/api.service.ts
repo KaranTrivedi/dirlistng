@@ -40,7 +40,7 @@ export class ApiService
 
   Download(file, path)
   {
-    const requestUrl = `${this.API_URL}directory/${path}/${encodeURIComponent(file)}`
+    const requestUrl = `${this.API_URL}/directory/file/${path}${file}`
 
     this.http.get(requestUrl, {
       responseType: 'blob',

@@ -9,35 +9,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TestSamplesComponent implements OnInit
 {
   @ViewChild('videoPlayer') videoplayer: any;
-  videoSource = "http://192.168.0.16:8000/path/downloads/Haikyuu!!%20To%20The%20Top%202nd%20Season%20-%2001%20%5B10bit%20720p%5D.mkv";
-
-  // Roue test params.
-  params: any;
-  path;
-  sort;
-  query;
-  column;
-  // Roue test params.
+  videoSource = "http://192.168.0.16:8000/directory/file/archives/1. Movies/Brave (2012) 1080p BluRay.m4v";
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router) { }
+
+  ) { }
 
   ngOnInit()
   {
-    // console.log(this.route.snapshot.params)
-    this.path = Object.values(this.route.snapshot.params).join("/")
-    this.params = this.route.queryParams.subscribe(params => {
-    this.sort = params["sort"] || "desc"
-    this.column = params["column"] || "modify_time"
-    // this.getDirectory()
-    })
-    console.log(this.path)
-  }
-  navCall()
-  {
-    //                   [`directory/${this.path}`]
-    this.router.navigate(['directory'], { queryParams: { path: this.path, sort: this.sort, column: this.column, query: this.query } });
+
   }
 
   onVideo(event)
@@ -48,4 +28,30 @@ export class TestSamplesComponent implements OnInit
   {
     this.videoplayer.play();
   }
+  onSeeked(event)
+  {
+    console.log(event)
+  }
+  onSeeking(event)
+  {
+    console.log(event)
+  }
+  // fileSelected($event) {
+  //   var attachedFile = this.videoSource
+  
+  //   let duration:any;
+  
+  //   //here you can check the file type for attachedFile either video or audio
+  
+  //   var video = document.createElement('video');
+  //   video.preload = 'metadata';
+  
+  //   video.onloadedmetadata = function() {
+  //     window.URL.revokeObjectURL(video.src);
+  //     duration = video.duration; // here you could get the duration
+  //   }
+  
+  //   video.src = URL.createObjectURL(attachedFile);
+  //   console.log(video.src)
+  // }
 }

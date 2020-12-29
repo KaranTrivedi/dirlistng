@@ -137,11 +137,11 @@ export class SearchComponent implements OnInit
   onView(file)
   {
     //   const dialogConfig1 = new MatDialogConfig();
-
-      this.dialog.open(VideoPopupComponent, {
-        data: file.url,
+      this.dialog.open(VideoPopupComponent,
+        {
+        data: `${this.API_URL}/directory/file/${file.path}`,
         height: '66%',
-        width: '80%'
+        width: '75%'
       });
   }
 
