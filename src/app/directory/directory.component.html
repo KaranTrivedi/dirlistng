@@ -48,88 +48,93 @@
         </nav>
     </div>
     <mat-divider></mat-divider>
-    <div class="folders-container" *ngIf="shows?.folders.length > 0">
-        <mat-expansion-panel [expanded]="true" togglePosition="before">
-            <mat-expansion-panel-header color="primary">
-                <mat-panel-title *ngIf="shows?.folders.length === 1">
-                    {{shows?.folders.length}} Folder
-                </mat-panel-title>
-                <mat-panel-title *ngIf="shows?.folders.length > 1">
-                    {{shows?.folders.length}} Folders
-                </mat-panel-title>
-                <mat-panel-description>
-                    <!-- <button mat-button>Upload <mat-icon> attach_file</mat-icon></button > -->
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-
-            <mat-selection-list [multiple]="false">
-                <mat-list-option *ngFor="let folder of shows?.folders" (click)="onClickShows(folder?.name)">
-                    <mat-icon [ngStyle]="{'color': 'gray' }" mat-list-icon>folder</mat-icon>
-                    <div class="name" mat-line [ngStyle]="{'color':folder?.modify_time<today ? '' : 'rgb(121 224 128)', 'font-weight' : folder?.modify_time<today ? '' : 'bolder' }">{{folder?.name}}</div>
-                    <div class="subname" mat-line>{{folder?.modify_time_h | date:"MMM d yy, hh:mm:ss a"}}&nbsp;&nbsp;&nbsp;
-                        <b>
-                            {{folder?.folder_count}}&nbsp;
-                            <img class="dirlist-icon" src="assets/folder_outline.png" alt="">&nbsp;
-                        </b>
-                        <b>
-                            {{folder?.file_count}}&nbsp;<img class="dirlist-icon" src="assets/document_outline.png" alt="">
-                        </b>
+    <div class="content-container">
+        <div class="folders-container" *ngIf="shows?.folders.length > 0">
+            <mat-expansion-panel [expanded]="true" togglePosition="before">
+                <mat-expansion-panel-header color="primary">
+                    <mat-panel-title *ngIf="shows?.folders.length === 1">
+                        {{shows?.folders.length}} Folder
+                    </mat-panel-title>
+                    <mat-panel-title *ngIf="shows?.folders.length > 1">
+                        {{shows?.folders.length}} Folders
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <!-- <button mat-button>Upload <mat-icon> attach_file</mat-icon></button > -->
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+    
+                <mat-selection-list [multiple]="false">
+                    <mat-list-option *ngFor="let folder of shows?.folders" (click)="onClickShows(folder?.name)">
+                        <mat-icon [ngStyle]="{'color': 'gray' }" mat-list-icon>folder</mat-icon>
+                        <div class="name" mat-line [ngStyle]="{'color':folder?.modify_time<today ? '' : 'rgb(121 224 128)', 'font-weight' : folder?.modify_time<today ? '' : 'bolder' }">{{folder?.name}}</div>
+                        <div class="subname" mat-line>{{folder?.modify_time_h | date:"MMM d yy, hh:mm:ss a"}}&nbsp;&nbsp;&nbsp;
+                            <b>
+                                {{folder?.folder_count}}&nbsp;
+                                <mat-icon [ngStyle]="{'color': 'gray' }" mat-list-icon>folder</mat-icon>
+                                <!-- <img class="dirlist-icon" src="assets/folder_outline.png" alt="">&nbsp; -->
+                            </b>
+                            <b>
+                                {{folder?.file_count}}&nbsp;
+                                <mat-icon [ngStyle]="{'color': 'gray' }" mat-list-icon>insert_drive_file</mat-icon>
+                                <!-- <img class="dirlist-icon" src="assets/document_outline.png" alt=""> -->
+                            </b>
+                        </div>
+                        <mat-divider></mat-divider>
+                    </mat-list-option>
+                </mat-selection-list>
+            </mat-expansion-panel>
+        </div>
+        <div class="vl" *ngIf="shows?.folders.length > 0"></div>
+        <div class="files-container" *ngIf="shows?.files.length > 0">
+            <mat-expansion-panel [expanded]="true" togglePosition="before">
+                <mat-expansion-panel-header color="primary">
+                    <mat-panel-title *ngIf="shows?.files.length === 1">1 File - {{shows.file_size_total_h}}
+                    </mat-panel-title>
+                    <mat-panel-title *ngIf="shows?.files.length > 1">{{shows?.files.length}} Files - {{shows.file_size_total_h}}
+                    </mat-panel-title>
+    
+                    <mat-panel-description>
+                        <!-- <button mat-button>Upload <mat-icon> attach_file</mat-icon></button > -->
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-accordion hideToggle="true">
+                    <div *ngFor="let file of shows?.files">
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    <mat-list>
+                                        <mat-list-item>
+                                            <mat-icon [ngStyle]="{'color': 'gray' }" mat-list-icon>insert_drive_file</mat-icon>
+                                            <div mat-line
+                                                [ngStyle]="{'color':file?.modify_time<today ? '' : 'rgb(121 224 128)', 'font-weight' : file?.modify_time<today ? '' : 'bolder' }">
+                                                {{file?.name}}
+                                            </div>
+                                            <div class="subname" mat-line> <b>{{file?.size_h}}</b> - {{file?.modify_time_h |
+                                                date:"MMM d yy, hh:mm:ss a"}}</div>
+                                        </mat-list-item>
+                                    </mat-list>
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    <button mat-button (click)="onView(file?.name)"
+                                        [disabled]="file?.ext!=='mp4'&&file?.ext!=='webm'&&file?.ext!=='mkv'&&file?.ext!=='mp4'&&file?.ext!=='avi'">View</button>
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <div class="detail">
+                                <b>Name:</b> {{file?.name}}
+                                <br>
+                                <b>Path:</b> {{file?.path}}
+                                <br>
+                                <b>Size:</b> {{file?.size_h}}
+                                <br>
+                                <b>Date:</b> {{file?.modify_time_h | date:"MMM d yy, hh:mm:ss a"}}
+                                <button mat-button (click)="onDownload(file?.name)">Download</button>
+                            </div>
+                        </mat-expansion-panel>
                     </div>
                     <mat-divider></mat-divider>
-                </mat-list-option>
-            </mat-selection-list>
-        </mat-expansion-panel>
-    </div>
-
-    <div class="files-container" *ngIf="shows?.files.length > 0">
-        <mat-expansion-panel [expanded]="true" togglePosition="before">
-            <mat-expansion-panel-header color="primary">
-                <mat-panel-title *ngIf="shows?.files.length === 1">1 File - {{shows.file_size_total_h}}
-                </mat-panel-title>
-                <mat-panel-title *ngIf="shows?.files.length > 1">{{shows?.files.length}} Files - {{shows.file_size_total_h}}
-                </mat-panel-title>
-
-                <mat-panel-description>
-                    <!-- <button mat-button>Upload <mat-icon> attach_file</mat-icon></button > -->
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-            <mat-accordion hideToggle="true">
-                <div *ngFor="let file of shows?.files">
-                    <mat-expansion-panel>
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                <mat-list>
-                                    <mat-list-item>
-                                        <mat-icon [ngStyle]="{'color': 'gray' }" mat-list-icon>insert_drive_file</mat-icon>
-                                        <div mat-line
-                                            [ngStyle]="{'color':file?.modify_time<today ? '' : 'rgb(121 224 128)', 'font-weight' : file?.modify_time<today ? '' : 'bolder' }">
-                                            {{file?.name}}
-                                        </div>
-                                        <div class="subname" mat-line> <b>{{file?.size_h}}</b> - {{file?.modify_time_h |
-                                            date:"MMM d yy, hh:mm:ss a"}}</div>
-                                    </mat-list-item>
-                                </mat-list>
-                            </mat-panel-title>
-                            <mat-panel-description>
-                                <button mat-button (click)="onView(file?.name)"
-                                    [disabled]="file?.ext!=='mp4'&&file?.ext!=='webm'&&file?.ext!=='mkv'&&file?.ext!=='mp4'&&file?.ext!=='avi'">View</button>
-                            </mat-panel-description>
-                        </mat-expansion-panel-header>
-                        <div class="detail">
-                            <b>Name:</b> {{file?.name}}
-                            <br>
-                            <b>Path:</b> {{file?.path}}
-                            <br>
-                            <b>Size:</b> {{file?.size_h}}
-                            <br>
-                            <b>Date:</b> {{file?.modify_time_h | date:"MMM d yy, hh:mm:ss a"}}
-                        </div>
-                        <button mat-button (click)="onDownload(file?.name)">Download</button>
-                    </mat-expansion-panel>
-                </div>
-                <mat-divider></mat-divider>
-            </mat-accordion>
-        </mat-expansion-panel>
+                </mat-accordion>
+            </mat-expansion-panel>
+        </div>
     </div>
 </div>
 

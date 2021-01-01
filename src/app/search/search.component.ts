@@ -76,6 +76,7 @@ export class SearchComponent implements OnInit
 @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent)
   {
+    // console.log(event.key)
     if(event.key == "Insert")
     {
       this.box.nativeElement.focus();
@@ -88,6 +89,11 @@ export class SearchComponent implements OnInit
     if(event.key == "PageUp" && Number(this.pageIndex) > 0)
     {
       this.pageIndex = Number(this.pageIndex) - 1
+      this.navCall()
+    }
+    if(event.key == "Home")
+    {
+      this.pageIndex = 0
       this.navCall()
     }
   }
@@ -126,12 +132,12 @@ export class SearchComponent implements OnInit
 
   onNav(file)
   {
-    this.router.navigate(['directory'], { queryParams: { path: file.parent} });
+    this.router.navigate([`directory/${file.parent}`]);
   }
 
   onDownload(file)
   {
-    this.apiService.Download(file.name, file.parent)
+    this.apiService.Download(file.parent, file.name)
   }
 
   onView(file)
@@ -160,7 +166,7 @@ export class SearchComponent implements OnInit
   private getFiles() {
     this.from = this.pageIndex * this.pageSize
     const requestUrl =
-    `${this.API_URL}search/?column=${this.column}&sort=${this.sort}&query=${this.query}&from_doc=${this.from}&size=${this.pageSize}`
+    `${this.API_URL}/search/?column=${this.column}&sort=${this.sort}&query=${this.query}&from_doc=${this.from}&size=${this.pageSize}`
 
     this.http.get(requestUrl,
       {

@@ -21,7 +21,7 @@ export class ApiService
 
   constructor(private http: HttpClient)
   {
-    
+
   }
 
   getApiUrl()
@@ -38,7 +38,7 @@ export class ApiService
   //   this.appcodesSubject.next(appcodes);
   // }
 
-  Download(file, path)
+  Download(path, file)
   {
     const requestUrl = `${this.API_URL}/directory/file/${path}${file}`
 

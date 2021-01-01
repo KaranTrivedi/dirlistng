@@ -172,7 +172,7 @@ export class ImagesComponent implements OnInit
 
   onDownload()
   {
-    this.apiService.Download(this.images.files[this.index].name, this.PATH)
+    this.apiService.Download(this.PATH, this.images.files[this.index].name)
   }
 
   onToggle()

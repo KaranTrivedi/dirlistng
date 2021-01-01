@@ -64,6 +64,7 @@
             <div class="text-container">
                 {{images.files[index].size_h}} - {{images.files[index].ext}}
                 <button mat-button (click)="onDownload()">Download</button>
+                <a [href]="imageSource" target="_blank"><button mat-button>View</button></a>
             </div>
         </div>
 

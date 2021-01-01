@@ -74,6 +74,40 @@ mat-icon
 {
     display: inline;
 } */
+.content-container
+{
+    display: flex;
+}
+.folders-container
+{
+    width: 50%;
+    height: 100%;
+}
+.vl
+{
+    border-left: 1px solid gray;
+    /* height: 500px; */
+}
+.files-container
+{
+    width: 50%;
+    height: 100%;
+}
+@media screen and (max-width: 992px)
+{
+    .content-container
+    {
+        display: inline;
+    }
+    .folders-container
+    {
+        width: 100%;
+    }
+    .files-container
+    {
+        width: 100%;
+    }
+}
 
 .name
 {
@@ -102,11 +136,11 @@ mat-icon
     }
 }
 
-/* .detail
+.detail
 {
-    color: gray;
-} */
-
+    margin-left: 4rem;
+    margin-right: 1rem;
+}
 .dirlist-icon
 {
     height: 1rem;

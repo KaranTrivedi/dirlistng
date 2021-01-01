@@ -89,7 +89,7 @@ export class DirectoryComponent implements OnInit
   }
   onDownload(file)
   {
-    this.apiService.Download(file, this.path)
+    this.apiService.Download(this.path + "/", file)
   }
 
   onView(file)
@@ -154,6 +154,7 @@ export class DirectoryComponent implements OnInit
   {
     const requestUrl =
       `${this.API_URL}/directory/folder/${this.path}?&column=${this.column}&sort=${this.sort}&query=${this.query}`;
+
       this.http.get<Directory>(requestUrl, {
       })
         .subscribe(posts => {

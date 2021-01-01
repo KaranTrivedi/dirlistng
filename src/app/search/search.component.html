@@ -72,7 +72,7 @@
 
     <div class="footer">
         <mat-paginator [pageIndex]="pageIndex" [length]="files?.length" [pageSize]="pageSize"
-            [pageSizeOptions]="pageSizeOptions" (page)="paginate($event)">
+            [pageSizeOptions]="pageSizeOptions" (page)="paginate($event)" showFirstLastButtons="true">
         </mat-paginator>
     </div>
 </div>
