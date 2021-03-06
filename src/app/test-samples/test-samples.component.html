@@ -1,6 +1,3 @@
-<div class="video">
-    <video controls (click)="toggleVideo()" height="640" #videoPlayer (seeking)="onSeeking($event)" (seeked)="onSeeked($event)">
-        <source src="{{videoSource}}"/>
-        Browser not supported
-    </video>
+<div *ngFor="let link of links">
+    <img src="{{link}}" alt="">
 </div>

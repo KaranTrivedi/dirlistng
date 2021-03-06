@@ -32,21 +32,15 @@
           </mat-menu>
     </mat-toolbar>
 
-    <div class="path">
-        <nav mat-tab-nav-bar>
-            <button mat-button (click)="onNav(-1)">
-                Home
-            </button>
-            <div *ngFor="let path_var of shows?.path_vars; let i = index" [attr.data-index]="i">
-                <button mat-button disabled="true">
-                    &nbsp;<mat-icon color="primary">chevron_right</mat-icon>&nbsp;
-                </button>
-                <button mat-button (click)="onNav(i)">
-                    {{path_var}}
-                </button>
-            </div>
-        </nav>
-    </div>
+    <nz-breadcrumb nzSeparator=">">
+        <nz-breadcrumb-item mat-button (click)="onNav(-1)">
+            Home
+        </nz-breadcrumb-item>
+        <nz-breadcrumb-item *ngFor="let path_var of shows?.path_vars; let i = index" [attr.data-index]="i" (click)="onNav(i)">
+            {{path_var}}
+        </nz-breadcrumb-item>
+    </nz-breadcrumb>
+
     <mat-divider></mat-divider>
     <div class="content-container">
         <div class="folders-container" *ngIf="shows?.folders.length > 0">

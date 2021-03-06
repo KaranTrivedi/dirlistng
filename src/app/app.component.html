@@ -1,17 +1,22 @@
-<mat-sidenav-container class="nav-container">
-    <mat-sidenav #sidenav mode="over">
-        <nav mat-tab-nav-bar backgroundColor="accent" class="top-nav">
-            <img src="../favicon.ico">
-        </nav>
-        <!-- <nav mat-tab-nav-bar backgroundColor="primary">
-            <button mat-button (click)="sidenav.toggle()">
-                <mat-icon>menu</mat-icon>
-            </button>
-        </nav> -->
-        <app-vertical-nav></app-vertical-nav>
-    </mat-sidenav>
+<!-- NG-ZORRO -->
+<!-- <a href="https://github.com/NG-ZORRO/ng-zorro-antd" target="_blank" style="display: flex;align-items: center;justify-content: center;height: 100%;width: 100%;">
+  <img height="300" src="https://img.alicdn.com/tfs/TB1X.qJJgHqK1RjSZFgXXa7JXXa-89-131.svg">
+</a> -->
 
-    <mat-sidenav-content>
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
+<mat-sidenav-container class="nav-container">
+  <mat-sidenav #sidenav mode="over">
+      <nav mat-tab-nav-bar backgroundColor="accent" class="top-nav">
+          <img src="../favicon.ico">
+      </nav>
+      <!-- <nav mat-tab-nav-bar backgroundColor="primary">
+          <button mat-button (click)="sidenav.toggle()">
+              <mat-icon>menu</mat-icon>
+          </button>
+      </nav> -->
+      <app-vertical-nav></app-vertical-nav>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+      <router-outlet></router-outlet>
+  </mat-sidenav-content>
 </mat-sidenav-container>

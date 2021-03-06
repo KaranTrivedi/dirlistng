@@ -8,12 +8,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class TestSamplesComponent implements OnInit
 {
-  @ViewChild('videoPlayer') videoplayer: any;
-  videoSource = "http://192.168.0.16:8000/directory/file/archives/1. Movies/Brave (2012) 1080p BluRay.m4v";
 
-  constructor(
-
-  ) { }
+  links = []
+  constructor()
+  {}
 
   ngOnInit()
   {
@@ -24,10 +22,7 @@ export class TestSamplesComponent implements OnInit
   {
     console.log(event)
   }
-  toggleVideo()
-  {
-    this.videoplayer.play();
-  }
+
   onSeeked(event)
   {
     console.log(event)

@@ -33,7 +33,16 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { ApiService } from 'src/services/api.service';
 // import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { FormsModule } from '@angular/forms';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
 
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+
+registerLocaleData(en);
 
 @NgModule({
   declarations: [
@@ -46,6 +55,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     TestSamplesComponent
   ],
   imports: [
+    NzDatePickerModule,
+    NzBreadCrumbModule,
+
     // MatCardModule,
     MatToolbarModule,
     MatTooltipModule,
@@ -68,11 +80,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers:
   [
     ApiService,
+    { provide: NZ_I18N, useValue: en_US },
     // {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {}}
   ],
   bootstrap: [AppComponent],
