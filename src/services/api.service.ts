@@ -34,10 +34,6 @@ export class ApiService
     this.invokeToggleFunction.emit();
   }
 
-  // setAppcodes(appcodes) {
-  //   this.appcodesSubject.next(appcodes);
-  // }
-
   Download(path, file)
   {
     const requestUrl = `${this.API_URL}/directory/file/${path}${file}`
@@ -66,7 +62,9 @@ export class ApiService
   // public postData = (route: string) => {
   //   return this.http.post(this.createCompleteRoute(route, this.urlAddress));
   // }
-  private createCompleteRoute = (route: string, envAddress: string) => {
+ 
+  private createCompleteRoute = (route: string, envAddress: string) => 
+  {
     return `${envAddress}${route}`;
   };
 }

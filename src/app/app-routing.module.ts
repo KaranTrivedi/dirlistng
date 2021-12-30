@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DirectoryComponent } from './directory/directory.component';
 import { ImagesComponent } from './images/images.component';
 import { SearchComponent } from './search/search.component';
+import { StocktickerComponent } from './stockticker/stockticker.component';
 import { TestSamplesComponent } from './test-samples/test-samples.component';
 
 const routes: Routes = [
@@ -22,11 +23,12 @@ const routes: Routes = [
   { path: 'test', component:  TestSamplesComponent},
   { path: 'search', component: SearchComponent },
   { path: 'images', component: ImagesComponent },
+  { path: 'stockticker', component: StocktickerComponent },
   { path: '**', redirectTo: 'directory'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

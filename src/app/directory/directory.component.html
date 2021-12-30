@@ -42,6 +42,41 @@
     </nz-breadcrumb>
 
     <mat-divider></mat-divider>
+
+    <div *ngIf="!add">
+        <button nz-button (click)="toggleAdd()">Add</button>
+        <br>
+    </div>
+    <div *ngIf="add">
+        <button nz-button nzType="primary" (click)="toggleAdd()">Close</button><br>
+        <br>
+        <form nz-form nzLayout="inline" [formGroup]="validateForm">
+            <nz-form-item>
+                <nz-form-label nzRequired>URL</nz-form-label>
+                <nz-form-control nzErrorTip="Enter URL">
+                    <input nz-input id="url" type="text" formControlName="url"/>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label>Name</nz-form-label>
+                <nz-form-control>
+                    <input id="name" type="text" nz-input formControlName="name"/>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <button nz-button nzType="primary" (click)="putVideo()" [nzLoading]="disabled">Download</button>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <button nz-button (click)="resetForm()" [disabled]="disabled">Clear</button>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+        <p [ngStyle]="{'color': 'red'}" *ngIf="dl_response">{{dl_response}}</p>
+    </div>
+
     <div class="content-container">
         <div class="folders-container" *ngIf="shows?.folders.length > 0">
             <mat-expansion-panel [expanded]="true" togglePosition="before">
@@ -56,7 +91,7 @@
                         <!-- <button mat-button>Upload <mat-icon> attach_file</mat-icon></button > -->
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-    
+
                 <mat-selection-list [multiple]="false">
                     <mat-list-option *ngFor="let folder of shows?.folders" (click)="onClickShows(folder?.name)">
                         <mat-icon [ngStyle]="{'color': 'gray' }" mat-list-icon>folder</mat-icon>
@@ -73,7 +108,7 @@
                                 <!-- <img class="dirlist-icon" src="assets/document_outline.png" alt=""> -->
                             </b>
                         </div>
-                        <mat-divider></mat-divider>
+                        <nz-divider></nz-divider>
                     </mat-list-option>
                 </mat-selection-list>
             </mat-expansion-panel>
@@ -114,18 +149,50 @@
                                 </mat-panel-description>
                             </mat-expansion-panel-header>
                             <div class="detail">
-                                <b>Name:</b> {{file?.name}}
                                 <br>
-                                <b>Path:</b> {{file?.path}}
-                                <br>
-                                <b>Size:</b> {{file?.size_h}}
-                                <br>
-                                <b>Date:</b> {{file?.modify_time_h | date:"MMM d yy, hh:mm:ss a"}}
                                 <button mat-button (click)="onDownload(file?.name)">Download</button>
+                                <br>
+                                <table>
+                                    <tr>
+                                        <td>Name <i (click)="setName(file?.name)" nz-icon nzType="copy" nzTheme="outline"></i></td>
+                                        <td>{{file?.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Path</td>
+                                        <td>{{file?.path}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Size</td>
+                                        <td>{{file?.size_h}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date</td>
+                                        <td>{{file?.modify_time_h | date:"MMM d yy, hh:mm:ss a"}}</td>
+                                    </tr>
+                                </table>
+                                <div>
+                                    <br>
+                                    <p>
+                                        Copy to 1. Movies
+                                    </p>
+                                    <nz-input-group [nzSuffix]="inputClearTpl">
+                                        <input nz-input id="copy_name-{{file?.name}}" type="text" [(ngModel)]="copy_name"/>
+                                    </nz-input-group>
+                                    <ng-template #inputClearTpl>
+                                        <i nz-icon class="ant-input-clear-icon" 
+                                            nzTheme="fill"
+                                            nzType="close-circle"
+                                            *ngIf="copy_name"
+                                            (click)="copy_name = null">
+                                        </i>
+                                        <button nz-button nzType="primary" [nzLoading]="copying" (click)="onCopy(file?.name)">Copy</button>
+                                    </ng-template>
+                                    <p *ngIf="copy_response">{{copy_response}}</p>
+                                </div>
                             </div>
                         </mat-expansion-panel>
                     </div>
-                    <mat-divider></mat-divider>
+                    <nz-divider></nz-divider>
                 </mat-accordion>
             </mat-expansion-panel>
         </div>

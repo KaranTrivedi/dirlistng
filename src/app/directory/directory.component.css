@@ -9,6 +9,31 @@
         width: 100%;
     }
 }
+nz-breadcrumb-item:hover
+{
+    cursor: pointer;
+}
+nz-button
+{
+    margin-right: 8px;
+    margin-bottom: 12px;
+}
+
+.youtube-dl
+{
+    max-width: 50%;
+}
+@media screen and (max-width: 600px)
+{
+    .youtube-dl
+    {
+        max-width: 100%;
+    }
+}
+.dl-input
+{
+    display: flex;
+}
 
 mat-icon
 {
@@ -148,4 +173,23 @@ mat-icon
 .subname img
 {
     height: 1rem;
+}
+
+
+table
+{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+tr:nth-child(even){background-color: rgb(10,10,10);}
+tr:nth-child(odd){background-color: rgb(30,30,30);}
+
+th
+{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgb(0,0,0);
+    color: white;
 }

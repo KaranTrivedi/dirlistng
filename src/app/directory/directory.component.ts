@@ -6,6 +6,7 @@ import { ApiService } from 'src/services/api.service'
 import { VideoPopupComponent } from '../video-popup/video-popup.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-downloads',
@@ -17,6 +18,16 @@ import { environment } from 'src/environments/environment'
 export class DirectoryComponent implements OnInit
 {
   @ViewChild("box") box;
+
+  add: boolean = false;
+  disabled: boolean;
+
+  copy_name:string = "";
+  copy_response;
+  copying: boolean;
+
+  dl_response;
+  validateForm: FormGroup;
 
   shows: any;
   // path_vars: string[] = [""];
@@ -40,10 +51,19 @@ export class DirectoryComponent implements OnInit
     private route: ActivatedRoute,
     private router: Router,
     private apiService: ApiService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private fb: FormBuilder) { }
 
   ngOnInit()
   {
+    this.disabled = false;
+    // this.add = false;
+    this.copying = false;
+    this.validateForm = this.fb.group({
+      url: [null, [Validators.required]],
+      name: [null, [Validators.required]]
+    });
+
     this.path = Object.values(this.route.snapshot.params).join("/")
 
     this.params = this.route.queryParams.subscribe(params => {
@@ -100,6 +120,8 @@ export class DirectoryComponent implements OnInit
     this.dialog.open(VideoPopupComponent,
       {
         data: `${this.API_URL}/directory/file/${this.path}/${file}`,
+
+        // data: `${this.API_URL}/directory1/${this.path}/${file}`,
         height: '100%',
         width: '100%'
       });
@@ -148,7 +170,55 @@ export class DirectoryComponent implements OnInit
           query: this.query
         }
       });
-  }
+    }
+    setName(filename)
+    {
+      this.copy_name = filename.replace(/\./g,' ')
+    }
+    resetForm()
+    {
+      this.validateForm.reset();
+      this.dl_response = "";
+    }
+    onCopy(filename)
+    {
+      this.copying = true;
+      const requestUrl =
+        `${this.API_URL}/directory/copy_file/${this.path}?&destname=${this.copy_name}&filename=${filename}`;
+
+      this.http.get(requestUrl, {
+      })
+        .subscribe(data => {
+          this.copy_response = data;
+          this.copying = false;
+        })
+    }
+    toggleAdd()
+    {
+      this.add = !this.add
+    }
+    putVideo()
+    {
+      this.dl_response=""
+      this.disabled = true;
+      var url = this.validateForm.value.url
+      var name = ""
+      if (this.validateForm.value.name)
+      {
+        name = this.validateForm.value.name
+      }
+
+      const requestUrl =
+        `${this.API_URL}/directory/youtube-dl/${this.path}?&name=${name}&url=${url}`;
+
+      this.http.get(requestUrl, {
+      })
+        .subscribe(data => {
+          this.dl_response = data;
+          this.disabled = false;
+          this.getDirectory()
+        })
+    }
 
   private getDirectory()
   {

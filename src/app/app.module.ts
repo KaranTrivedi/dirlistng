@@ -15,6 +15,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 
 import {MatExpansionModule} from '@angular/material/expansion';
 
@@ -33,14 +34,23 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { ApiService } from 'src/services/api.service';
 // import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 
+import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { StocktickerComponent } from './stockticker/stockticker.component';
+
+import { NgxEchartsModule } from 'ngx-echarts';
 
 registerLocaleData(en);
 
@@ -52,13 +62,26 @@ registerLocaleData(en);
     HeaderComponent,
     VideoPopupComponent,
     ImagesComponent,
-    TestSamplesComponent
+    TestSamplesComponent,
+    StocktickerComponent
   ],
   imports: [
+
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
+
+    NzLayoutModule,
+    NzFormModule,
+    NzIconModule,
+    NzButtonModule,
+    NzInputModule,
     NzDatePickerModule,
     NzBreadCrumbModule,
+    NzDividerModule,
 
     // MatCardModule,
+    ClipboardModule,
     MatToolbarModule,
     MatTooltipModule,
     MatListModule,
@@ -81,7 +104,8 @@ registerLocaleData(en);
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers:
   [
