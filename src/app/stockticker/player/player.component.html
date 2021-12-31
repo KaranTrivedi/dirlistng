@@ -1,0 +1,51 @@
+<a nz-dropdown nzTrigger="click"nzTrigger="click" [nzDropdownMenu]="menu">
+    {{player.name}}
+    <i nz-icon nzType="down"></i>
+  </a>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu nzSelectable>
+      <li *ngFor="let _player of players; let i = index" (click)="selectPlayer(i)" nz-menu-item>{{_player.name}}</li>
+    </ul>
+</nz-dropdown-menu>
+
+<div class="player-container">
+    <!-- <pre>
+        {{player | json}}
+    </pre> -->
+
+    <!-- <div>
+        <h5>
+            {{player?.name}}
+        </h5>
+        <p>
+            net worth: ${{player?.net_worth}}
+            <br>
+            market worth: ${{player?.market_val}}, coh: ${{player?.coh}}
+        </p>
+
+        <h6>Holdings</h6>
+        <div *ngFor="let holding of player?.holdings | keyvalue">
+            {{holding.key}}: {{holding.value}}
+        </div>
+    </div> -->
+
+    <div class="log" id="player">
+        <h5>
+            {{player?.name}} Activity
+        </h5>
+        <!-- <h5>Recent Player </h5> -->
+        <p *ngFor="let log of player.logs" [ngStyle]="playerLogStyle(log?.type, log?.action)">
+            <span *ngIf="log?.type == 0">
+                {{log?.action}} {{log?.count}} of {{log?.name}} for ${{log?.worth}}@${{log?.at}}
+            </span>
+            <span *ngIf="log?.type == 1">
+                {{log?.turn_num}}: {{log?.count}} {{log?.name}} {{log?.action}}
+            </span>
+            <span *ngIf="log?.type == 2">
+                {{log?.turn_num}}: {{log?.name}} {{log?.action}} @${{log?.at}} ${{log?.worth}}
+            </span>
+        </p>
+    </div>
+    <app-holdings-pie [scale]="scale" [holdings]="holdings"></app-holdings-pie>
+    <app-worth-pie [worth]="worth"></app-worth-pie>
+</div>

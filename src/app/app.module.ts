@@ -40,6 +40,7 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
@@ -57,6 +58,9 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 // import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { ChartsModule } from "@carbon/charts-angular";
+import { HoldingsPieComponent } from './stockticker/player/holdings-pie/holdings-pie.component';
+import { PlayerComponent } from './stockticker/player/player.component';
+import { WorthPieComponent } from './stockticker/player/worth-pie/worth-pie.component';
 
 registerLocaleData(en);
 
@@ -70,7 +74,10 @@ registerLocaleData(en);
         ImagesComponent,
         TestSamplesComponent,
         StocktickerComponent,
-        ValGraphComponent
+        ValGraphComponent,
+        HoldingsPieComponent,
+        PlayerComponent,
+        WorthPieComponent
       ],
       imports: [
         // NgxEchartsModule.forRoot({
@@ -80,6 +87,7 @@ registerLocaleData(en);
           
         ChartsModule,
 
+        NzDropDownModule,
         NzTableModule,
         NzMessageModule,
         NzLayoutModule,

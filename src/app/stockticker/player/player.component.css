@@ -1,0 +1,25 @@
+.log
+{
+    padding: 5px;
+    height: 350px;
+    overflow-y: scroll;
+    border: 1px solid rgb(10, 10, 10);
+}
+
+#stock.log
+{
+    width: 15%;
+}
+
+p.ng-star-inserted
+{
+    margin: 0;
+}
+#player.log
+{
+    width: 20%;
+}
+.player-container
+{
+    display: flex;
+}

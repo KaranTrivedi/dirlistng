@@ -2,64 +2,61 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { StockService } from '../stockService';
 
 @Component({
-  selector: 'app-val-graph',
-  templateUrl: './val-graph.component.html',
-  styleUrls: ['./val-graph.component.css']
+	selector: 'app-val-graph',
+	templateUrl: './val-graph.component.html',
+	styleUrls: ['./val-graph.component.css']
 })
 export class ValGraphComponent implements OnInit
 {
-  // @Input() data;
-  @Input() title;
-  options;
-  data = [];
+	@Input() scale;
+	options;
+	data;
+	domain;
 
-  constructor(private stockService: StockService) { }
+	constructor(private stockService: StockService) { }
 
-  ngOnInit(): void
-  {
-    this.stockService.data$.subscribe(
-        (data) => {
-          if (data.length)
-          {
-            this.data = data
-            console.log(data)
-          }
-          else
-          {
-            // console.log(this.data)
-          }
-        }
-      )
+	ngOnInit(): void
+	{
+	  this.options = {
+		"title": "Stockmarket",
+		"legend":
+		{
+			"enabled": false
+		},
+		"axes":
+		{
+			"bottom":
+			{
+				"mapsTo": "key",
+				"scaleType": "linear",
+				"domain": [0, 50]
+			},
+			"left":
+			{
+				"mapsTo": "value",
+				"title": "Value",
+				"scaleType": "linear",
+				"domain":[0, 2]
+			}
+		},
+		"color": {
+			"scale": this.scale
+		},
+	}
+
+	this.stockService.stockLineData$.subscribe(
+        (newData) => {
+			this.data = newData.data
+			this.domain = newData.domain
+
+			this.options.axes.bottom.domain = this.domain
+			this.options = Object.assign({}, this.options)
+      }
+    )
   }
 
   ngOnChanges(changes: SimpleChanges)
   {
-    this.options = {
-      "title": this.title,
-      "curve": "curveMonotoneX",
-      "axes": {
-        "bottom": {
-          "title": "Stocks over time",
-          "mapsTo": "key",
-          "scaleType": "linear"
-        },
-        "left": {
-          "mapsTo": "value",
-          "title": "Value",
-          "scaleType": "linear",
-          "domain": [
-            0,
-            1.8
-          ]
-        }
-      },
-      "height": "300px"
-    }
+    // console.log(changes)
   }
-}
-
-function getRandom(max)
-{
-    // return (Math.random() * (0 - 2) + 2).toFixed(4)
-    return Math.floor(Math.random() * max)
 }

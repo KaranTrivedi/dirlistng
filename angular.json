@@ -63,6 +63,8 @@
                   "maximumError": "10kb"
                 }
               ]
+            },            
+            "dev": {
             }
           }
         },
@@ -74,6 +76,9 @@
           "configurations": {
             "production": {
               "browserTarget": "dirlistng:build:production"
+            },
+            "dev": {
+              "browserTarget": "dirlistng:build:dev"
             }
           }
         },

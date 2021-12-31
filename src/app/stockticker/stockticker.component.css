@@ -10,10 +10,19 @@ img
     justify-content: space-between;
 }
 
-ibm-line-chart
+.ticker
+{
+    border: 1px solid black;
+}
+
+/* app-val-graph
 {
     height: auto;
-    width: 65%;
+    width: 85%;
+} */
+.graph-container
+{
+    width: 85%;
 }
 
 nz-table
@@ -33,10 +42,23 @@ tr:nth-child(odd)
 .log
 {
     padding: 5px;
-    width: 15%;
     height: 350px;
     overflow-y: scroll;
     border: 1px solid rgb(10, 10, 10);
+}
+
+#stock.log
+{
+    width: 15%;
+}
+#player.log
+{
+    width: 20%;
+}
+.div
+{
+   /* background-color: sandybrown;
+   color :black; */
 }
 
 p.ng-star-inserted
@@ -53,13 +75,7 @@ p.ng-star-inserted
     background-color: rgba(0, 255, 0, 0.2);
 }
 
-
-.box
+.player-container
 {
-    float: left;
-    height: 15px;
-    width: 15px;
-    border: 1px solid black;
-    /* margin-bottom: 15px; */
-    /* clear: both; */
+    display: flex;
 }
