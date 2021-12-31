@@ -34,7 +34,7 @@
     "echarts": "^5.2.2",
     "echarts-gl": "^2.0.2",
     "hammerjs": "^2.0.8",
-    "ng-zorro-antd": "^10.2.2",
+    "ng-zorro-antd": "^13.0.0",
     "ngx-echarts": "^8.0.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
