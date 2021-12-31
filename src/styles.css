@@ -2,6 +2,15 @@
 
 /* @import '@angular/material/prebuilt-themes/purple-green.css'; */
 @import "~ng-zorro-antd/ng-zorro-antd.dark";
+
+/* Carbon */
+@import "@carbon/charts/styles-g100.css";
+
+@import "https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed|IBM+Plex+Sans:400,600&display=swap";
+@import "https://unpkg.com/carbon-components/css/carbon-components.min.css";
+/* Carbon */
+
+
 /* *
 {
   padding: 0;

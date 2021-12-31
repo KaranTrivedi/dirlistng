@@ -1,1 +1,56 @@
-<div echarts [options]="options" class="demo-chart"></div>
+<!-- <app-val-graph [title]="title"></app-val-graph> -->
+
+<h1>Stockticker, Turn Number: {{turn_num}}</h1>
+
+<div class="stock-data-container">
+    <nz-table #basicTable [nzData]="stocks" [nzShowPagination]="false">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th [nzSortFn]="true">Value</th>
+            <th>Trend</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let stock of basicTable.data">
+            <td>
+                <div [ngStyle]="{
+                    'background-color' : '+stock?.color+',
+                    'height': '15px',
+                    'float': 'left',
+                    'width': '15px',
+                    'border': '1px solid black'}">
+                </div>
+                {{ stock.name }}
+            </td>
+            <td>{{ stock.values[stock.values.length-1] }}</td>
+            <td><img *ngIf="stock?.change == 'up'" src="../../assets/up-arrow-more.png" alt="">
+                <img *ngIf="stock?.change == 'down'" src="../../assets/down-arrow-more.png" alt="">
+                <img *ngIf="stock?.change == 'nil'" src="../../assets/no-change.png" alt="">
+                {{stock.delta}}
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+
+    <ibm-line-chart [data]="data" [options]="options"></ibm-line-chart>
+    
+    <div class="log">
+        <h4>Events</h4>
+        <p *ngFor="let log of logs" [ngClass]="log?.action">
+            <span *ngIf="log?.type == 0">
+                Turn: {{log?.turn_num}} : {{log?.name}}
+                <img *ngIf="log?.action == 'up'" src="../../assets/up-arrow-more.png" alt="">
+                <img *ngIf="log?.action == 'down'" src="../../assets/down-arrow-more.png" alt="">
+                <img *ngIf="log?.action == 'div'" src="../../assets/no-change.png" alt="">
+                {{log?.amount}} to {{log?.value}}
+            </span>
+            <span *ngIf="log?.type == 1" [ngClass]='{"margin-left": "10px"}'>
+                {{log?.name}} {{log?.action}}!
+            </span>
+        </p>
+    </div>
+</div>
+
+<button nz-button nzType="primary" (click)="onTurn(-1)">Reset</button>
+<button nz-button nzType="primary" (click)="onTurn(10)">10 Turns</button>

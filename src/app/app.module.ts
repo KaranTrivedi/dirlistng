@@ -49,71 +49,79 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { StocktickerComponent } from './stockticker/stockticker.component';
+import { ValGraphComponent } from './stockticker/val-graph/val-graph.component';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzTableModule } from 'ng-zorro-antd/table';
 
-import { NgxEchartsModule } from 'ngx-echarts';
+// import { NgxEchartsModule } from 'ngx-echarts';
+// import { NgxChartsModule } from '@swimlane/ngx-charts';
+
+import { ChartsModule } from "@carbon/charts-angular";
 
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DirectoryComponent,
-    SearchComponent,
-    HeaderComponent,
-    VideoPopupComponent,
-    ImagesComponent,
-    TestSamplesComponent,
-    StocktickerComponent
-  ],
-  imports: [
+    declarations: [
+        AppComponent,
+        DirectoryComponent,
+        SearchComponent,
+        HeaderComponent,
+        VideoPopupComponent,
+        ImagesComponent,
+        TestSamplesComponent,
+        StocktickerComponent,
+        ValGraphComponent
+      ],
+      imports: [
+        // NgxEchartsModule.forRoot({
+          //     echarts: () => import('echarts'),
+          // }),
+          // NgxChartsModule,
+          
+        ChartsModule,
 
-    NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'),
-    }),
-
-    NzLayoutModule,
-    NzFormModule,
-    NzIconModule,
-    NzButtonModule,
-    NzInputModule,
-    NzDatePickerModule,
-    NzBreadCrumbModule,
-    NzDividerModule,
-
-    // MatCardModule,
-    ClipboardModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    MatListModule,
-    MatSidenavModule,
-    MatRippleModule,
-    MatDialogModule,
-    MatButtonToggleModule,
-    MatSortModule,
-    // MatToolbarModule,
-    MatPaginatorModule,
-    MatMenuModule,
-    MatIconModule,
-    MatExpansionModule,
-    MatDividerModule,
-    MatInputModule,
-    MatTabsModule,
-    MatButtonModule,
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    NgbModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
-  providers:
-  [
-    ApiService,
-    { provide: NZ_I18N, useValue: en_US },
-    // {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {}}
-  ],
-  bootstrap: [AppComponent],
-  entryComponents: [VideoPopupComponent]
+        NzTableModule,
+        NzMessageModule,
+        NzLayoutModule,
+        NzFormModule,
+        NzIconModule,
+        NzButtonModule,
+        NzInputModule,
+        NzDatePickerModule,
+        NzBreadCrumbModule,
+        NzDividerModule,
+        // MatCardModule,
+        ClipboardModule,
+        MatToolbarModule,
+        MatTooltipModule,
+        MatListModule,
+        MatSidenavModule,
+        MatRippleModule,
+        MatDialogModule,
+        MatButtonToggleModule,
+        MatSortModule,
+        // MatToolbarModule,
+        MatPaginatorModule,
+        MatMenuModule,
+        MatIconModule,
+        MatExpansionModule,
+        MatDividerModule,
+        MatInputModule,
+        MatTabsModule,
+        MatButtonModule,
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        NgbModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+      ],
+      providers: [
+        ApiService,
+        { provide: NZ_I18N, useValue: en_US },
+        // {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {}}
+      ],
+      bootstrap: [AppComponent]
 })
 export class AppModule {}

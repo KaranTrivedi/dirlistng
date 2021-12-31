@@ -1,0 +1,65 @@
+
+img
+{
+    height: 1rem;
+}
+
+.stock-data-container
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+ibm-line-chart
+{
+    height: auto;
+    width: 65%;
+}
+
+nz-table
+{
+    width: 15%;
+}
+
+tr:nth-child(even)
+{
+    background-color: rgb(0, 0, 0);
+}
+tr:nth-child(odd)
+{
+    background-color: rgb(10, 10, 10);
+}
+
+.log
+{
+    padding: 5px;
+    width: 15%;
+    height: 350px;
+    overflow-y: scroll;
+    border: 1px solid rgb(10, 10, 10);
+}
+
+p.ng-star-inserted
+{
+    margin: 0;
+}
+.bust
+{
+    background: rgba(255, 0, 0, 0.4);
+}
+
+.split
+{
+    background-color: rgba(0, 255, 0, 0.2);
+}
+
+
+.box
+{
+    float: left;
+    height: 15px;
+    width: 15px;
+    border: 1px solid black;
+    /* margin-bottom: 15px; */
+    /* clear: both; */
+}
