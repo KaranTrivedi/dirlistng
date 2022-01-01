@@ -323,6 +323,7 @@ export class StocktickerComponent implements OnInit
                     }
                     catch (error)
                     {
+                        console.log(error)
                         this.stocks[j]["delta"] = 0
                     }
 

@@ -54,7 +54,8 @@ import { ValGraphComponent } from './stockticker/val-graph/val-graph.component';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzTableModule } from 'ng-zorro-antd/table';
 
-// import { NgxEchartsModule } from 'ngx-echarts';
+import { NgxEchartsModule } from 'ngx-echarts';
+
 // import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { ChartsModule } from "@carbon/charts-angular";
@@ -82,11 +83,11 @@ registerLocaleData(en);
         StandingsComponent
       ],
       imports: [
-        // NgxEchartsModule.forRoot({
-          //     echarts: () => import('echarts'),
-          // }),
-          // NgxChartsModule,
-          
+        NgxEchartsModule.forRoot({
+              echarts: () => import('echarts'),
+          }),
+
+        // NgxChartsModule,
         ChartsModule,
 
         NzDropDownModule,
