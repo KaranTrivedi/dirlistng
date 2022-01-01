@@ -122,6 +122,11 @@ export class StocktickerComponent implements OnInit
         {
             this.onTurn(-1)
         }
+        if(event.key == "Insert")
+        {
+            this.paused = !this.paused
+            this.playpause()
+        }
     }
 
     ngOnInit(): void
@@ -413,43 +418,6 @@ export class StocktickerComponent implements OnInit
             // AI Player moves
             for(i=0;i<this.players.length;i++)
             {
-                // buy stock
-                if([true, true, true, false][this.stockService.getDiscreteRandom(3)])
-                {
-                    var stk_cnt = this.stockService.getDiscreteRandom(this.stocks.length)
-                    for(j=0;j<stk_cnt;j++)
-                    {
-                        var stock_index = this.stockService.getDiscreteRandom(this.stocks.length)
-                        if(this.stocks[stock_index]["values"][this.turn_num-1]*500 < this.players[i]["coh"])
-                        {
-                            var amt = this.stockService.getRandom(500, this.players[i]["coh"]/this.stocks[stock_index]["values"][this.turn_num-1])
-                            var buy_count = ((amt - (amt % 500)) / 500)*500
-
-                            if(this.players[i]["holdings"].hasOwnProperty(this.stocks[stock_index]["name"]))
-                            {
-                                this.players[i]["holdings"][this.stocks[stock_index]["name"]] += buy_count
-                            }
-                            else
-                            {
-                                this.players[i]["holdings"][this.stocks[stock_index]["name"]] = buy_count
-                            }
-
-                            this.players[i]["logs"].unshift(
-                                {
-                                    "type": 0,
-                                    "action": "buy",
-                                    "count": buy_count,
-                                    "worth": buy_count*this.stocks[stock_index]["values"][this.turn_num-1],
-                                    "name": this.stocks[stock_index]["name"],
-                                    "at": this.stocks[stock_index]["values"][this.turn_num-1],
-                                }
-                            )
-                            this.players[i].logs = this.players[i].logs.splice(0, 50);
-                            this.players[i]["coh"] -= buy_count*this.stocks[stock_index]["values"][this.turn_num-1]
-                        }
-                    }
-                }
-
                 // Sell action.
                 if([true, false][this.stockService.getDiscreteRandom(2)])
                 {
@@ -487,6 +455,42 @@ export class StocktickerComponent implements OnInit
                     }
                 }
 
+                // buy stock
+                if([true, true, true, false][this.stockService.getDiscreteRandom(3)])
+                {
+                    var stk_cnt = this.stockService.getDiscreteRandom(this.stocks.length)
+                    for(j=0;j<stk_cnt;j++)
+                    {
+                        var stock_index = this.stockService.getDiscreteRandom(this.stocks.length)
+                        if(this.stocks[stock_index]["values"][this.turn_num-1]*500 < this.players[i]["coh"])
+                        {
+                            var amt = this.stockService.getRandom(500, this.players[i]["coh"]/this.stocks[stock_index]["values"][this.turn_num-1])
+                            var buy_count = ((amt - (amt % 500)) / 500)*500
+
+                            if(this.players[i]["holdings"].hasOwnProperty(this.stocks[stock_index]["name"]))
+                            {
+                                this.players[i]["holdings"][this.stocks[stock_index]["name"]] += buy_count
+                            }
+                            else
+                            {
+                                this.players[i]["holdings"][this.stocks[stock_index]["name"]] = buy_count
+                            }
+
+                            this.players[i]["logs"].unshift(
+                                {
+                                    "type": 0,
+                                    "action": "buy",
+                                    "count": buy_count,
+                                    "worth": buy_count*this.stocks[stock_index]["values"][this.turn_num-1],
+                                    "name": this.stocks[stock_index]["name"],
+                                    "at": this.stocks[stock_index]["values"][this.turn_num-1],
+                                }
+                            )
+                            this.players[i].logs = this.players[i].logs.splice(0, 50);
+                            this.players[i]["coh"] -= buy_count*this.stocks[stock_index]["values"][this.turn_num-1]
+                        }
+                    }
+                }
                 this.players[i]["market_val"] = 0
                 if(this.players[i]["holdings"])
                 {

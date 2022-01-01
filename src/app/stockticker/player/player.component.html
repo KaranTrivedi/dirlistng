@@ -35,17 +35,21 @@
         </h5>
         <!-- <h5>Recent Player </h5> -->
         <p *ngFor="let log of player.logs" [ngStyle]="playerLogStyle(log?.type, log?.action)">
+            <!-- Buy sell -->
             <span *ngIf="log?.type == 0">
-                {{log?.action}} {{log?.count}} of {{log?.name}} for ${{log?.worth}}@${{log?.at}}
+                {{log?.action}} {{log?.count | number }} of <span [ngStyle]="setBoxStyle(log?.name)"></span> {{log?.name}} for ${{log?.worth | number}}@${{log?.at}}
             </span>
+            <!-- Bust split -->
             <span *ngIf="log?.type == 1">
-                {{log?.turn_num}}: {{log?.count}} {{log?.name}} {{log?.action}}
+                {{log?.turn_num}}: {{log?.count | number}} <span [ngStyle]="setBoxStyle(log?.name)"></span> {{log?.name}} {{log?.action}}
             </span>
+            <!-- Dividend! -->
             <span *ngIf="log?.type == 2">
-                {{log?.turn_num}}: {{log?.name}} {{log?.action}} @${{log?.at}} ${{log?.worth}}
+                {{log?.turn_num}}: <span [ngStyle]="setBoxStyle(log?.name)"></span>{{log?.name}} {{log?.action}} @${{log?.at}} ${{log?.worth | number}}
             </span>
         </p>
     </div>
     <app-holdings-pie [scale]="scale" [holdings]="holdings"></app-holdings-pie>
     <app-worth-pie [worth]="worth"></app-worth-pie>
+    <app-standings [players]="players"></app-standings>
 </div>

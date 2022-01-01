@@ -14,6 +14,7 @@ export class PlayerComponent implements OnInit, OnChanges
   holdings
   worth
   player
+  standings;
 
   constructor() {}
 
@@ -45,23 +46,23 @@ export class PlayerComponent implements OnInit, OnChanges
         }
         this.selectPlayer(this.index)
       }
-  }
-
-  ngOnInit()
-  {
-    this.selectPlayer(0)
-    this.index = 0
-  }
-  ngOnChanges(change)
-  {
-    if(this.player)
-    {
-      this.holdings = Object.assign({}, this.player.holdings)
-      this.worth = Object.assign({}, {
-       "Cash" : this.player.coh,
-       "Market Value" : this.player.market_val
-      })
     }
+    
+    ngOnInit()
+    {
+      this.selectPlayer(0)
+      this.index = 0
+    }
+    ngOnChanges()
+    {
+      if(this.player)
+      {
+        this.holdings = Object.assign({}, this.player.holdings)
+        this.worth = Object.assign({}, {
+        "Cash" : this.player.coh,
+        "Market Value" : this.player.market_val
+        })
+      }
   }
 
   selectPlayer(i)
@@ -75,6 +76,18 @@ export class PlayerComponent implements OnInit, OnChanges
      })
   }
 
+  setBoxStyle(player)
+  {
+    var styles = {
+      'background-color' : this.scale[player],
+      'height': '15px',
+      'width': '15px',
+      'border': '1px solid black',
+      'display': 'inline-block',
+      'vertical-align': 'sub',
+  }
+  return styles
+  }
   playerLogStyle(type, action)
   {
       if(type == 2 || (type == 1 && action == "doubled!"))

@@ -60,10 +60,14 @@ tr:nth-child(odd)
    /* background-color: sandybrown;
    color :black; */
 }
-
 p.ng-star-inserted
 {
     margin: 0;
+}
+
+.player-container
+{
+    display: flex;
 }
 .bust
 {

@@ -61,6 +61,7 @@ import { ChartsModule } from "@carbon/charts-angular";
 import { HoldingsPieComponent } from './stockticker/player/holdings-pie/holdings-pie.component';
 import { PlayerComponent } from './stockticker/player/player.component';
 import { WorthPieComponent } from './stockticker/player/worth-pie/worth-pie.component';
+import { StandingsComponent } from './stockticker/player/standings/standings.component';
 
 registerLocaleData(en);
 
@@ -77,7 +78,8 @@ registerLocaleData(en);
         ValGraphComponent,
         HoldingsPieComponent,
         PlayerComponent,
-        WorthPieComponent
+        WorthPieComponent,
+        StandingsComponent
       ],
       imports: [
         // NgxEchartsModule.forRoot({
