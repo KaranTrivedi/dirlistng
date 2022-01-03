@@ -1,1 +1,17 @@
-<ibm-donut-chart [data]="data" [options]="options"></ibm-donut-chart>
+<!-- <ibm-donut-chart [data]="data" [options]="options"></ibm-donut-chart> -->
+
+<div class="worth">
+    <h5>
+        Net Worth
+    </h5>
+
+    <ngx-charts-pie-chart
+        animations = 'false'
+        [doughnut]="'true'"
+        [animations]="animations"
+        [legend]="'true'"
+        [legendPosition]="'below'"
+        [results]="results"
+        [scheme]="colorScheme"
+    ></ngx-charts-pie-chart>
+</div>

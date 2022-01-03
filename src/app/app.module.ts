@@ -53,12 +53,12 @@ import { StocktickerComponent } from './stockticker/stockticker.component';
 import { ValGraphComponent } from './stockticker/val-graph/val-graph.component';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzSliderModule } from 'ng-zorro-antd/slider';
 
-import { NgxEchartsModule } from 'ngx-echarts';
-
-// import { NgxChartsModule } from '@swimlane/ngx-charts';
-
+// import { NgxEchartsModule } from 'ngx-echarts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartsModule } from "@carbon/charts-angular";
+
 import { HoldingsPieComponent } from './stockticker/player/holdings-pie/holdings-pie.component';
 import { PlayerComponent } from './stockticker/player/player.component';
 import { WorthPieComponent } from './stockticker/player/worth-pie/worth-pie.component';
@@ -83,13 +83,14 @@ registerLocaleData(en);
         StandingsComponent
       ],
       imports: [
-        NgxEchartsModule.forRoot({
-              echarts: () => import('echarts'),
-          }),
+        // NgxEchartsModule.forRoot({
+        //       echarts: () => import('echarts'),
+        //   }),
 
-        // NgxChartsModule,
+        NgxChartsModule,
         ChartsModule,
 
+        NzSliderModule,
         NzDropDownModule,
         NzTableModule,
         NzMessageModule,

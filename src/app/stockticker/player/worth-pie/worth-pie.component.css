@@ -1,6 +1,11 @@
-ibm-donut-chart
+/* ibm-donut-chart
 {
     height: auto;
     min-height: 300px;
     max-height: 300px;
+} */
+
+.worth
+{
+    height: 300px;
 }

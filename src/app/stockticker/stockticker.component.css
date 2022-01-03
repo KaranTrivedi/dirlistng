@@ -1,4 +1,9 @@
-
+.header
+{
+    margin: 3px;
+    display: flex;
+    justify-content: space-between;
+}
 img
 {
     height: 1rem;
@@ -10,6 +15,18 @@ img
     justify-content: space-between;
 }
 
+.stock-graph
+{
+    margin: 3px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.stock
+{
+    display: inline-block;
+    justify-items: stretch;
+}
 .ticker
 {
     border: 1px solid black;

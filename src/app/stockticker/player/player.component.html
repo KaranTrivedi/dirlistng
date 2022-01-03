@@ -1,55 +1,102 @@
-<a nz-dropdown nzTrigger="click"nzTrigger="click" [nzDropdownMenu]="menu">
-    {{player.name}}
+<a matTooltip="Hotkey: PageUp ↑ PageDown ↓" nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+    Players
     <i nz-icon nzType="down"></i>
-  </a>
-  <nz-dropdown-menu #menu="nzDropdownMenu">
+</a>
+<nz-dropdown-menu #menu="nzDropdownMenu">
     <ul nz-menu nzSelectable>
-      <li *ngFor="let _player of players; let i = index" (click)="selectPlayer(i)" nz-menu-item>{{_player.name}}</li>
+        <li *ngFor="let _player of players; let i = index" (click)="selectPlayer(i)" nz-menu-item>{{_player.name}}</li>
     </ul>
 </nz-dropdown-menu>
 
 <div class="player-container">
-    <!-- <pre>
-        {{player | json}}
-    </pre> -->
-
-    <!-- <div>
-        <h5>
-            {{player?.name}}
-        </h5>
-        <p>
-            net worth: ${{player?.net_worth}}
-            <br>
-            market worth: ${{player?.market_val}}, coh: ${{player?.coh}}
-        </p>
-
-        <h6>Holdings</h6>
-        <div *ngFor="let holding of player?.holdings | keyvalue">
-            {{holding.key}}: {{holding.value}}
+    <div class="con" style="display: flex;width: 100%;">
+        <div class="log" id="player">
+            <h5>
+                {{player?.name}}'s Activity
+            </h5>
+            <!-- <h5>Recent Player </h5> -->
+            <p *ngFor="let log of player.logs" [ngStyle]="playerLogStyle(log?.type, log?.action)">
+                <!-- Buy sell -->
+                <span *ngIf="log?.type == 0">
+                    {{log?.action}} {{log?.count | number }} of <span [ngStyle]="setBoxStyle(log?.name)"></span> {{log?.name}} for {{log?.worth | currency}}@${{log?.at}}
+                </span>
+                <!-- Bust split -->
+                <span *ngIf="log?.type == 1">
+                    {{log?.turn_num}}: {{log?.count | number}} <span [ngStyle]="setBoxStyle(log?.name)"></span> {{log?.name}} {{log?.action}}
+                </span>
+                <!-- Dividend! -->
+                <span *ngIf="log?.type == 2">
+                    {{log?.turn_num}}: {{log?.count | number}} <span [ngStyle]="setBoxStyle(log?.name)"></span>{{log?.name}} paid {{log?.action}} @${{log?.at}} for {{log?.worth | currency}}
+                </span>
+            </p>
         </div>
-    </div> -->
+    
+        <!-- *ngIf="player.type=='human'" -->
+        <div class="actions">
+            <h5>
+                Actions Available,  {{ player.coh | currency}} on hand
+            </h5>
 
-    <div class="log" id="player">
-        <h5>
-            {{player?.name}} Activity
-        </h5>
-        <!-- <h5>Recent Player </h5> -->
-        <p *ngFor="let log of player.logs" [ngStyle]="playerLogStyle(log?.type, log?.action)">
-            <!-- Buy sell -->
-            <span *ngIf="log?.type == 0">
-                {{log?.action}} {{log?.count | number }} of <span [ngStyle]="setBoxStyle(log?.name)"></span> {{log?.name}} for ${{log?.worth | number}}@${{log?.at}}
-            </span>
-            <!-- Bust split -->
-            <span *ngIf="log?.type == 1">
-                {{log?.turn_num}}: {{log?.count | number}} <span [ngStyle]="setBoxStyle(log?.name)"></span> {{log?.name}} {{log?.action}}
-            </span>
-            <!-- Dividend! -->
-            <span *ngIf="log?.type == 2">
-                {{log?.turn_num}}: <span [ngStyle]="setBoxStyle(log?.name)"></span>{{log?.name}} {{log?.action}} @${{log?.at}} ${{log?.worth | number}}
-            </span>
-        </p>
+            <div class="sell-action" *ngIf="!isEmpty(holdings)">
+                <h6>
+                    Available to Sell<span *ngIf="potential_gains > 0">, Gains {{potential_gains | currency}}</span>
+                </h6>
+                <div *ngFor="let holding of holdings | keyvalue" style="width: 100%;">
+                    <div style="display: flex;width: 100%;">
+                        <div>
+                            <span [ngStyle]="setBoxStyle(holding.key)"></span> {{holding.key}}:
+                        </div>&nbsp;
+                        <div>
+                            {{holding.value | number}}
+                        </div>&nbsp;
+                        <div>
+                            worth {{to_sell[holding.key][0] | currency}}@{{to_sell[holding.key][1] | currency}}
+                        </div>
+                    </div>
+                    <!-- id="{{ 'myslider' + i }} -->
+                    <nz-slider
+                        *ngIf="player.type=='human'"
+                        [(ngModel)]="sell_amount[holding.key]"
+                        [nzMin]="0"
+                        (nzOnAfterChange)="setSellSlider()"
+                        [nzMax]="holding.value"
+                        [nzStep]="500"
+                        id="holding.key"
+                    >
+                    </nz-slider>
+                </div>
+                <h6>
+                    Total holdings worth: {{player.market_val | currency}}
+                </h6>
+            </div>
+            <div class="buy-action" *ngIf="checkBuy()">
+                <h6>
+                    Available to Buy<span *ngIf="cash_required>0">,</span>&nbsp;
+                    <span *ngIf="cash_required>0" [ngStyle]="cashHeaderStyle()">Cash needed {{ cash_required | currency}}</span>
+                </h6>
+
+                <div *ngFor="let stock of stocks;let i = index">
+                    <span *ngIf="to_buy[i] > 0">
+                        <span [ngStyle]="setBoxStyle(stock.name)"></span> {{stock.name}}: {{to_buy[i] | number }}@{{stock.values[stock.values.length-1] | currency}}
+                    </span>
+                    <nz-slider
+                        *ngIf="to_buy[i] > 0 && player.type=='human'"
+                        [(ngModel)]="buy_amount[stock.name]"
+                        [nzMin]="0"
+                        (nzOnAfterChange)="setBuySlider()"
+                        [nzStep]="500"
+                        [nzMax]="to_buy[i]"
+                        id="stock.name"
+                    >
+                    </nz-slider>
+                </div>
+            </div>
+            <button nz-button matTooltip="Hotkey: Enter" nzType="primary" *ngIf="player.type=='human'" [disabled]="!order_valid" (click)="process()">Process Order</button>
+            <button nz-button matTooltip="Hotkey: Backspace" nzType="primary" *ngIf="player.type=='human'" (click)="resetOrder()" nzDanger>Reset Order</button>
+        </div>
+
+        <app-worth-pie class="worth" [worth]="worth"></app-worth-pie>
+        <app-holdings-pie *ngIf="!isEmpty(holdings)" class="holdings" [domain]="domain" [scale]="scale" [holdings]="holdings"></app-holdings-pie>
     </div>
-    <app-holdings-pie [scale]="scale" [holdings]="holdings"></app-holdings-pie>
-    <app-worth-pie [worth]="worth"></app-worth-pie>
-    <app-standings [players]="players"></app-standings>
+    <app-standings class="standings" [players]="players"></app-standings>
 </div>

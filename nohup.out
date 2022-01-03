@@ -1,0 +1,276 @@
+Warning: This is a simple server for use in testing or debugging Angular applications
+locally. It hasn't been reviewed for security issues.
+
+Binding this server to an open connection can result in compromising your application or
+computer. Using a different host than the one passed to the "--host" flag might result in
+websocket connection issues. You might need to use "--disable-host-check" if that's the
+case.
+****************************************************************************************
+This is a simple server for use in testing or debugging Angular applications locally.
+It hasn't been reviewed for security issues.
+
+DON'T USE IT FOR PRODUCTION!
+****************************************************************************************
+- Generating browser application bundles (phase: setup)...
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files   | Names         |  Raw Size | Estimated Transfer Size
+main.js               | main          |   1.96 MB |               395.30 kB
+styles.css, styles.js | styles        |   1.45 MB |               127.26 kB
+polyfills.js          | polyfills     | 173.81 kB |                45.77 kB
+runtime.js            | runtime       |   1.33 kB |               716 bytes
+
+| Initial Total |   3.59 MB |               569.03 kB
+
+Build at: 2022-01-02T17:28:56.093Z - Hash: 89f59a1b72da7c44 - Time: 10292ms
+
+Warning: /home/karan/projects/dirlistng/node_modules/@carbon/charts/configuration.js depends on 'date-fns/locale/en-US/index'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: /home/karan/projects/dirlistng/node_modules/@swimlane/ngx-charts/__ivy_ngcc__/fesm2015/swimlane-ngx-charts.js depends on 'clone-deep'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: 1 rules skipped due to selector errors:
+  .custom-file-input:lang(en)~.custom-file-label -> unmatched pseudo-class :lang
+
+
+
+** Angular Live Development Server is listening on 0.0.0.0:4200, open your browser on http://localhost:4200/ **
+
+
+✔ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names   | Raw Size | Estimated Transfer Size
+main.js             | main    |  1.96 MB |               395.24 kB
+runtime.js          | runtime |  1.33 kB |               722 bytes
+
+2 unchanged chunks
+
+Build at: 2022-01-02T17:31:07.749Z - Hash: a40d72c73500b6cd - Time: 16908ms
+
+Warning: 1 rules skipped due to selector errors:
+  .custom-file-input:lang(en)~.custom-file-label -> unmatched pseudo-class :lang
+
+
+
+✔ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names   | Raw Size | Estimated Transfer Size
+main.js             | main    |  1.96 MB |               395.24 kB
+runtime.js          | runtime |  1.33 kB |               717 bytes
+
+2 unchanged chunks
+
+Build at: 2022-01-02T17:32:43.312Z - Hash: 5942fafdac9013cd - Time: 16985ms
+
+Warning: 1 rules skipped due to selector errors:
+  .custom-file-input:lang(en)~.custom-file-label -> unmatched pseudo-class :lang
+
+
+
+✔ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names   | Raw Size | Estimated Transfer Size
+main.js             | main    |  1.96 MB |               395.13 kB
+runtime.js          | runtime |  1.33 kB |               719 bytes
+
+2 unchanged chunks
+
+Build at: 2022-01-02T17:33:17.230Z - Hash: cf5e5a72c3ef6fc2 - Time: 16642ms
+
+Warning: 1 rules skipped due to selector errors:
+  .custom-file-input:lang(en)~.custom-file-label -> unmatched pseudo-class :lang
+
+
+
+✔ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names   | Raw Size | Estimated Transfer Size
+main.js             | main    |  1.96 MB |               395.04 kB
+runtime.js          | runtime |  1.33 kB |               717 bytes
+
+2 unchanged chunks
+
+Build at: 2022-01-02T17:44:34.973Z - Hash: 35fc6f50d9db5fe3 - Time: 16891ms
+
+Warning: 1 rules skipped due to selector errors:
+  .custom-file-input:lang(en)~.custom-file-label -> unmatched pseudo-class :lang
+
+
+
+Error: src/app/stockticker/player/player.component.ts:94:49 - error TS2554: Expected 0-1 arguments, but got 2.
+
+94   this.processOrderEvent.emit(this.sell_amount, this.buy_amount);
+                                                   ~~~~~~~~~~~~~~~
+
+
+
+
+✖ Failed to compile.
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names   | Raw Size | Estimated Transfer Size
+main.js             | main    |  1.96 MB |               395.18 kB
+runtime.js          | runtime |  1.33 kB |               720 bytes
+
+2 unchanged chunks
+
+Build at: 2022-01-02T17:49:06.185Z - Hash: e884be5d60a4c47c - Time: 16962ms
+
+Warning: 1 rules skipped due to selector errors:
+  .custom-file-input:lang(en)~.custom-file-label -> unmatched pseudo-class :lang
+
+
+
+✔ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names   | Raw Size | Estimated Transfer Size
+main.js             | main    |  1.96 MB |               395.67 kB
+runtime.js          | runtime |  1.33 kB |               715 bytes
+
+2 unchanged chunks
+
+Build at: 2022-01-02T17:56:48.106Z - Hash: 915fb3592b563c08 - Time: 17543ms
+
+Warning: 1 rules skipped due to selector errors:
+  .custom-file-input:lang(en)~.custom-file-label -> unmatched pseudo-class :lang
+
+
+
+Error: src/app/stockticker/player/player.component.html:80:45 - error TS2551: Property 'holding' does not exist on type 'PlayerComponent'. Did you mean 'holdings'?
+
+80                     [(ngModel)]="buy_amount[holding.key]"
+                                               ~~~~~~~
+
+  src/app/stockticker/player/player.component.ts:7:16
+    7   templateUrl: './player.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PlayerComponent.
+
+
+Error: src/app/stockticker/player/player.component.html:80:45 - error TS2551: Property 'holding' does not exist on type 'PlayerComponent'. Did you mean 'holdings'?
+
+80                     [(ngModel)]="buy_amount[holding.key]"
+                                               ~~~~~~~
+
+  src/app/stockticker/player/player.component.ts:7:16
+    7   templateUrl: './player.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PlayerComponent.
+
+
+Error: src/app/stockticker/player/player.component.html:82:40 - error TS2339: Property 'setBuySlider' does not exist on type 'PlayerComponent'.
+
+82                     (nzOnAfterChange)="setBuySlider()"
+                                          ~~~~~~~~~~~~
+
+  src/app/stockticker/player/player.component.ts:7:16
+    7   templateUrl: './player.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PlayerComponent.
+
+
+Error: src/app/stockticker/player/player.component.html:83:30 - error TS2551: Property 'stock' does not exist on type 'PlayerComponent'. Did you mean 'stocks'?
+
+83                     [nzMax]="stock.values[stock.values.length-1]"
+                                ~~~~~
+
+  src/app/stockticker/player/player.component.ts:7:16
+    7   templateUrl: './player.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PlayerComponent.
+
+
+Error: src/app/stockticker/player/player.component.html:83:43 - error TS2551: Property 'stock' does not exist on type 'PlayerComponent'. Did you mean 'stocks'?
+
+83                     [nzMax]="stock.values[stock.values.length-1]"
+                                             ~~~~~
+
+  src/app/stockticker/player/player.component.ts:7:16
+    7   templateUrl: './player.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PlayerComponent.
+
+
+
+
+✖ Failed to compile.
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names   | Raw Size | Estimated Transfer Size
+main.js             | main    |  1.96 MB |               395.51 kB
+runtime.js          | runtime |  1.33 kB |               716 bytes
+
+2 unchanged chunks
+
+Build at: 2022-01-02T17:57:18.954Z - Hash: b0ac3755f3ad56c9 - Time: 16622ms
+
+Warning: 1 rules skipped due to selector errors:
+  .custom-file-input:lang(en)~.custom-file-label -> unmatched pseudo-class :lang
+
+
+
+Error: src/app/stockticker/player/player.component.html:80:45 - error TS2551: Property 'stock' does not exist on type 'PlayerComponent'. Did you mean 'stocks'?
+
+80                     [(ngModel)]="buy_amount[stock.name]"
+                                               ~~~~~
+
+  src/app/stockticker/player/player.component.ts:7:16
+    7   templateUrl: './player.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PlayerComponent.
+
+
+Error: src/app/stockticker/player/player.component.html:80:45 - error TS2551: Property 'stock' does not exist on type 'PlayerComponent'. Did you mean 'stocks'?
+
+80                     [(ngModel)]="buy_amount[stock.name]"
+                                               ~~~~~
+
+  src/app/stockticker/player/player.component.ts:7:16
+    7   templateUrl: './player.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PlayerComponent.
+
+
+Error: src/app/stockticker/player/player.component.html:82:40 - error TS2339: Property 'setBuySlider' does not exist on type 'PlayerComponent'.
+
+82                     (nzOnAfterChange)="setBuySlider()"
+                                          ~~~~~~~~~~~~
+
+  src/app/stockticker/player/player.component.ts:7:16
+    7   templateUrl: './player.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PlayerComponent.
+
+
+Error: src/app/stockticker/player/player.component.html:83:30 - error TS2551: Property 'stock' does not exist on type 'PlayerComponent'. Did you mean 'stocks'?
+
+83                     [nzMax]="stock.values[stock.values.length-1]"
+                                ~~~~~
+
+  src/app/stockticker/player/player.component.ts:7:16
+    7   templateUrl: './player.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PlayerComponent.
+
+
+Error: src/app/stockticker/player/player.component.html:83:43 - error TS2551: Property 'stock' does not exist on type 'PlayerComponent'. Did you mean 'stocks'?
+
+83                     [nzMax]="stock.values[stock.values.length-1]"
+                                             ~~~~~
+
+  src/app/stockticker/player/player.component.ts:7:16
+    7   templateUrl: './player.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PlayerComponent.
+
+
+
+
+✖ Failed to compile.
+✔ Browser application bundle generation complete.

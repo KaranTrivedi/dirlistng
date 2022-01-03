@@ -1,3 +1,8 @@
+.bx--cc--grid.rect.chart-grid-backdrop
+{
+    fill: black;
+}
+
 ibm-line-chart
 {
     height: auto;

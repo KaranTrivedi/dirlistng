@@ -1,25 +1,66 @@
-.log
-{
-    padding: 5px;
-    height: 350px;
-    overflow-y: scroll;
-    border: 1px solid rgb(10, 10, 10);
-}
-
-#stock.log
-{
-    width: 15%;
-}
-
 p.ng-star-inserted
 {
     margin: 0;
 }
-#player.log
-{
-    width: 20%;
-}
+
 .player-container
 {
     display: flex;
+    justify-content: space-between;
+    height: 400px;
+}
+
+.log
+{
+    margin: 3px;
+    padding: 5px;
+    height: 400px;
+    overflow-y: scroll;
+    border: 1px solid rgb(10, 10, 10);
+    width: 25%;
+}
+
+.actions
+{
+    margin: 3px;
+    overflow-y: scroll;
+    padding: 5px;
+    height: 400px;
+    border: 1px solid rgb(10, 10, 10);
+    width: 25%;
+}
+
+.buy-action, .sell-action
+{
+    margin: 3px;
+    overflow-y: scroll;
+    padding: 5px;
+    border: 1px solid rgb(10, 10, 10);
+}
+
+.holdings
+{
+    margin: 3px;
+    height: 400px;
+    padding: 5px;
+    border: 1px solid rgb(10, 10, 10);
+    width: 25%;
+}
+
+.worth
+{
+    margin: 3px;
+    height: 400px;
+    padding: 5px;
+    border: 1px solid rgb(10, 10, 10);
+    width: 25%;
+}
+
+.standings
+{
+    margin: 3px;
+    height: 400px;
+    padding: 5px;
+    border: 1px solid rgb(10, 10, 10);
+    width: 20%;
 }
