@@ -5,6 +5,8 @@
 </nav> -->
 
 <mat-nav-list>
+    <a (click)="onToggle()" mat-list-item [routerLink]='["blank"]' routerLinkActive="active"><mat-icon>check_box_outline_blank</mat-icon>&nbsp;Blank</a>
+    <mat-divider></mat-divider>
     <a (click)="onToggle()" mat-list-item [routerLink]='["directory"]' routerLinkActive="active"><mat-icon>folder</mat-icon>&nbsp;Directory</a>
     <mat-divider></mat-divider>
     <a (click)="onToggle()" mat-list-item [routerLink]='["search"]' routerLinkActive="active"><mat-icon>search</mat-icon>&nbsp;Search</a>
@@ -19,9 +21,11 @@
     <mat-divider></mat-divider>
     <a (click)="onToggle()" mat-list-item [routerLink]='["directory/downloads"]' routerLinkActive="active"><mat-icon>folder</mat-icon>&nbsp;Downloads</a>
     <mat-divider></mat-divider>
-    <a (click)="onToggle()" mat-list-item [routerLink]='["directory/archives/1. Movies"]' routerLinkActive="active"><mat-icon>folder</mat-icon>&nbsp;1. Movies</a>
+    <a (click)="onToggle()" mat-list-item [routerLink]='["directory/deluge"]' routerLinkActive="active"><mat-icon>folder</mat-icon>&nbsp;deluge</a>
     <mat-divider></mat-divider>
-    <a (click)="onToggle()" mat-list-item [routerLink]='["directory/archives/2. T.v. Shows"]' routerLinkActive="active"><mat-icon>folder</mat-icon>&nbsp;2. Shows</a>
+    <a (click)="onToggle()" mat-list-item [routerLink]='["directory/media/movies"]' routerLinkActive="active"><mat-icon>folder</mat-icon>&nbsp;movies</a>
+    <mat-divider></mat-divider>
+    <a (click)="onToggle()" mat-list-item [routerLink]='["directory/media/shows"]' routerLinkActive="active"><mat-icon>folder</mat-icon>&nbsp;shows</a>
     <mat-divider></mat-divider>
 </mat-nav-list>
  

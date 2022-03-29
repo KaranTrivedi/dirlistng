@@ -129,7 +129,7 @@
                 <mat-accordion hideToggle="true">
                     <div *ngFor="let file of shows?.files">
                         <mat-expansion-panel>
-                            <mat-expansion-panel-header>
+                            <mat-expansion-panel-header (click)="setName(file?.name)">
                                 <mat-panel-title>
                                     <mat-list>
                                         <mat-list-item>
@@ -154,7 +154,7 @@
                                 <br>
                                 <table>
                                     <tr>
-                                        <td>Name <i (click)="setName(file?.name)" nz-icon nzType="copy" nzTheme="outline"></i></td>
+                                        <td>Name</td>
                                         <td>{{file?.name}}</td>
                                     </tr>
                                     <tr>
@@ -173,12 +173,12 @@
                                 <div>
                                     <br>
                                     <p>
-                                        Copy to 1. Movies
+                                        Copy to movies
                                     </p>
-                                    <nz-input-group [nzSuffix]="inputClearTpl">
-                                        <input nz-input id="copy_name-{{file?.name}}" type="text" [(ngModel)]="copy_name"/>
+                                    <nz-input-group [nzSuffix]="inputClearTpl1">
+                                        <textarea style="height: 150px" nz-input id="copy_name-{{file?.name}}" type="text" [(ngModel)]="copy_name"></textarea>
                                     </nz-input-group>
-                                    <ng-template #inputClearTpl>
+                                    <ng-template #inputClearTpl1>
                                         <i nz-icon class="ant-input-clear-icon" 
                                             nzTheme="fill"
                                             nzType="close-circle"
@@ -186,7 +186,26 @@
                                             (click)="copy_name = null">
                                         </i>
                                         <button nz-button nzType="primary" [nzLoading]="copying" (click)="onCopy(file?.name)">Copy</button>
-                                    </ng-template>
+                                    </ng-template>{{formatted_name.suffix}}
+                                    <p *ngIf="copy_response">{{copy_response}}</p>
+                                </div>
+                                <div>
+                                    <br>
+                                    <p>
+                                        Move to movies
+                                    </p>
+                                    <nz-input-group [nzSuffix]="inputClearTpl2">
+                                        <textarea style="height: 150px" nz-input id="copy_name-{{file?.name}}" type="text" [(ngModel)]="copy_name"></textarea>
+                                    </nz-input-group>
+                                    <ng-template #inputClearTpl2>
+                                        <i nz-icon class="ant-input-clear-icon" 
+                                            nzTheme="fill"
+                                            nzType="close-circle"
+                                            *ngIf="copy_name"
+                                            (click)="copy_name = null">
+                                        </i>
+                                        <button nz-button nzType="primary" [nzLoading]="copying" (click)="onMove(file?.name)">Move</button>
+                                    </ng-template>{{formatted_name.suffix}}
                                     <p *ngIf="copy_response">{{copy_response}}</p>
                                 </div>
                             </div>

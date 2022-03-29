@@ -21,7 +21,9 @@ app.get('*', (req, res) => {
 /**
 * Get port from environment and store in Express.
 */
-const port = process.env.PORT || '4201';
+const port = process.env.PORT || '4200';
+const host = '192.168.0.16';
+
 app.set('port', port);
 /*app.set('127.0.0.1', host);*/
 
@@ -33,5 +35,5 @@ const server = http.createServer(app);
 /**
 * Listen on provided port, on all network interfaces.
 */
-server.listen(port, '192.168.0.16',() => console.log(`APP running on localhost:${port}`));
+server.listen(port, host,() => console.log(`APP running on ${host}:${port}`));
 

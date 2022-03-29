@@ -145,7 +145,7 @@ export class SearchComponent implements OnInit
     //   const dialogConfig1 = new MatDialogConfig();
       this.dialog.open(VideoPopupComponent,
         {
-        data: `${this.API_URL}/directory/file/${file.path}`,
+        data: `${this.API_URL}/directory1/${file.path}`,
         height: '66%',
         width: '75%'
       });

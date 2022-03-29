@@ -4,7 +4,7 @@ import { Directory } from 'src/app/interfaces'
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/services/api.service'
 import { VideoPopupComponent } from '../video-popup/video-popup.component';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -23,6 +23,7 @@ export class DirectoryComponent implements OnInit
   disabled: boolean;
 
   copy_name:string = "";
+  formatted_name
   copy_response;
   copying: boolean;
 
@@ -88,13 +89,6 @@ export class DirectoryComponent implements OnInit
   {
     this.fileToUpload = files.item(0);
   }
-  // uploadFileToActivity() {
-  //   this.fileUploadService.postFile(this.fileToUpload).subscribe(data => {
-  //     // do something, if upload success
-  //   }, error => {
-  //     console.log(error);
-  //   });
-  // }
 
   onToggle()
   {
@@ -116,10 +110,10 @@ export class DirectoryComponent implements OnInit
   {
     this.file = file;
     //   const dialogConfig1 = new MatDialogConfig();
-
+ 
     this.dialog.open(VideoPopupComponent,
       {
-        data: `${this.API_URL}/directory/file/${this.path}/${file}`,
+        data: `${this.API_URL}/directory1/${this.path}/${file}`,
 
         // data: `${this.API_URL}/directory1/${this.path}/${file}`,
         height: '100%',
@@ -173,7 +167,15 @@ export class DirectoryComponent implements OnInit
     }
     setName(filename)
     {
-      this.copy_name = filename.replace(/\./g,' ')
+      const requestUrl =
+        `${this.API_URL}/directory/format_name?filename=${filename}`;
+
+      this.http.get(requestUrl, {
+      })
+        .subscribe(data => {
+          this.formatted_name = data
+          this.copy_name = this.formatted_name["prefix"]
+        })
     }
     resetForm()
     {
@@ -184,7 +186,20 @@ export class DirectoryComponent implements OnInit
     {
       this.copying = true;
       const requestUrl =
-        `${this.API_URL}/directory/copy_file/${this.path}?&destname=${this.copy_name}&filename=${filename}`;
+        `${this.API_URL}/directory/copy_file/${this.path}?&destname=${this.copy_name}${this.formatted_name["suffix"]}&filename=${filename}`;
+
+      this.http.get(requestUrl, {
+      })
+        .subscribe(data => {
+          this.copy_response = data;
+          this.copying = false;
+        })
+    }
+    onMove(filename)
+    {
+      this.copying = true;
+      const requestUrl =
+        `${this.API_URL}/directory/move_file/${this.path}?&destname=${this.copy_name}${this.formatted_name["suffix"]}&filename=${filename}`;
 
       this.http.get(requestUrl, {
       })

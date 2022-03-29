@@ -24,7 +24,7 @@ export class ImagesComponent implements OnInit
   imageSource: string;
 
   query:string ="";
-  PATH = "archives/1.%20Movies/dimid/img/"
+  PATH = "media/movies/dimid/img/"
 
   // QueryParams
   params;
@@ -155,7 +155,7 @@ export class ImagesComponent implements OnInit
 
   setSource(index)
   {
-    this.imageSource = `${this.API_URL}/directory/file/${this.PATH}${this.images.files[index].name}`
+    this.imageSource = `${this.API_URL}/directory1/${this.PATH}${this.images.files[index].name}`
   }
 
   onClickImage(index)

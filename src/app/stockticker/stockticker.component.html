@@ -54,9 +54,9 @@
 <br>
 <br>
 
-<button nz-button nzType="primary" matTooltip="Hotkey: Delete" (click)="onTurn(-1)">Reset</button>
-<button nz-button nzType="primary" matTooltip="Hotkey: Spacebar" (click)="onTurn(1)">1 Turns</button>
-<button nz-button nzType="primary" matTooltip="Hotkey: Right Arrow" (click)="onTurn(10)">10 Turns</button>
+<button nz-button style="margin: 3px;" nzType="primary" matTooltip="Hotkey: Delete" (click)="onTurn(-1)">Reset</button>
+<button nz-button style="margin: 3px;" nzType="primary" matTooltip="Hotkey: Spacebar" (click)="onTurn(1)">1 Turns</button>
+<button nz-button style="margin: 3px;" nzType="primary" matTooltip="Hotkey: Right Arrow" (click)="onTurn(10)">10 Turns</button>
 
-<button *ngIf="paused==true" matTooltip="Hotkey: Insert" nz-button nzType="primary" (click)="playpause()">Play</button>
-<button *ngIf="paused!=true" matTooltip="Hotkey: Insert" nz-button nzType="primary" (click)="playpause()">Pause</button>
+<button nz-button nzType="primary" *ngIf="paused==true" matTooltip="Hotkey: Insert" style="margin: 3px;" (click)="playpause()">Play</button>
+<button nz-button nzType="primary" *ngIf="paused!=true" matTooltip="Hotkey: Insert" style="margin: 3px;" (click)="playpause()">Pause</button>

@@ -46,7 +46,7 @@ export class HoldingsPieComponent implements OnInit, OnChanges
     // this.data = []
     this.results = []
     this.colorScheme.domain = []
-    
+
     for(let key in this.holdings)
     {
       this.colorScheme.domain.push(this.scale[key])

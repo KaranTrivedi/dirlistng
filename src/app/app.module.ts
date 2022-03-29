@@ -63,6 +63,18 @@ import { HoldingsPieComponent } from './stockticker/player/holdings-pie/holdings
 import { PlayerComponent } from './stockticker/player/player.component';
 import { WorthPieComponent } from './stockticker/player/worth-pie/worth-pie.component';
 import { StandingsComponent } from './stockticker/player/standings/standings.component';
+import { BlankComponent } from './blank/blank.component';
+
+import {VgCoreModule} from '@videogular/ngx-videogular/core';
+import {VgControlsModule} from '@videogular/ngx-videogular/controls';
+import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
+import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
+import { TestComponent } from './test/test.component';
+
+import { PlotlyViaCDNModule } from 'angular-plotly.js';
+
+PlotlyViaCDNModule.setPlotlyVersion('latest'); // can be `latest` or any version number (i.e.: '1.40.0')
+PlotlyViaCDNModule.setPlotlyBundle(null); // optional: can be null (for full) or 'basic', 'cartesian', 'geo', 'gl3d', 'gl2d', 'mapbox' or 'finance'
 
 registerLocaleData(en);
 
@@ -80,12 +92,20 @@ registerLocaleData(en);
         HoldingsPieComponent,
         PlayerComponent,
         WorthPieComponent,
-        StandingsComponent
+        StandingsComponent,
+        BlankComponent,
+        TestComponent
       ],
       imports: [
         // NgxEchartsModule.forRoot({
         //       echarts: () => import('echarts'),
         //   }),
+        PlotlyViaCDNModule,
+
+        VgCoreModule,
+        VgControlsModule,
+        VgOverlayPlayModule,
+        VgBufferingModule,
 
         NgxChartsModule,
         ChartsModule,
