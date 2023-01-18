@@ -19,16 +19,20 @@ export class DirectoryComponent implements OnInit
 {
   @ViewChild("box") box;
 
-  add: boolean = false;
   disabled: boolean;
-
+  
+  loadingShows = false
+  
   copy_name:string = "";
   formatted_name
   copy_response;
   copying: boolean;
 
+  // add: boolean = false;
+  add: boolean = true;
   dl_response;
   validateForm: FormGroup;
+  vid_info;
 
   shows: any;
   // path_vars: string[] = [""];
@@ -61,8 +65,8 @@ export class DirectoryComponent implements OnInit
     // this.add = false;
     this.copying = false;
     this.validateForm = this.fb.group({
-      url: [null, [Validators.required]],
-      name: [null, [Validators.required]]
+      url: ["", [Validators.required]],
+      name: ["test", [Validators.required]]
     });
 
     this.path = Object.values(this.route.snapshot.params).join("/")
@@ -82,6 +86,10 @@ export class DirectoryComponent implements OnInit
     if(event.key == "Insert")
     {
       this.box.nativeElement.focus();
+    }
+    if(event.key == "Escape")
+    {
+      this.box.nativeElement.blur();
     }
   }
 
@@ -184,16 +192,17 @@ export class DirectoryComponent implements OnInit
     }
     onCopy(filename)
     {
-      this.copying = true;
-      const requestUrl =
-        `${this.API_URL}/directory/copy_file/${this.path}?&destname=${this.copy_name}${this.formatted_name["suffix"]}&filename=${filename}`;
+      console.log(filename)
+      // this.copying = true;
+      // const requestUrl =
+      //   `${this.API_URL}/directory/copy_file/${this.path}?&destname=${this.copy_name}${this.formatted_name["suffix"]}&filename=${filename}`;
 
-      this.http.get(requestUrl, {
-      })
-        .subscribe(data => {
-          this.copy_response = data;
-          this.copying = false;
-        })
+      // this.http.get(requestUrl, {
+      // })
+      //   .subscribe(data => {
+      //     this.copy_response = data; //  This just says done
+      //     this.copying = false;
+      //   })
     }
     onMove(filename)
     {
@@ -212,7 +221,8 @@ export class DirectoryComponent implements OnInit
     {
       this.add = !this.add
     }
-    putVideo()
+
+    downloadVideo()
     {
       this.dl_response=""
       this.disabled = true;
@@ -224,19 +234,35 @@ export class DirectoryComponent implements OnInit
       }
 
       const requestUrl =
-        `${this.API_URL}/directory/youtube-dl/${this.path}?&name=${name}&url=${url}`;
+        `${this.API_URL}/directory/youtube-dl/${this.path}?name=${name}&url=${url}`;
 
       this.http.get(requestUrl, {
       })
         .subscribe(data => {
+          console.log(data)
           this.dl_response = data;
           this.disabled = false;
           this.getDirectory()
         })
     }
 
+    checkVideo()
+    {
+      var url = this.validateForm.value.url
+
+      const requestUrl = `${this.API_URL}/directory/youtube-dl-info?url=${url}`;
+
+      this.http.get(requestUrl, {
+      })
+        .subscribe(data => {
+          // console.log(data)
+          this.vid_info = data
+        })
+    }
+
   private getDirectory()
   {
+    this.loadingShows = true
     const requestUrl =
       `${this.API_URL}/directory/folder/${this.path}?&column=${this.column}&sort=${this.sort}&query=${this.query}`;
 
@@ -244,6 +270,8 @@ export class DirectoryComponent implements OnInit
       })
         .subscribe(posts => {
           this.shows = posts;
+          this.loadingShows = false
+
           if (!this.shows.valid)
           {
             this.path = ""

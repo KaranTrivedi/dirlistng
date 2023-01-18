@@ -55,6 +55,9 @@
                         <mat-panel-description>
                             <button mat-button (click)="onView(file)"
                             [disabled]="file?.ext!=='mp4'&&file?.ext!=='webm'&&file?.ext!=='mkv'&&file?.ext!=='mp4'&&file?.ext!=='avi'">View</button>
+                            <!-- <a mat-button href="VLC://{{API_URL}}/directory1/{{file.path}}">VLC</a> -->
+                            <!-- <a mat-button [href]="vlc_url">VLC</a>
+                             -->
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <div class="detail">

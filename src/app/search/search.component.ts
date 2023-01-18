@@ -31,6 +31,8 @@ export class SearchComponent implements OnInit
   files;
   file;
 
+  vlc_url
+
   today = new Date(new Date().setHours(0,0,0,0)).getTime();
 
   private API_URL= environment.API_URL;
@@ -77,7 +79,7 @@ export class SearchComponent implements OnInit
   handleKeyboardEvent(event: KeyboardEvent)
   {
     // console.log(event.key)
-    if(event.key == "Insert")
+    if(event.key == "Ctrl.f")
     {
       this.box.nativeElement.focus();
     }
@@ -95,6 +97,10 @@ export class SearchComponent implements OnInit
     {
       this.pageIndex = 0
       this.navCall()
+    }
+    if(event.key == "Escape")
+    {
+      this.box.nativeElement.blur();
     }
   }
   paginate(event?:PageEvent)
@@ -140,6 +146,11 @@ export class SearchComponent implements OnInit
     this.apiService.Download(file.parent, file.name)
   }
 
+  onVLC(file)
+  {
+    this.vlc_url = `${this.API_URL}/directory1/${file.path}`
+  }
+
   onView(file)
   {
     //   const dialogConfig1 = new MatDialogConfig();
@@ -153,7 +164,7 @@ export class SearchComponent implements OnInit
 
   onRefresh()
   {
-    const requestUrl = `${this.API_URL}search/refresh`
+    const requestUrl = `${this.API_URL}/search/refresh`
 
     this.http.get(requestUrl,
       {

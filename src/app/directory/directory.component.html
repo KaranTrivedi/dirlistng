@@ -65,7 +65,12 @@
             </nz-form-item>
             <nz-form-item>
                 <nz-form-control>
-                    <button nz-button nzType="primary" (click)="putVideo()" [nzLoading]="disabled">Download</button>
+                    <button nz-button nzType="primary" (click)="downloadVideo()" [nzLoading]="disabled">Download</button>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <button nz-button nzType="primary" (click)="checkVideo()" [nzLoading]="disabled">Check</button>
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
@@ -73,13 +78,21 @@
                     <button nz-button (click)="resetForm()" [disabled]="disabled">Clear</button>
                 </nz-form-control>
             </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <button nz-button (click)="getDirectory()">Refresh Dir</button>
+                </nz-form-control>
+            </nz-form-item>
         </form>
         <p [ngStyle]="{'color': 'red'}" *ngIf="dl_response">{{dl_response}}</p>
+
+        <!-- <ngx-json-viewer *ngIf="vid_info" [json]="vid_info"></ngx-json-viewer> -->
+
     </div>
 
     <div class="content-container">
         <div class="folders-container" *ngIf="shows?.folders.length > 0">
-            <mat-expansion-panel [expanded]="true" togglePosition="before">
+            <mat-expansion-panel expanded="true" togglePosition="before">
                 <mat-expansion-panel-header color="primary">
                     <mat-panel-title *ngIf="shows?.folders.length === 1">
                         {{shows?.folders.length}} Folder
@@ -114,8 +127,9 @@
             </mat-expansion-panel>
         </div>
         <div class="vl" *ngIf="shows?.folders.length > 0"></div>
-        <div class="files-container" *ngIf="shows?.files.length > 0">
-            <mat-expansion-panel [expanded]="true" togglePosition="before">
+
+        <div class="files-container" *ngIf="shows?.files.length > 0 && !loadingShows">
+            <mat-expansion-panel expanded="true" togglePosition="before">
                 <mat-expansion-panel-header color="primary">
                     <mat-panel-title *ngIf="shows?.files.length === 1">1 File - {{shows.file_size_total_h}}
                     </mat-panel-title>
@@ -123,7 +137,6 @@
                     </mat-panel-title>
     
                     <mat-panel-description>
-                        <!-- <button mat-button>Upload <mat-icon> attach_file</mat-icon></button > -->
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <mat-accordion hideToggle="true">
@@ -133,13 +146,15 @@
                                 <mat-panel-title>
                                     <mat-list>
                                         <mat-list-item>
-                                            <mat-icon [ngStyle]="{'color': 'gray' }" mat-list-icon>insert_drive_file</mat-icon>
                                             <div mat-line
-                                                [ngStyle]="{'color':file?.modify_time<today ? '' : 'rgb(121 224 128)', 'font-weight' : file?.modify_time<today ? '' : 'bolder' }">
+                                                [ngStyle]="{'color':file?.modify_time<today ? '' : 'rgb(121 224 128)', 'font-weight' : file?.modify_time<today ? '' : 'bolder' }"
+                                            >
+                                                <i nz-icon nzType="file" nzTheme="outline"></i>
                                                 {{file?.name}}
                                             </div>
-                                            <div class="subname" mat-line> <b>{{file?.size_h}}</b> - {{file?.modify_time_h |
-                                                date:"MMM d yy, hh:mm:ss a"}}</div>
+                                            <div class="subname" mat-line>
+                                                <b>{{file?.size_h}}</b> - {{file?.modify_time_h | date:"MMM d yy, hh:mm:ss a"}}
+                                            </div>
                                         </mat-list-item>
                                     </mat-list>
                                 </mat-panel-title>
@@ -178,6 +193,7 @@
                                     <nz-input-group [nzSuffix]="inputClearTpl1">
                                         <textarea style="height: 150px" nz-input id="copy_name-{{file?.name}}" type="text" [(ngModel)]="copy_name"></textarea>
                                     </nz-input-group>
+
                                     <ng-template #inputClearTpl1>
                                         <i nz-icon class="ant-input-clear-icon" 
                                             nzTheme="fill"
@@ -187,6 +203,7 @@
                                         </i>
                                         <button nz-button nzType="primary" [nzLoading]="copying" (click)="onCopy(file?.name)">Copy</button>
                                     </ng-template>{{formatted_name.suffix}}
+
                                     <p *ngIf="copy_response">{{copy_response}}</p>
                                 </div>
                                 <div>

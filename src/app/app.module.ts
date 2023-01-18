@@ -1,6 +1,8 @@
 import { BrowserModule} from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// import { NgxJsonViewerModule } from 'ngx-json-viewer';
+
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -40,6 +42,7 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
@@ -100,6 +103,10 @@ registerLocaleData(en);
         // NgxEchartsModule.forRoot({
         //       echarts: () => import('echarts'),
         //   }),
+        // NgxJsonViewerModule,
+
+        NzCollapseModule,
+
         PlotlyViaCDNModule,
 
         VgCoreModule,

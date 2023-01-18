@@ -38,6 +38,7 @@
     "hammerjs": "^2.0.8",
     "ng-zorro-antd": "^13.0.0",
     "ngx-echarts": "^8.0.1",
+    "ngx-json-viewer": "^3.2.1",
     "plotly.js-dist-min": "^2.9.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",

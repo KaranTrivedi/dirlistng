@@ -10,6 +10,10 @@
 @import "https://unpkg.com/carbon-components/css/carbon-components.min.css";
 /* Carbon */
 
+pre
+{
+  color: antiquewhite;
+}
 
 /* whitespace : &nbsp; */
 
