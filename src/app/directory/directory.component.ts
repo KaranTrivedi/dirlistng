@@ -6,7 +6,7 @@ import { ApiService } from 'src/services/api.service'
 import { VideoPopupComponent } from '../video-popup/video-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-downloads',
@@ -31,7 +31,7 @@ export class DirectoryComponent implements OnInit
   // add: boolean = false;
   add: boolean = true;
   dl_response;
-  validateForm: FormGroup;
+  validateForm: UntypedFormGroup;
   vid_info;
 
   shows: any;
@@ -57,7 +57,7 @@ export class DirectoryComponent implements OnInit
     private router: Router,
     private apiService: ApiService,
     private dialog: MatDialog,
-    private fb: FormBuilder) { }
+    private fb: UntypedFormBuilder) { }
 
   ngOnInit()
   {
