@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 
-import "@carbon/charts/styles-g100.css";
+// import "@carbon/charts/styles-g100.css";
 
 @Component({
   selector: 'app-holdings-pie',

@@ -1,4 +1,8 @@
 @import '@angular/material/theming';
+@import '@carbon/themes/scss/themes';
+@import 'carbon-components/scss/globals/scss/styles.scss';
+@import "@carbon/charts/styles/styles.scss";
+
 // @import '@angular/material/prebuilt-themes/purple-green.css';
 
 // Include the common styles for Angular Material. We include this here so that you only
