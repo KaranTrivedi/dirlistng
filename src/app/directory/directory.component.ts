@@ -4,7 +4,7 @@ import { Directory } from 'src/app/interfaces'
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/services/api.service'
 import { VideoPopupComponent } from '../video-popup/video-popup.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { environment } from 'src/environments/environment'
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
