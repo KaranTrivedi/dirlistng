@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* @import '@angular/material/prebuilt-themes/purple-green.css'; */
-@import "~ng-zorro-antd/ng-zorro-antd.dark";
+/* @import "ng-zorro-antd/ng-zorro-antd.dark"; */
 
 /* Carbon */
 @import "@carbon/charts/styles-g100.css";
