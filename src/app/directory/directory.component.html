@@ -65,12 +65,12 @@
             </nz-form-item>
             <nz-form-item>
                 <nz-form-control>
-                    <button nz-button nzType="primary" (click)="downloadVideo()" [nzLoading]="disabled">Download</button>
+                    <button nz-button nzType="primary" (click)="downloadVideo()">Download</button>
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-control>
-                    <button nz-button nzType="primary" (click)="checkVideo()" [nzLoading]="disabled">Check</button>
+                    <button nz-button nzType="primary" (click)="checkVideo()">Check</button>
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
@@ -87,7 +87,15 @@
         <p [ngStyle]="{'color': 'red'}" *ngIf="dl_response">{{dl_response}}</p>
 
         <!-- <ngx-json-viewer *ngIf="vid_info" [json]="vid_info"></ngx-json-viewer> -->
-
+        <div class="container">
+            <div class="progress"
+            >
+            <!-- *ngIf="progress > 0" -->
+              <div class="progress-bar" role="progressbar" [style.width.%]="progress">
+                {{progress}}%
+              </div>
+            </div>
+        </div>
     </div>
 
     <div class="content-container">
@@ -202,7 +210,8 @@
                                             (click)="copy_name = null">
                                         </i>
                                         <button nz-button nzType="primary" [nzLoading]="copying" (click)="onCopy(file?.name)">Copy</button>
-                                    </ng-template>{{formatted_name.suffix}}
+                                    </ng-template>
+                                    {{formatted_name?.suffix}}
 
                                     <p *ngIf="copy_response">{{copy_response}}</p>
                                 </div>
@@ -222,7 +231,8 @@
                                             (click)="copy_name = null">
                                         </i>
                                         <button nz-button nzType="primary" [nzLoading]="copying" (click)="onMove(file?.name)">Move</button>
-                                    </ng-template>{{formatted_name.suffix}}
+                                    </ng-template>
+                                    {{formatted_name?.suffix}}
                                     <p *ngIf="copy_response">{{copy_response}}</p>
                                 </div>
                             </div>

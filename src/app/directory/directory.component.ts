@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild, HostListener, ViewEncapsulation } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Directory } from 'src/app/interfaces'
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/services/api.service'
@@ -18,6 +18,8 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 export class DirectoryComponent implements OnInit
 {
   @ViewChild("box") box;
+
+  progress = 0;
 
   disabled: boolean;
   
@@ -222,28 +224,56 @@ export class DirectoryComponent implements OnInit
       this.add = !this.add
     }
 
+    // downloadVideo()
+    // {
+    //   this.dl_response=""
+    //   this.disabled = true;
+    //   var url = this.validateForm.value.url
+    //   var name = ""
+    //   if (this.validateForm.value.name)
+    //   {
+    //     name = this.validateForm.value.name
+    //   }
+
+    //   const requestUrl =
+    //     `${this.API_URL}/directory/youtube-dl/${this.path}?name=${name}&url=${url}`;
+
+    //   this.http.get(requestUrl, {
+    //   })
+    //     .subscribe(data => {
+    //       console.log(data)
+    //       this.dl_response = data;
+    //       this.disabled = false;
+    //       this.getDirectory()
+    //     })
+    // }
+
     downloadVideo()
     {
-      this.dl_response=""
-      this.disabled = true;
-      var url = this.validateForm.value.url
-      var name = ""
-      if (this.validateForm.value.name)
-      {
-        name = this.validateForm.value.name
-      }
+        this.disabled = true;
+        var url = this.validateForm.value.url
+        var name = ""
+        if (this.validateForm.value.name)
+        {
+            name = this.validateForm.value.name
+        }
+        const requestUrl =
+            `${this.API_URL}/download/youtube-dl/${this.path}`;
 
-      const requestUrl =
-        `${this.API_URL}/directory/youtube-dl/${this.path}?name=${name}&url=${url}`;
-
-      this.http.get(requestUrl, {
-      })
-        .subscribe(data => {
-          console.log(data)
-          this.dl_response = data;
-          this.disabled = false;
-          this.getDirectory()
-        })
+            // ?name=${name}&url=${url}
+        var body = {
+                name: name,
+                url: url
+            }
+            this.http.post(requestUrl, body).subscribe(
+                (data: any) => {
+                  // update the download progress as a percentage
+                  this.progress = data.progress / data.total * 100;
+                },
+                (error: any) => {
+                  console.error(error);
+                }
+              );
     }
 
     checkVideo()
